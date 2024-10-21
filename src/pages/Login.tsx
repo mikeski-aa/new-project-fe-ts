@@ -3,12 +3,25 @@ import React, { useState } from "react";
 
 function Login() {
   const [page, setPage] = useState<string>("login");
+
+  const handleGoLogin = () => {
+    return setPage("register");
+  };
+
+  const handleGoRegister = () => {
+    return setPage("login");
+  };
+
   return (
     <div className="loginContainer">
-      <div className="loginMainDiv">
+      <div
+        className={
+          page === "login" ? "loginMainDiv active" : "loginMainDiv inactive"
+        }
+      >
         <div className="loginHeader">Login</div>
         <div className="loginForm">
-          <form onSubmit={(e) => e.preventDefault()}>
+          <form onSubmit={(e) => e.preventDefault()} className="loginForm">
             <input
               type="text"
               className="welcomeInput"
@@ -22,16 +35,21 @@ function Login() {
             <button className="welcomeButton">Login</button>
           </form>
           <button className="welcomeButton">Guest Login</button>
-          <button className="welcomeButton">
+          <button className="welcomeButton" onClick={handleGoRegister}>
             I want to create a new account
           </button>
         </div>
       </div>
-      <div className="registerDiv">
+
+      <div
+        className={
+          page === "register" ? "registerDiv active" : "registerDiv inactive"
+        }
+      >
         <div className="registerMainDiv">
           <div className="registerHeader">Register</div>
           <div className="registerForm">
-            <form onSubmit={(e) => e.preventDefault()}>
+            <form onSubmit={(e) => e.preventDefault()} className="registerForm">
               <input
                 type="text"
                 className="welcomeInput"
@@ -49,7 +67,9 @@ function Login() {
               ></input>
               <button className="welcomeButton">Register</button>
             </form>
-            <button className="welcomeButton">I have an account</button>
+            <button className="welcomeButton" onClick={handleGoLogin}>
+              I have an account
+            </button>
           </div>
         </div>
       </div>
