@@ -9,8 +9,14 @@
 
 .loginMainDiv,
 .registerMainDiv {
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
+  position: absolute;
+  /* left: 50%;
+  top: 50%; */
+  /* transform: translateX(-50%); */
+  /* transform: translateY(-50%); */
+  transition-duration: 1s;
 }
 
 .loginForm,
@@ -20,5 +26,13 @@
 }
 
 .inactive {
-  opacity: 0.5;
+  opacity: 0;
+  transform: translateX(50%);
+  visibility: hidden;
+}
+
+.active {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(0%);
 }

@@ -5,11 +5,11 @@ function Login() {
   const [page, setPage] = useState<string>("login");
 
   const handleGoLogin = () => {
-    return setPage("register");
+    return setPage("login");
   };
 
   const handleGoRegister = () => {
-    return setPage("login");
+    return setPage("register");
   };
 
   return (
@@ -43,34 +43,34 @@ function Login() {
 
       <div
         className={
-          page === "register" ? "registerDiv active" : "registerDiv inactive"
+          page === "register"
+            ? "registerMainDiv active"
+            : "registerMainDiv inactive"
         }
       >
-        <div className="registerMainDiv">
-          <div className="registerHeader">Register</div>
-          <div className="registerForm">
-            <form onSubmit={(e) => e.preventDefault()} className="registerForm">
-              <input
-                type="text"
-                className="welcomeInput"
-                placeholder="Username"
-              ></input>
-              <input
-                type="password"
-                className="welcomeInput"
-                placeholder="Password"
-              ></input>
-              <input
-                type="password"
-                className="welcomeInput"
-                placeholder="Confirm password"
-              ></input>
-              <button className="welcomeButton">Register</button>
-            </form>
-            <button className="welcomeButton" onClick={handleGoLogin}>
-              I have an account
-            </button>
-          </div>
+        <div className="registerHeader">Register</div>
+        <div className="registerForm">
+          <form onSubmit={(e) => e.preventDefault()} className="registerForm">
+            <input
+              type="text"
+              className="welcomeInput"
+              placeholder="Username"
+            ></input>
+            <input
+              type="password"
+              className="welcomeInput"
+              placeholder="Password"
+            ></input>
+            <input
+              type="password"
+              className="welcomeInput"
+              placeholder="Confirm password"
+            ></input>
+            <button className="welcomeButton">Register</button>
+          </form>
+          <button className="welcomeButton" onClick={handleGoLogin}>
+            I have an account
+          </button>
         </div>
       </div>
     </div>
