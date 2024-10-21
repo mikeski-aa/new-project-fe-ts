@@ -4,12 +4,12 @@ import React, { useState } from "react";
 function Login() {
   const [page, setPage] = useState<string>("login");
 
-  const handleGoLogin = () => {
-    return setPage("login");
+  const handleGoLogin = (): void => {
+    setPage("login");
   };
 
-  const handleGoRegister = () => {
-    return setPage("register");
+  const handleGoRegister = (): void => {
+    setPage("register");
   };
 
   return (
