@@ -5,11 +5,13 @@ import Login from "./pages/Login";
 import Layout from "./pages/Layout";
 import Home from "./pages/Home";
 
-interface IUser {
+// interface for the user object
+export interface IUser {
   username: string;
   id: number;
 }
 
+// interface definition for the user context
 interface UserContextInt {
   user: IUser | null | undefined;
   setUser: (user: IUser | null | undefined) => void;

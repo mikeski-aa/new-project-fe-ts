@@ -1,14 +1,19 @@
 import LOCAL_URL from "../../utils/urlConst";
+import { IUser } from "../App";
+
+// not sure how I feela bout this definition here need to look it up
 const headerInfo: HeadersInit = {
   Accept: "application/json",
   "Content-Type": "application/json",
+  Authorization: "Bearer " + localStorage.getItem("token"),
 };
 
+// define interface for the expected response
 interface UserResponse {
   error: string | null;
   errorPresent?: boolean;
   token?: string;
-  user?: object;
+  user?: IUser;
 }
 
 // need to better handle errors from backend validation
@@ -94,5 +99,7 @@ async function loginUser(
     return { error: error } as UserResponse;
   }
 }
+
+async function loginCheck() {}
 
 export { createUser, loginUser };
