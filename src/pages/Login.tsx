@@ -8,10 +8,12 @@ function Login() {
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
 
+  // handle switching between register and login
   const handleGoLogin = (): void => {
     setPage("login");
   };
 
+  // handle switching from login to register
   const handleGoRegister = (): void => {
     setPage("register");
   };
