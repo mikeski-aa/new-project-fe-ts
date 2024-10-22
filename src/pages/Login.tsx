@@ -59,6 +59,12 @@ function Login() {
     console.log(response);
   };
 
+  // handle login click
+  const handleLoginClick = async () => {
+    const response = await loginUser(logUsername, logPassword);
+    console.log(response);
+  };
+
   return (
     <div className="loginContainer">
       <div
@@ -73,13 +79,20 @@ function Login() {
               type="text"
               className="welcomeInput"
               placeholder="username"
+              onChange={(e) => handleLogUsername(e)}
             ></input>
             <input
               type="password"
               className="welcomeInput"
               placeholder="password"
+              onChange={(e) => handleLogPassword(e)}
             ></input>
-            <button className="welcomeButton">Login</button>
+            <button
+              className="welcomeButton"
+              onClick={() => handleLoginClick()}
+            >
+              Login
+            </button>
           </form>
           <button className="welcomeButton">Guest Login</button>
           <button className="welcomeButton" onClick={handleGoRegister}>
