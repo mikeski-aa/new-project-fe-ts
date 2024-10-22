@@ -1,6 +1,7 @@
 import "../styles/loginregister.css";
 import React, { SyntheticEvent, useState } from "react";
 import { createUser, loginUser } from "../services/userCalls";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [page, setPage] = useState<string>("login");
@@ -9,6 +10,7 @@ function Login() {
   const [regConfirmPassword, setRegConfirmPassword] = useState<string>("");
   const [logUsername, setLogUsername] = useState<string>("");
   const [logPassword, setLogPassword] = useState<string>("");
+  const navigate = useNavigate();
   // handle switching between register and login forms
   const handleGoLogin = (): void => {
     setPage("login");
@@ -49,11 +51,6 @@ function Login() {
     setLogPassword(inputElement.value);
   };
 
-  interface ResponseType {
-    errorPresent: object;
-    // other properties if applicable
-  }
-
   // handle register click
   const handleRegisterClick = async () => {
     const response = await createUser(
@@ -64,8 +61,10 @@ function Login() {
 
     if (response.errorPresent === true) {
       // if error is present, we don't proceed with register and inform user of error
+      return console.log("inform error");
     } else {
       // redirect to login
+      setPage("login");
     }
     console.log(response);
   };
@@ -73,6 +72,13 @@ function Login() {
   // handle login click
   const handleLoginClick = async () => {
     const response = await loginUser(logUsername, logPassword);
+    if (response.errorPresent === true) {
+      // if error is present, we don't proceed with register and inform user of error
+      return console.log("inform error");
+    } else {
+      // redirect to login
+      navigate("/");
+    }
     console.log(response);
   };
 
