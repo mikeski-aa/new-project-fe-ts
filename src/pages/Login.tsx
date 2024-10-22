@@ -1,44 +1,62 @@
 import "../styles/loginregister.css";
 import React, { SyntheticEvent, useState } from "react";
-import { createUser } from "../services/userCalls";
+import { createUser, loginUser } from "../services/userCalls";
 
 function Login() {
   const [page, setPage] = useState<string>("login");
-  const [username, setUsername] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [confirmPassword, setConfirmPassword] = useState<string>("");
-
-  // handle switching between register and login
+  const [regUsername, setRegUsername] = useState<string>("");
+  const [regPassword, setRegPassword] = useState<string>("");
+  const [regConfirmPassword, setRegConfirmPassword] = useState<string>("");
+  const [logUsername, setLogUsername] = useState<string>("");
+  const [logPassword, setLogPassword] = useState<string>("");
+  // handle switching between register and login forms
   const handleGoLogin = (): void => {
     setPage("login");
   };
 
-  // handle switching from login to register
+  // handle switching from login to register forms
   const handleGoRegister = (): void => {
     setPage("register");
   };
 
-  const handleRegisterClick = async () => {
-    const response = await createUser(username, password, confirmPassword);
-    console.log(response);
-  };
-
+  // Input handlers for registering
   const handleRegUname = (e: SyntheticEvent) => {
     const inputElement = e.target as HTMLInputElement;
-    setUsername(inputElement.value);
+    setRegUsername(inputElement.value);
     console.log(inputElement.value);
   };
 
   const handleRegPw = (e: SyntheticEvent) => {
     const inputElement = e.target as HTMLInputElement;
-    setPassword(inputElement.value);
+    setRegPassword(inputElement.value);
     console.log(inputElement.value);
   };
 
   const handleRegPwCon = (e: SyntheticEvent) => {
     const inputElement = e.target as HTMLInputElement;
-    setConfirmPassword(inputElement.value);
+    setRegConfirmPassword(inputElement.value);
     console.log(inputElement.value);
+  };
+
+  // input handlers for login
+  const handleLogUsername = (e: SyntheticEvent): void => {
+    const inputElement = e.target as HTMLInputElement;
+    setLogUsername(inputElement.value);
+  };
+
+  const handleLogPassword = (e: SyntheticEvent): void => {
+    const inputElement = e.target as HTMLInputElement;
+    setLogPassword(inputElement.value);
+  };
+
+  // handle register click
+  const handleRegisterClick = async () => {
+    const response = await createUser(
+      regUsername,
+      regPassword,
+      regConfirmPassword
+    );
+    console.log(response);
   };
 
   return (
