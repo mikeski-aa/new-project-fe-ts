@@ -4,6 +4,7 @@ const headerInfo: HeadersInit = {
   "Content-Type": "application/json",
 };
 
+// need to better handle errors from backend validation
 async function createUser(
   username: string,
   password: string,
@@ -34,6 +35,10 @@ async function createUser(
   }
 }
 
+// error returned when validation on backend failed:
+// userCalls.ts:46   POST http://localhost:3000/api/login 400 (Bad Request)
+// need to handle this error
+
 async function loginUser(username: string, password: string) {
   const newBody = {
     username: username,
@@ -50,6 +55,8 @@ async function loginUser(username: string, password: string) {
     });
 
     const json: object = await response.json();
+
+    localStorage.setItem("token", json.token);
 
     console.log(json);
     return json;
