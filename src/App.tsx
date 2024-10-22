@@ -43,33 +43,35 @@ function App() {
   const [theme, setTheme] = useState<string>("light");
   const [loading, setLoading] = useState<boolean>(true);
 
-  // useEffect(() => {
-  //   console.log("i ran ");
-  //   const checkForLogin = async () => {
-  //     console.log(isLogged);
-  //     const checkResult = await loginCheck();
-  //     setLoading(false);
-  //     console.log(checkResult);
+  useEffect(() => {
+    console.log("Logging current user");
+    console.log(user);
+    const checkForLogin = async () => {
+      console.log(isLogged);
+      const checkResult = await loginCheck();
+      setLoading(false);
+      console.log("check result error present");
+      console.log(checkResult.errorPresent);
 
-  //     if (checkResult.errorPresent) {
-  //       setIsLogged(false);
-  //       return console.log("yep no token found, error present");
-  //     }
+      if (checkResult.errorPresent) {
+        setIsLogged(false);
+        return console.log("yep no token found, error present");
+      }
 
-  //     setIsLogged(true);
+      setIsLogged(true);
 
-  //     const newUser: IUser = {
-  //       username: checkResult.username,
-  //       id: checkResult.id,
-  //     };
-  //     console.log(newUser);
-  //     setUser(newUser);
+      const newUser: IUser = {
+        username: checkResult.username,
+        id: checkResult.id,
+      };
+      console.log(newUser);
+      setUser(newUser);
 
-  //     return;
-  //   };
+      return;
+    };
 
-  //   checkForLogin();
-  // }, []);
+    checkForLogin();
+  }, []);
 
   const router = createBrowserRouter([
     {

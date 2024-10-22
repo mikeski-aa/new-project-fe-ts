@@ -9,8 +9,9 @@ function Layout() {
   const navigate = useNavigate();
   const userContext = useContext(UserContext);
 
-  useCheckLogin();
-  useRedirectHook(userContext.isLogged);
+  // useCheckLogin();
+  console.log(userContext);
+  useRedirectHook(userContext.isLogged, userContext.loading);
 
   const handleLogoutClick = () => {
     localStorage.removeItem("token");
