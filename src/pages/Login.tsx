@@ -49,6 +49,11 @@ function Login() {
     setLogPassword(inputElement.value);
   };
 
+  interface ResponseType {
+    errorPresent: object;
+    // other properties if applicable
+  }
+
   // handle register click
   const handleRegisterClick = async () => {
     const response = await createUser(
@@ -56,6 +61,12 @@ function Login() {
       regPassword,
       regConfirmPassword
     );
+
+    if (response.errorPresent === true) {
+      // if error is present, we don't proceed with register and inform user of error
+    } else {
+      // redirect to login
+    }
     console.log(response);
   };
 
