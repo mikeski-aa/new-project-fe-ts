@@ -1,7 +1,8 @@
 import "../styles/loginregister.css";
-import React, { SyntheticEvent, useState } from "react";
+import React, { SyntheticEvent, useContext, useState } from "react";
 import { createUser, loginUser } from "../services/userCalls";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../App";
 
 function Login() {
   const [page, setPage] = useState<string>("login");
@@ -11,6 +12,8 @@ function Login() {
   const [logUsername, setLogUsername] = useState<string>("");
   const [logPassword, setLogPassword] = useState<string>("");
   const navigate = useNavigate();
+  const userContext = useContext(UserContext);
+
   // handle switching between register and login forms
   const handleGoLogin = (): void => {
     setPage("login");
@@ -78,6 +81,9 @@ function Login() {
     } else {
       console.log("i should navigate away");
       // redirect to login
+      console.log(response);
+      userContext.setUser(response.user);
+      userContext.setIsLogged(true);
       navigate("/");
     }
     console.log(response);

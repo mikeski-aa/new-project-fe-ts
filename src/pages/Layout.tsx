@@ -1,14 +1,16 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import "../styles/layout.css";
-import useRedirectHook from "../hooks/useRedierctHook";
 import { useContext } from "react";
 import { UserContext } from "../App";
+import useRedirectHook from "../hooks/useRedierctHook";
+import useCheckLogin from "../hooks/useCheckLogin";
 
 function Layout() {
   const navigate = useNavigate();
   const userContext = useContext(UserContext);
 
-  useRedirectHook();
+  useCheckLogin();
+  useRedirectHook(userContext.isLogged);
 
   const handleLogoutClick = () => {
     localStorage.removeItem("token");

@@ -43,30 +43,33 @@ function App() {
   const [theme, setTheme] = useState<string>("light");
   const [loading, setLoading] = useState<boolean>(true);
 
-  useEffect(() => {
-    const checkForLogin = async () => {
-      console.log(isLogged);
-      const checkResult = await loginCheck();
-      setLoading(false);
-      console.log(checkResult);
+  // useEffect(() => {
+  //   console.log("i ran ");
+  //   const checkForLogin = async () => {
+  //     console.log(isLogged);
+  //     const checkResult = await loginCheck();
+  //     setLoading(false);
+  //     console.log(checkResult);
 
-      if (checkResult.errorPresent) {
-        setIsLogged(false);
-        return console.log("yep no token found, error present");
-      }
+  //     if (checkResult.errorPresent) {
+  //       setIsLogged(false);
+  //       return console.log("yep no token found, error present");
+  //     }
 
-      const newUser: IUser = {
-        username: checkResult.username,
-        id: checkResult.id,
-      };
+  //     setIsLogged(true);
 
-      setUser(newUser);
+  //     const newUser: IUser = {
+  //       username: checkResult.username,
+  //       id: checkResult.id,
+  //     };
+  //     console.log(newUser);
+  //     setUser(newUser);
 
-      return setIsLogged(true);
-    };
+  //     return;
+  //   };
 
-    checkForLogin();
-  }, []);
+  //   checkForLogin();
+  // }, []);
 
   const router = createBrowserRouter([
     {
