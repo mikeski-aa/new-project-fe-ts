@@ -5,23 +5,33 @@ import Login from "./pages/Login";
 import Layout from "./pages/Layout";
 import Home from "./pages/Home";
 
-interface User {
+interface IUser {
   username: string;
   id: number;
 }
 
 interface UserContextInt {
-  user: User;
-  setUser: (user: User | null) => void;
+  user: IUser | null | undefined;
+  setUser: (user: IUser | null | undefined) => void;
   isLogged: boolean;
-  setIsLogged: (isLogged: boolean | null) => void;
+  setIsLogged: (isLogged: boolean) => void;
+  theme: string;
+  setTheme: (theme: string) => void;
 }
 
-export const UserContext = createContext<UserContextInt>();
+export const UserContext = createContext<UserContextInt>({
+  user: undefined,
+  setUser: () => {},
+  isLogged: false,
+  setIsLogged: () => {},
+  theme: "light",
+  setTheme: () => {},
+});
 
 function App() {
-  const [user, setUser] = useState<User | null>();
+  const [user, setUser] = useState<IUser | null | undefined>();
   const [isLogged, setIsLogged] = useState<boolean>(false);
+  const [theme, setTheme] = useState<string>("light");
 
   const router = createBrowserRouter([
     {
@@ -42,7 +52,9 @@ function App() {
 
   return (
     <>
-      <UserContext.Provider value={{ user, setUser, isLogged, setIsLogged }}>
+      <UserContext.Provider
+        value={{ user, setUser, isLogged, setIsLogged, theme, setTheme }}
+      >
         <RouterProvider router={router}></RouterProvider>
       </UserContext.Provider>
     </>
