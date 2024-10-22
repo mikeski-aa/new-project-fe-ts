@@ -14,6 +14,8 @@ interface UserResponse {
   errorPresent?: boolean;
   token?: string;
   user?: IUser;
+  username?: string;
+  id?: number;
 }
 
 // need to better handle errors from backend validation
@@ -100,6 +102,26 @@ async function loginUser(
   }
 }
 
-async function loginCheck() {}
+// check for user login
+async function loginCheck() {
+  const url = LOCAL_URL + "login";
 
-export { createUser, loginUser };
+  try {
+    const response = await fetch(url, { method: "GET", headers: headerInfo });
+
+    if (!response.ok) {
+      return {
+        errorPresent: true,
+        error: "Token not found!",
+      } as UserResponse;
+    }
+
+    const json = await response.json();
+    return { ...json, errorPresent: false } as UserResponse;
+  } catch (error) {
+    console.log(error);
+    return { error: error } as UserResponse;
+  }
+}
+
+export { createUser, loginUser, loginCheck };

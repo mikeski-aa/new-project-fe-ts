@@ -1,14 +1,15 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./pages/Login";
 import Layout from "./pages/Layout";
 import Home from "./pages/Home";
+import { loginCheck } from "./services/userCalls";
 
 // interface for the user object
 export interface IUser {
-  username: string;
-  id: number;
+  username: string | undefined | null;
+  id: number | undefined | null;
 }
 
 // interface definition for the user context
@@ -19,8 +20,12 @@ interface UserContextInt {
   setIsLogged: (isLogged: boolean) => void;
   theme: string;
   setTheme: (theme: string) => void;
+  loading: boolean;
+  setLoading: (loading: boolean) => void;
 }
 
+// for some reason we have to declare the default values of the context in Typescript?
+// i dont quite understand why
 export const UserContext = createContext<UserContextInt>({
   user: undefined,
   setUser: () => {},
@@ -28,12 +33,40 @@ export const UserContext = createContext<UserContextInt>({
   setIsLogged: () => {},
   theme: "light",
   setTheme: () => {},
+  loading: true,
+  setLoading: () => {},
 });
 
 function App() {
   const [user, setUser] = useState<IUser | null | undefined>();
   const [isLogged, setIsLogged] = useState<boolean>(false);
   const [theme, setTheme] = useState<string>("light");
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    const checkForLogin = async () => {
+      console.log(isLogged);
+      const checkResult = await loginCheck();
+      setLoading(false);
+      console.log(checkResult);
+
+      if (checkResult.errorPresent) {
+        setIsLogged(false);
+        return console.log("yep no token found, error present");
+      }
+
+      const newUser: IUser = {
+        username: checkResult.username,
+        id: checkResult.id,
+      };
+
+      setUser(newUser);
+
+      return setIsLogged(true);
+    };
+
+    checkForLogin();
+  }, []);
 
   const router = createBrowserRouter([
     {
@@ -55,7 +88,16 @@ function App() {
   return (
     <>
       <UserContext.Provider
-        value={{ user, setUser, isLogged, setIsLogged, theme, setTheme }}
+        value={{
+          user,
+          setUser,
+          isLogged,
+          setIsLogged,
+          theme,
+          setTheme,
+          loading,
+          setLoading,
+        }}
       >
         <RouterProvider router={router}></RouterProvider>
       </UserContext.Provider>

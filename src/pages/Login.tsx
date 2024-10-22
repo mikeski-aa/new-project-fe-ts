@@ -76,6 +76,7 @@ function Login() {
       // if error is present, we don't proceed with register and inform user of error
       return console.log("inform error");
     } else {
+      console.log("i should navigate away");
       // redirect to login
       navigate("/");
     }
