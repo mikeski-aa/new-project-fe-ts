@@ -18,13 +18,19 @@ async function createUser(
 
   const url = LOCAL_URL + "register";
 
-  console.log("HELLO :)");
   try {
     const response = await fetch(url, {
       method: "POST",
       headers: headerInfo,
       body: JSON.stringify(newBody),
     });
+
+    console.log(response);
+
+    if (!response.ok) {
+      console.log("error");
+      return { error: "Input validation error" };
+    }
 
     const json: object = await response.json();
     console.log(json);
@@ -47,6 +53,8 @@ async function loginUser(username: string, password: string) {
 
   const url = LOCAL_URL + "login";
 
+  console.log(newBody);
+
   try {
     const response = await fetch(url, {
       method: "POST",
@@ -54,7 +62,13 @@ async function loginUser(username: string, password: string) {
       body: JSON.stringify(newBody),
     });
 
-    const json: object = await response.json();
+    console.log(response.status);
+
+    if (!response.ok) {
+      return { error: "Invalid credentials entered" };
+    }
+
+    const json: any = await response.json();
 
     localStorage.setItem("token", json.token);
 
