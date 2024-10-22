@@ -1,5 +1,5 @@
 import "../styles/loginregister.css";
-import React, { useState } from "react";
+import React, { SyntheticEvent, useState } from "react";
 import { createUser } from "../services/userCalls";
 
 function Login() {
@@ -17,20 +17,27 @@ function Login() {
   };
 
   const handleRegisterClick = async () => {
-    await createUser(username, password, confirmPassword);
+    const response = await createUser(username, password, confirmPassword);
+    console.log(response);
   };
 
-  const handleRegUname = (e) => {
-    setUsername(e.target.value)
-  }
+  const handleRegUname = (e: SyntheticEvent) => {
+    const inputElement = e.target as HTMLInputElement;
+    setUsername(inputElement.value);
+    console.log(inputElement.value);
+  };
 
-  const handleRegPw = (e) => {
-    
-  }
+  const handleRegPw = (e: SyntheticEvent) => {
+    const inputElement = e.target as HTMLInputElement;
+    setPassword(inputElement.value);
+    console.log(inputElement.value);
+  };
 
-  const handleRegPw = (e) => {
-    e.
-  }
+  const handleRegPwCon = (e: SyntheticEvent) => {
+    const inputElement = e.target as HTMLInputElement;
+    setConfirmPassword(inputElement.value);
+    console.log(inputElement.value);
+  };
 
   return (
     <div className="loginContainer">
@@ -75,21 +82,26 @@ function Login() {
               type="text"
               className="welcomeInput"
               placeholder="Username"
-              onChange={(e)=> handleRegUname}
+              onChange={(e) => handleRegUname(e)}
             ></input>
             <input
               type="password"
               className="welcomeInput"
               placeholder="Password"
-              onChange={(e)=> handleRegPw}
+              onChange={(e) => handleRegPw(e)}
             ></input>
             <input
               type="password"
               className="welcomeInput"
               placeholder="Confirm password"
-              onChange={(e)=> handleRegPwConf}
+              onChange={(e) => handleRegPwCon(e)}
             ></input>
-            <button className="welcomeButton">Register</button>
+            <button
+              className="welcomeButton"
+              onClick={() => handleRegisterClick()}
+            >
+              Register
+            </button>
           </form>
           <button className="welcomeButton" onClick={handleGoLogin}>
             I have an account
