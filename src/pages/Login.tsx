@@ -1,8 +1,12 @@
 import "../styles/loginregister.css";
 import React, { useState } from "react";
+import { createUser } from "../services/userCalls";
 
 function Login() {
   const [page, setPage] = useState<string>("login");
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
 
   const handleGoLogin = (): void => {
     setPage("login");
@@ -11,6 +15,22 @@ function Login() {
   const handleGoRegister = (): void => {
     setPage("register");
   };
+
+  const handleRegisterClick = async () => {
+    await createUser(username, password, confirmPassword);
+  };
+
+  const handleRegUname = (e) => {
+    setUsername(e.target.value)
+  }
+
+  const handleRegPw = (e) => {
+    
+  }
+
+  const handleRegPw = (e) => {
+    e.
+  }
 
   return (
     <div className="loginContainer">
@@ -55,16 +75,19 @@ function Login() {
               type="text"
               className="welcomeInput"
               placeholder="Username"
+              onChange={(e)=> handleRegUname}
             ></input>
             <input
               type="password"
               className="welcomeInput"
               placeholder="Password"
+              onChange={(e)=> handleRegPw}
             ></input>
             <input
               type="password"
               className="welcomeInput"
               placeholder="Confirm password"
+              onChange={(e)=> handleRegPwConf}
             ></input>
             <button className="welcomeButton">Register</button>
           </form>
