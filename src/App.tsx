@@ -1,12 +1,27 @@
-import { useState } from "react";
+import { createContext, useState } from "react";
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./pages/Login";
 import Layout from "./pages/Layout";
 import Home from "./pages/Home";
 
+interface User {
+  username: string;
+  id: number;
+}
+
+interface UserContextInt {
+  user: User;
+  setUser: (user: User | null) => void;
+  isLogged: boolean;
+  setIsLogged: (isLogged: boolean | null) => void;
+}
+
+export const UserContext = createContext<UserContextInt>();
+
 function App() {
-  const [count, setCount] = useState<number>(0);
+  const [user, setUser] = useState<User | null>();
+  const [isLogged, setIsLogged] = useState<boolean>(false);
 
   const router = createBrowserRouter([
     {
@@ -27,7 +42,9 @@ function App() {
 
   return (
     <>
-      <RouterProvider router={router}></RouterProvider>
+      <UserContext.Provider value={{ user, setUser, isLogged, setIsLogged }}>
+        <RouterProvider router={router}></RouterProvider>
+      </UserContext.Provider>
     </>
   );
 }
