@@ -6,6 +6,25 @@ import Layout from "./pages/Layout";
 import Home from "./pages/Home";
 import { loginCheck } from "./services/userCalls";
 
+// interface for item types
+export interface IItem {
+  id: number;
+  budgetId: number;
+  name: string;
+  price: number;
+  date: string;
+}
+
+// interface for budget types
+export interface IBudget {
+  budgetValue: number;
+  customInterval: number | null | undefined;
+  id: number;
+  name: string;
+  userId: number;
+  item: IItem;
+}
+
 // interface for the user object
 export interface IUser {
   username: string | undefined | null;
@@ -23,6 +42,8 @@ interface UserContextInt {
   setTheme: (theme: string) => void;
   loading: boolean;
   setLoading: (loading: boolean) => void;
+  budget: IBudget | undefined | void;
+  setBudget: (budget: IBudget | undefined | void) => void;
 }
 
 // for some reason we have to declare the default values of the context in Typescript?
@@ -36,6 +57,8 @@ export const UserContext = createContext<UserContextInt>({
   setTheme: () => {},
   loading: true,
   setLoading: () => {},
+  budget: undefined,
+  setBudget: () => {},
 });
 
 function App() {
@@ -43,6 +66,7 @@ function App() {
   const [isLogged, setIsLogged] = useState<boolean>(false);
   const [theme, setTheme] = useState<string>("light");
   const [loading, setLoading] = useState<boolean>(true);
+  const [budget, setBudget] = useState<IBudget | undefined | void>();
 
   useEffect(() => {
     console.log("Logging current user");
@@ -104,6 +128,8 @@ function App() {
           setTheme,
           loading,
           setLoading,
+          budget,
+          setBudget,
         }}
       >
         <RouterProvider router={router}></RouterProvider>

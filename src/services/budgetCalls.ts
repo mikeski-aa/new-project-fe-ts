@@ -1,27 +1,11 @@
 import LOCAL_URL from "../utils/urlConst";
+import { IBudget, IItem } from "../App";
 
 const headerInfo: HeadersInit = {
   Accept: "application/json",
   "Content-Type": "application/json",
   Authorization: "Bearer " + localStorage.getItem("token"),
 };
-
-interface IItem {
-  id: number;
-  budgetId: number;
-  name: string;
-  price: number;
-  date: string;
-}
-
-interface IBudget {
-  budgetValue: number;
-  customInterval: number | null | undefined;
-  id: number;
-  name: string;
-  userId: number;
-  item: IItem;
-}
 
 async function getBudgets(
   userId: number | null | undefined

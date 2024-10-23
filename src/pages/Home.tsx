@@ -11,6 +11,7 @@ function Home() {
       // putting ? returns undefined instead of throwing errors if values are unavailable
       const response = await getBudgets(userContext?.user?.id);
       console.log(response);
+      userContext.setBudget(response);
     };
     fetchBudgets();
   }, []);
