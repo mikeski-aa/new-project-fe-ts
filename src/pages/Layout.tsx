@@ -18,6 +18,12 @@ function Layout() {
     navigate("/login");
   };
 
+  const handleHomeClick = () => {};
+
+  const handleBudgetClick = () => {};
+
+  const handleSettingsClick = () => {};
+
   if (userContext.loading) {
     return (
       <>
@@ -30,6 +36,15 @@ function Layout() {
   return (
     <>
       <div className="Nav">
+        <button className="navBtn" onClick={() => handleHomeClick()}>
+          Home
+        </button>
+        <button className="navBtn" onClick={() => handleBudgetClick()}>
+          Budgets
+        </button>
+        <button className="navBtn" onClick={() => handleSettingsClick()}>
+          Settings
+        </button>
         <button className="navBtn" onClick={() => handleLogoutClick()}>
           Logout for user: {userContext.user?.username}
         </button>
