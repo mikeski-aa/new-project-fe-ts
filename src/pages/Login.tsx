@@ -22,6 +22,7 @@ function Login() {
   // handle switching between register and login forms
   const handleGoLogin = (): void => {
     setRegError(false);
+    setRegErrorArray([]);
     setRegUsername("");
     setRegPassword("");
     setRegConfirmPassword("");
@@ -68,7 +69,7 @@ function Login() {
 
   // handle register click
   const handleRegisterClick = async (): Promise<void> => {
-    console.log(
+    if (
       validateRegisterInput(
         regUsername,
         regPassword,
@@ -76,22 +77,31 @@ function Login() {
         setRegError,
         setRegErrorArray
       )
+    ) {
+      return;
+    }
+
+    const response = await createUser(
+      regUsername,
+      regPassword,
+      regConfirmPassword
     );
 
-    // const response = await createUser(
-    //   regUsername,
-    //   regPassword,
-    //   regConfirmPassword
-    // );
-
-    // if (response.errorPresent === true) {
-    //   // if error is present, we don't proceed with register and inform user of error
-    //   return console.log("inform error");
-    // } else {
-    //   // redirect to login
-    //   setPage("login");
-    // }
-    // console.log(response);
+    // this needs to check that username being entered is not already taken by another user
+    // if we get to here it only means that we have one error, which is username taken already
+    if (response.errorPresent === true) {
+      // if error is present, we don't proceed with register and inform user of error
+      setRegError(true);
+      setRegErrorArray(["Username already taken"]);
+      return;
+    } else {
+      setRegUsername("");
+      setRegPassword("");
+      setRegConfirmPassword("");
+      // redirect to login
+      setPage("login");
+    }
+    console.log(response);
   };
 
   // handle login click
@@ -128,12 +138,16 @@ function Login() {
               className="welcomeInput"
               placeholder="username"
               onChange={(e) => handleLogUsername(e)}
+              value={logUsername}
+              maxLength={15}
             ></input>
             <input
               type="password"
               className="welcomeInput"
               placeholder="password"
               onChange={(e) => handleLogPassword(e)}
+              value={logPassword}
+              maxLength={30}
             ></input>
             <button
               className="welcomeButton"
@@ -169,18 +183,24 @@ function Login() {
               className="welcomeInput"
               placeholder="Username"
               onChange={(e) => handleRegUname(e)}
+              value={regUsername}
+              maxLength={15}
             ></input>
             <input
               type="password"
               className="welcomeInput"
               placeholder="Password"
               onChange={(e) => handleRegPw(e)}
+              value={regPassword}
+              maxLength={30}
             ></input>
             <input
               type="password"
               className="welcomeInput"
               placeholder="Confirm password"
               onChange={(e) => handleRegPwCon(e)}
+              value={regConfirmPassword}
+              maxLength={30}
             ></input>
             <button
               className="welcomeButton"
@@ -194,8 +214,10 @@ function Login() {
           </button>
         </div>
         <div className={regError ? "regErrorBox showError" : "regErrorBox"}>
-          {regErrorArray.map((item) => (
-            <div className="errorItem">{item}</div>
+          {regErrorArray.map((item, index) => (
+            <div key={index} className="errorItem">
+              {item}
+            </div>
           ))}
         </div>
       </div>
