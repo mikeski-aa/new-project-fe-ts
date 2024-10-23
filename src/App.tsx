@@ -22,6 +22,7 @@ export interface IBudget {
   id: number;
   name: string;
   userId: number;
+  interval: string;
   item: IItem[];
 }
 

@@ -1,5 +1,5 @@
 import LOCAL_URL from "../utils/urlConst";
-import { IBudget, IItem } from "../App";
+import { IBudget } from "../App";
 
 const headerInfo: HeadersInit = {
   Accept: "application/json",

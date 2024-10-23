@@ -24,8 +24,10 @@ function Home() {
       <div className="homeBudgetContainer">
         <div className="budgetCard">Weekly budget</div>
         {userContext?.budget?.map((item, index) => (
-          <div key={index} className="budget">
-            {item.name}
+          <div key={index} className="budgetItem">
+            <div className="budgetName">{item.name}</div>
+            <div className="budgetMax">{item.budgetValue}</div>
+            <div className="budgetPeriod">{item.interval}</div>
           </div>
         ))}
       </div>
