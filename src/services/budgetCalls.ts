@@ -6,7 +6,7 @@ const headerInfo: HeadersInit = {
   Authorization: "Bearer " + localStorage.getItem("token"),
 };
 
-async function getBudgets(userId: number) {
+async function getBudgets(userId: number | null | undefined) {
   const url = LOCAL_URL + `/budgets?userid=${userId}`;
 
   try {
