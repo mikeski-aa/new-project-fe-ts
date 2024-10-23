@@ -7,27 +7,33 @@ const headerInfo: HeadersInit = {
   Authorization: "Bearer " + localStorage.getItem("token"),
 };
 
+interface IError {
+  error: boolean;
+  resTest: string;
+}
+
 async function getBudgets(
   userId: number | null | undefined
-): Promise<IBudget | void> {
+): Promise<IBudget[] | IError> {
   const url = LOCAL_URL + `/budgets?userid=${userId}`;
 
   try {
     const response = await fetch(url, { method: "GET", headers: headerInfo });
 
     if (!response.ok) {
-      console.log(response);
-      return;
+      const test: IError = {
+        error: true,
+        resTest: "Error getting response from API",
+      };
+      return test;
     }
 
-    const json: IBudget = await response.json();
-
-    console.log(json);
+    const json: IBudget[] = await response.json();
 
     return json;
   } catch (error) {
-    console.log(error);
-    return;
+    const test: IError = { error: true, resTest: "Error fetching url" };
+    return test;
   }
 }
 

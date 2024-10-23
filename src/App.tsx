@@ -22,7 +22,7 @@ export interface IBudget {
   id: number;
   name: string;
   userId: number;
-  item: IItem;
+  item: IItem[];
 }
 
 // interface for the user object
@@ -42,8 +42,8 @@ interface UserContextInt {
   setTheme: (theme: string) => void;
   loading: boolean;
   setLoading: (loading: boolean) => void;
-  budget: IBudget | undefined | void;
-  setBudget: (budget: IBudget | undefined | void) => void;
+  budget: IBudget[] | undefined;
+  setBudget: (budget: IBudget[] | undefined) => void;
 }
 
 // for some reason we have to declare the default values of the context in Typescript?
@@ -66,7 +66,7 @@ function App() {
   const [isLogged, setIsLogged] = useState<boolean>(false);
   const [theme, setTheme] = useState<string>("light");
   const [loading, setLoading] = useState<boolean>(true);
-  const [budget, setBudget] = useState<IBudget | undefined | void>();
+  const [budget, setBudget] = useState<IBudget[] | undefined>();
 
   useEffect(() => {
     console.log("Logging current user");

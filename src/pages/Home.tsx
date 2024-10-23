@@ -2,6 +2,7 @@ import { useContext, useEffect } from "react";
 import "../styles/home.css";
 import { UserContext } from "../App";
 import { getBudgets } from "../services/budgetCalls";
+import { IBudget } from "../App";
 
 function Home() {
   const userContext = useContext(UserContext);
@@ -11,7 +12,8 @@ function Home() {
       // putting ? returns undefined instead of throwing errors if values are unavailable
       const response = await getBudgets(userContext?.user?.id);
       console.log(response);
-      userContext.setBudget(response);
+
+      userContext.setBudget(response as IBudget[]);
     };
     fetchBudgets();
   }, []);
@@ -21,8 +23,11 @@ function Home() {
       <h1>Your budgets</h1>
       <div className="homeBudgetContainer">
         <div className="budgetCard">Weekly budget</div>
-        <div className="budgetCard">Monthly budget</div>
-        <div className="budgetCard">Annual budget</div>
+        {userContext?.budget?.map((item, index) => (
+          <div key={index} className="budget">
+            {item.name}
+          </div>
+        ))}
       </div>
     </div>
   );
