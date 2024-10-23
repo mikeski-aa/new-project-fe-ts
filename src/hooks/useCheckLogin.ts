@@ -24,6 +24,7 @@ function useCheckLogin() {
       const newUser: IUser = {
         username: checkResult.username,
         id: checkResult.id,
+        isGuest: checkResult.isGuest,
       };
       console.log(newUser);
       userContext.setUser(newUser);
