@@ -127,7 +127,9 @@ function Login() {
   // needs to call service to create guest instance
   const handleGuestClick = async () => {
     const response = await guestLogin();
+    setLoginError(false);
     userContext.setUser(response.user);
+    userContext.setIsLogged(true);
     navigate("/");
   };
 
