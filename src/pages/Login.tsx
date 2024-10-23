@@ -12,16 +12,26 @@ function Login() {
   const [regConfirmPassword, setRegConfirmPassword] = useState<string>("");
   const [logUsername, setLogUsername] = useState<string>("");
   const [logPassword, setLogPassword] = useState<string>("");
+  const [loginError, setLoginError] = useState<boolean>(false);
+  const [regError, setRegError] = useState<boolean>(false);
+
   const navigate = useNavigate();
   const userContext = useContext(UserContext);
 
   // handle switching between register and login forms
   const handleGoLogin = (): void => {
+    setRegError(false);
+    setRegUsername("");
+    setRegPassword("");
+    setRegConfirmPassword("");
     setPage("login");
   };
 
   // handle switching from login to register forms
   const handleGoRegister = (): void => {
+    setLoginError(false);
+    setLogUsername("");
+    setLogPassword("");
     setPage("register");
   };
 
@@ -56,7 +66,7 @@ function Login() {
   };
 
   // handle register click
-  const handleRegisterClick = async () => {
+  const handleRegisterClick = async (): Promise<void> => {
     console.log(
       validateRegisterInput(regUsername, regPassword, regConfirmPassword)
     );
@@ -78,12 +88,14 @@ function Login() {
   };
 
   // handle login click
-  const handleLoginClick = async () => {
+  const handleLoginClick = async (): Promise<void> => {
     const response = await loginUser(logUsername, logPassword);
     if (response.errorPresent === true) {
       // if error is present, we don't proceed with register and inform user of error
+      setLoginError(true);
       return console.log("inform error");
     } else {
+      setLoginError(false);
       console.log("i should navigate away");
       // redirect to login
       console.log(response);
@@ -128,6 +140,11 @@ function Login() {
             I want to create a new account
           </button>
         </div>
+        <div
+          className={loginError ? "loginErrorBox showError" : "loginErrorBox"}
+        >
+          Username or password provided is incorrect
+        </div>
       </div>
 
       <div
@@ -168,6 +185,9 @@ function Login() {
           <button className="welcomeButton" onClick={handleGoLogin}>
             I have an account
           </button>
+        </div>
+        <div className={regError ? "regErrorBox showError" : "regErrorBox"}>
+          Errors with register go here
         </div>
       </div>
     </div>

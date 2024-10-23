@@ -1,31 +1,35 @@
+import React from "react";
+
 function validateLoginInput(username: string, password: string): boolean {
   return true;
 }
 
 interface IRegError {
   error: boolean;
-  errorText: string;
+  errorArray: string[];
 }
 
 function validateRegisterInput(
   username: string,
   password: string,
-  confirmPassword: string
+  confirmPassword: string,
+  setRegError: React.Dispatch<React.SetStateAction<boolean>>
 ): IRegError {
   let regex: RegExp = /^[a-zA-Z]+$/;
+  let errorArray: string[] = [];
+  let errorPresent: boolean = false;
 
   if (password != confirmPassword) {
-    return { error: true, errorText: "Passwords need to match!" };
+    errorPresent = true;
+    errorArray.push("Passwords need to match!");
   }
 
   if (!regex.test(username)) {
-    return {
-      error: true,
-      errorText: "Username can only contain letters!",
-    };
+    errorPresent = true;
+    errorArray.push("Username can only contain letters!");
   }
 
-  return { error: false, errorText: "" };
+  return { error: errorPresent, errorArray: errorArray };
 }
 
 export { validateLoginInput, validateRegisterInput };
