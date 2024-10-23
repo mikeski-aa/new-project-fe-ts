@@ -1,6 +1,6 @@
 import "../styles/loginregister.css";
 import React, { SyntheticEvent, useContext, useState } from "react";
-import { createUser, loginUser } from "../services/userCalls";
+import { createUser, loginUser, guestLogin } from "../services/userCalls";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../App";
 import { validateRegisterInput } from "../utils/validateInput";
@@ -125,7 +125,11 @@ function Login() {
 
   // handle guest login click
   // needs to call service to create guest instance
-  const handleGuestClick = () => {};
+  const handleGuestClick = async () => {
+    const response = await guestLogin();
+    userContext.setUser(response.user);
+    navigate("/");
+  };
 
   return (
     <div className="loginContainer">

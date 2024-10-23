@@ -10,6 +10,7 @@ import { loginCheck } from "./services/userCalls";
 export interface IUser {
   username: string | undefined | null;
   id: number | undefined | null;
+  isGuest: boolean | undefined | null;
 }
 
 // interface definition for the user context
@@ -63,6 +64,7 @@ function App() {
       const newUser: IUser = {
         username: checkResult.username,
         id: checkResult.id,
+        isGuest: checkResult.isGuest,
       };
       console.log(newUser);
       setUser(newUser);

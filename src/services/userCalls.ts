@@ -10,12 +10,13 @@ const headerInfo: HeadersInit = {
 
 // define interface for the expected response
 interface UserResponse {
-  error: string | null;
+  error: string;
   errorPresent?: boolean;
-  token?: string;
+  token?: string | undefined;
   user?: IUser;
   username?: string;
   id?: number;
+  isGuest?: boolean;
 }
 
 // need to better handle errors from backend validation
@@ -92,7 +93,7 @@ async function loginUser(
     }
 
     const json: any = await response.json();
-
+    console.log(json);
     localStorage.setItem("token", json.token);
 
     return { ...json, errorPresent: false } as UserResponse;
@@ -138,7 +139,9 @@ async function guestLogin() {
       } as UserResponse;
     }
 
-    const json: UserResponse = await response.json();
+    const json: any = await response.json();
+
+    localStorage.setItem("token", json.token);
 
     return { ...json, errorPresent: false } as UserResponse;
   } catch (error) {
