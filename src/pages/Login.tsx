@@ -3,6 +3,7 @@ import React, { SyntheticEvent, useContext, useState } from "react";
 import { createUser, loginUser } from "../services/userCalls";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../App";
+import { validateRegisterInput } from "../utils/validateInput";
 
 function Login() {
   const [page, setPage] = useState<string>("login");
@@ -56,20 +57,24 @@ function Login() {
 
   // handle register click
   const handleRegisterClick = async () => {
-    const response = await createUser(
-      regUsername,
-      regPassword,
-      regConfirmPassword
+    console.log(
+      validateRegisterInput(regUsername, regPassword, regConfirmPassword)
     );
 
-    if (response.errorPresent === true) {
-      // if error is present, we don't proceed with register and inform user of error
-      return console.log("inform error");
-    } else {
-      // redirect to login
-      setPage("login");
-    }
-    console.log(response);
+    // const response = await createUser(
+    //   regUsername,
+    //   regPassword,
+    //   regConfirmPassword
+    // );
+
+    // if (response.errorPresent === true) {
+    //   // if error is present, we don't proceed with register and inform user of error
+    //   return console.log("inform error");
+    // } else {
+    //   // redirect to login
+    //   setPage("login");
+    // }
+    // console.log(response);
   };
 
   // handle login click

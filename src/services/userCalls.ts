@@ -1,4 +1,4 @@
-import LOCAL_URL from "../../utils/urlConst";
+import LOCAL_URL from "../utils/urlConst";
 import { IUser } from "../App";
 
 // not sure how I feela bout this definition here need to look it up
