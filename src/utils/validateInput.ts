@@ -13,7 +13,8 @@ function validateRegisterInput(
   username: string,
   password: string,
   confirmPassword: string,
-  setRegError: React.Dispatch<React.SetStateAction<boolean>>
+  setRegError: React.Dispatch<React.SetStateAction<boolean>>,
+  setRegErrorArray: React.Dispatch<React.SetStateAction<string[]>>
 ): IRegError {
   let regex: RegExp = /^[a-zA-Z]+$/;
   let errorArray: string[] = [];
@@ -28,6 +29,9 @@ function validateRegisterInput(
     errorPresent = true;
     errorArray.push("Username can only contain letters!");
   }
+
+  setRegError(errorPresent);
+  setRegErrorArray(errorArray);
 
   return { error: errorPresent, errorArray: errorArray };
 }

@@ -14,6 +14,7 @@ function Login() {
   const [logPassword, setLogPassword] = useState<string>("");
   const [loginError, setLoginError] = useState<boolean>(false);
   const [regError, setRegError] = useState<boolean>(false);
+  const [regErrorArray, setRegErrorArray] = useState<string[]>([]);
 
   const navigate = useNavigate();
   const userContext = useContext(UserContext);
@@ -68,7 +69,13 @@ function Login() {
   // handle register click
   const handleRegisterClick = async (): Promise<void> => {
     console.log(
-      validateRegisterInput(regUsername, regPassword, regConfirmPassword)
+      validateRegisterInput(
+        regUsername,
+        regPassword,
+        regConfirmPassword,
+        setRegError,
+        setRegErrorArray
+      )
     );
 
     // const response = await createUser(
@@ -187,7 +194,9 @@ function Login() {
           </button>
         </div>
         <div className={regError ? "regErrorBox showError" : "regErrorBox"}>
-          Errors with register go here
+          {regErrorArray.map((item) => (
+            <div className="errorItem">{item}</div>
+          ))}
         </div>
       </div>
     </div>
