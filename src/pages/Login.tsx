@@ -123,6 +123,10 @@ function Login() {
     console.log(response);
   };
 
+  // handle guest login click
+  // needs to call service to create guest instance
+  const handleGuestClick = () => {};
+
   return (
     <div className="loginContainer">
       <div
@@ -156,7 +160,9 @@ function Login() {
               Login
             </button>
           </form>
-          <button className="welcomeButton">Guest Login</button>
+          <button className="welcomeButton" onClick={handleGuestClick}>
+            Guest Login
+          </button>
           <button className="welcomeButton" onClick={handleGoRegister}>
             I want to create a new account
           </button>

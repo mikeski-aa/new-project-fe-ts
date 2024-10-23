@@ -124,4 +124,28 @@ async function loginCheck() {
   }
 }
 
-export { createUser, loginUser, loginCheck };
+// guest user login
+async function guestLogin() {
+  const url = LOCAL_URL + "login/guest";
+
+  try {
+    const response = await fetch(url, { method: "POST", headers: headerInfo });
+
+    if (!response.ok) {
+      return {
+        errorPresent: true,
+        error: "Error creating guest instance",
+      } as UserResponse;
+    }
+
+    const json: UserResponse = await response.json();
+
+    return { ...json, errorPresent: false } as UserResponse;
+  } catch (error) {
+    console.log(error);
+
+    return { error: error } as UserResponse;
+  }
+}
+
+export { createUser, loginUser, loginCheck, guestLogin };
