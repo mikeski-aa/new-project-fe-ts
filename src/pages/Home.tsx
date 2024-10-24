@@ -3,6 +3,7 @@ import "../styles/home.css";
 import { UserContext } from "../App";
 import { getStores } from "../services/storeCalls";
 import { IStore } from "../interfaces/userContextInterfaces";
+import StoreHolder from "../components/StoreHolder";
 
 function Home() {
   const userContext = useContext(UserContext);
@@ -20,9 +21,15 @@ function Home() {
 
   return (
     <div className="homepageContent">
-      <h1>Your budgets</h1>
-      <div className="homeBudgetContainer">
-        <div className="budgetCard">Weekly budget</div>
+      <h1>Your Stores</h1>
+      <div className="homeStoreContainer">
+        {userContext?.stores?.map((item, index) => (
+          <StoreHolder
+            key={index}
+            storeName={item.name}
+            storeLocation={item.location}
+          />
+        ))}
       </div>
     </div>
   );

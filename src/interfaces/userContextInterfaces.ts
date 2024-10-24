@@ -1,23 +1,3 @@
-// // interface for item types
-// export interface IItem {
-//   id: number;
-//   budgetId: number;
-//   name: string;
-//   price: number;
-//   date: string;
-// }
-
-// // interface for budget types
-// export interface IBudget {
-//   budgetValue: number;
-//   customInterval: number | null | undefined;
-//   id: number;
-//   name: string;
-//   userId: number;
-//   interval: string;
-//   item: IItem[];
-// }
-
 // interface definition for the user context
 export interface UserContextInt {
   user: IUser | null | undefined;
@@ -55,4 +35,6 @@ export interface IProduct {
   name: string;
   price: number;
   category: string;
+  sku: string;
+  quantity: number;
 }
