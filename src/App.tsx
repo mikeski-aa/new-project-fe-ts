@@ -5,47 +5,11 @@ import Login from "./pages/Login";
 import Layout from "./pages/Layout";
 import Home from "./pages/Home";
 import { loginCheck } from "./services/userCalls";
-
-// interface for item types
-export interface IItem {
-  id: number;
-  budgetId: number;
-  name: string;
-  price: number;
-  date: string;
-}
-
-// interface for budget types
-export interface IBudget {
-  budgetValue: number;
-  customInterval: number | null | undefined;
-  id: number;
-  name: string;
-  userId: number;
-  interval: string;
-  item: IItem[];
-}
-
-// interface for the user object
-export interface IUser {
-  username: string | undefined | null;
-  id: number | undefined | null;
-  isGuest: boolean | undefined | null;
-}
-
-// interface definition for the user context
-interface UserContextInt {
-  user: IUser | null | undefined;
-  setUser: (user: IUser | null | undefined) => void;
-  isLogged: boolean;
-  setIsLogged: (isLogged: boolean) => void;
-  theme: string;
-  setTheme: (theme: string) => void;
-  loading: boolean;
-  setLoading: (loading: boolean) => void;
-  budget: IBudget[] | undefined;
-  setBudget: (budget: IBudget[] | undefined) => void;
-}
+import {
+  IBudget,
+  UserContextInt,
+  IUser,
+} from "./interfaces/userContextInterfaces";
 
 // for some reason we have to declare the default values of the context in Typescript?
 // i dont quite understand why
