@@ -40,7 +40,7 @@ function Layout() {
           Home
         </button>
         <button className="navBtn" onClick={() => handleBudgetClick()}>
-          Budgets
+          Finance
         </button>
         <button className="navBtn" onClick={() => handleSettingsClick()}>
           Settings

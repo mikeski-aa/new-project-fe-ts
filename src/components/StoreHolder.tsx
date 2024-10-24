@@ -6,6 +6,7 @@ function StoreHolder({ store }: { store: IStore }) {
   return (
     <div className="storeContainer">
       <div className="budgetHeading">{store.name}</div>
+      <img src={store.picture} className="storePicture"></img>
       <div className="budgetValue">{store.location}</div>
       <div className="productHolder">
         Unique products in store: {store.products.length}
