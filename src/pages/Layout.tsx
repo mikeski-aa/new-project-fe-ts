@@ -18,7 +18,9 @@ function Layout() {
     navigate("/login");
   };
 
-  const handleHomeClick = () => {};
+  const handleHomeClick = () => {
+    navigate("/");
+  };
 
   const handleBudgetClick = () => {};
 

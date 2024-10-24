@@ -9,13 +9,15 @@ function Store() {
   const { paramsId } = useParams();
 
   useEffect(() => {
-    // const shallowCopy: IStore[] = [...userContext.user];
-    // const filteredArray: IStore[] = shallowCopy.filter(
-    //   (item) => item.id != +paramsId
-    // );
+    if (userContext.stores && paramsId) {
+      const shallowCopy: IStore[] = [...userContext.stores];
+      const filteredArray: IStore[] = shallowCopy.filter(
+        (item) => item.id != +paramsId
+      );
 
+      console.log(filteredArray);
+    }
     console.log(userContext.stores);
-
     console.log("xd");
   }, []);
 

@@ -12,6 +12,7 @@ interface IError {
   resTest: string;
 }
 
+// gets all store info
 async function getStores(
   userId: number | null | undefined
 ): Promise<IStore[] | IError> {
@@ -37,4 +38,26 @@ async function getStores(
   }
 }
 
-export { getStores };
+// gets specific store info
+async function getStore(storeId: number) {
+  const url = LOCAL_URL + `/stores/store?storeid=${storeId}`;
+
+  try {
+    const response = await fetch(url, { method: "GET", headers: headerInfo });
+    if (!response.ok) {
+      const test: IError = {
+        error: true,
+        resTest: "Error getting response from API",
+      };
+      return test;
+    }
+
+    const json: IStore[] = await response.json();
+    return json;
+  } catch (error) {
+    const test: IError = { error: true, resTest: "Error fetching url" };
+    return test;
+  }
+}
+
+export { getStores, getStore };
