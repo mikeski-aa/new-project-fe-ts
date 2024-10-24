@@ -1,8 +1,14 @@
+import { useNavigate } from "react-router-dom";
 import { IStore } from "../interfaces/userContextInterfaces";
 import "../styles/storeholder.css";
 import IndividualProduct from "./IndividualProduct";
 
 function StoreHolder({ store }: { store: IStore }) {
+  const navigate = useNavigate();
+
+  const handleOpenClick = () => {
+    navigate(`/store/${store.id}`);
+  };
   return (
     <div className="storeContainer">
       <div className="budgetHeading">{store.name}</div>
@@ -15,7 +21,9 @@ function StoreHolder({ store }: { store: IStore }) {
         ))} */}
       </div>
       <div className="storeButtons">
-        <button className="storeBtn">Open</button>
+        <button className="storeBtn" onClick={handleOpenClick}>
+          Open
+        </button>
         <button className="storeBtn">Edit</button>
         <button className="storeBtn">Delete</button>
       </div>
