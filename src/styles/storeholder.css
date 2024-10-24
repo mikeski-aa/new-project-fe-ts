@@ -1,13 +1,15 @@
-.budgetContainer {
+.storeContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   max-height: 25vh;
   max-width: fit-content;
+  border: 2px solid grey;
+  padding: 12px;
+  border-radius: 10px;
 }
 
 .productHolder {
-  overflow-y: scroll;
   display: flex;
   flex-direction: column;
   gap: 1rem;
