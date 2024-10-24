@@ -6,9 +6,9 @@ import Layout from "./pages/Layout";
 import Home from "./pages/Home";
 import { loginCheck } from "./services/userCalls";
 import {
-  IBudget,
   UserContextInt,
   IUser,
+  IStore,
 } from "./interfaces/userContextInterfaces";
 
 // for some reason we have to declare the default values of the context in Typescript?
@@ -22,8 +22,8 @@ export const UserContext = createContext<UserContextInt>({
   setTheme: () => {},
   loading: true,
   setLoading: () => {},
-  budget: undefined,
-  setBudget: () => {},
+  stores: undefined,
+  setStores: () => {},
 });
 
 function App() {
@@ -31,7 +31,7 @@ function App() {
   const [isLogged, setIsLogged] = useState<boolean>(false);
   const [theme, setTheme] = useState<string>("light");
   const [loading, setLoading] = useState<boolean>(true);
-  const [budget, setBudget] = useState<IBudget[] | undefined>();
+  const [stores, setStores] = useState<IStore[] | undefined>([]);
 
   useEffect(() => {
     console.log("Logging current user");
@@ -94,8 +94,8 @@ function App() {
           setTheme,
           loading,
           setLoading,
-          budget,
-          setBudget,
+          stores,
+          setStores,
         }}
       >
         <RouterProvider router={router}></RouterProvider>

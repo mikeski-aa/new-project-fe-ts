@@ -1,21 +1,22 @@
 import { useContext, useEffect } from "react";
 import "../styles/home.css";
 import { UserContext } from "../App";
-import { getBudgets } from "../services/budgetCalls";
+import { getStores } from "../services/storeCalls";
+import { IStore } from "../interfaces/userContextInterfaces";
 
 function Home() {
   const userContext = useContext(UserContext);
 
-  // useEffect(() => {
-  //   const fetchBudgets = async () => {
-  //     // putting ? returns undefined instead of throwing errors if values are unavailable
-  //     const response = await getBudgets(userContext?.user?.id);
-  //     console.log(response);
+  useEffect(() => {
+    const fetchBudgets = async () => {
+      // putting ? returns undefined instead of throwing errors if values are unavailable
+      const response = await getStores(userContext?.user?.id);
+      console.log(response);
 
-  //     userContext.setBudget(response as IBudget[]);
-  //   };
-  //   fetchBudgets();
-  // }, []);
+      userContext.setStores(response as IStore[]);
+    };
+    fetchBudgets();
+  }, []);
 
   return (
     <div className="homepageContent">

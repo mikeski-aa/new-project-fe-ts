@@ -1,5 +1,5 @@
 import LOCAL_URL from "../utils/urlConst";
-import { IBudget } from "../App";
+import { IStore } from "../interfaces/userContextInterfaces";
 
 const headerInfo: HeadersInit = {
   Accept: "application/json",
@@ -12,10 +12,10 @@ interface IError {
   resTest: string;
 }
 
-async function getBudgets(
+async function getStores(
   userId: number | null | undefined
-): Promise<IBudget[] | IError> {
-  const url = LOCAL_URL + `/budgets?userid=${userId}`;
+): Promise<IStore[] | IError> {
+  const url = LOCAL_URL + `/stores?userid=${userId}`;
 
   try {
     const response = await fetch(url, { method: "GET", headers: headerInfo });
@@ -28,7 +28,7 @@ async function getBudgets(
       return test;
     }
 
-    const json: IBudget[] = await response.json();
+    const json: IStore[] = await response.json();
 
     return json;
   } catch (error) {
@@ -37,4 +37,4 @@ async function getBudgets(
   }
 }
 
-export { getBudgets };
+export { getStores };

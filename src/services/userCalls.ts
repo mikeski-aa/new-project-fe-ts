@@ -1,5 +1,5 @@
 import LOCAL_URL from "../utils/urlConst";
-import { IUser } from "../App";
+import { IStore, IUser } from "../interfaces/userContextInterfaces";
 
 // not sure how I feela bout this definition here need to look it up
 const headerInfo: HeadersInit = {
@@ -17,6 +17,7 @@ interface UserResponse {
   username?: string;
   id?: number;
   isGuest?: boolean;
+  stores: IStore[];
 }
 
 // need to better handle errors from backend validation
