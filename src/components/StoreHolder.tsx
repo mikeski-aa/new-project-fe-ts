@@ -1,17 +1,17 @@
+import { IStore } from "../interfaces/userContextInterfaces";
 import "../styles/storeholder.css";
+import IndividualProduct from "./IndividualProduct";
 
-function StoreHolder({
-  storeName,
-  storeLocation,
-}: {
-  storeName: string;
-  storeLocation: string;
-}) {
+function StoreHolder({ store }: { store: IStore }) {
   return (
     <div className="budgetContainer">
-      <div className="budgetHeading">{storeName}</div>
-      <div className="budgetValue">{storeLocation}</div>
-      <div className="transactionHolder"></div>
+      <div className="budgetHeading">{store.name}</div>
+      <div className="budgetValue">{store.location}</div>
+      <div className="productHolder">
+        {store.products.map((product, index) => (
+          <IndividualProduct key={index} product={product} />
+        ))}
+      </div>
     </div>
   );
 }

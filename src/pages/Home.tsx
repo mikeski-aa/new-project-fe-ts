@@ -24,11 +24,7 @@ function Home() {
       <h1>Your Stores</h1>
       <div className="homeStoreContainer">
         {userContext?.stores?.map((item, index) => (
-          <StoreHolder
-            key={index}
-            storeName={item.name}
-            storeLocation={item.location}
-          />
+          <StoreHolder key={index} store={item} />
         ))}
       </div>
     </div>
