@@ -54,6 +54,7 @@ function App() {
         username: checkResult.username,
         id: checkResult.id,
         isGuest: checkResult.isGuest,
+        stores: checkResult.stores,
       };
       console.log(newUser);
       setUser(newUser);
