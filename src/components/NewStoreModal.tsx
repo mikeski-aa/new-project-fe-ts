@@ -18,6 +18,7 @@ function NewStoreModal({
 }) {
   const [location, setLocation] = useState<string>("");
   const [name, setName] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
   const userContext = useContext(UserContext);
 
   // click and input hanlders
@@ -38,7 +39,9 @@ function NewStoreModal({
   const handleAddClick = async () => {
     // make sure usercontext is not null or undefined
     if (userContext.user) {
+      setLoading(true);
       const response = await postStore(name, location, userContext.user.id);
+      setLoading(false);
     }
   };
 
