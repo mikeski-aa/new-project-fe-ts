@@ -37,13 +37,13 @@ function App() {
 
   useEffect(() => {
     console.log("Logging current user");
-    console.log(user);
+    // console.log(user);
     const checkForLogin = async () => {
       console.log(isLogged);
       const checkResult = await loginCheck();
       setLoading(false);
-      console.log("check result error present");
-      console.log(checkResult.errorPresent);
+      // console.log("check result error present");
+      // console.log(checkResult.errorPresent);
 
       if (checkResult.errorPresent) {
         setIsLogged(false);
@@ -61,8 +61,8 @@ function App() {
         isGuest: checkResult.isGuest,
         stores: checkResult.stores,
       };
-      console.log(newUser);
-
+      // console.log(newUser);
+      console.log(stores);
       setUser(newUser);
 
       return;

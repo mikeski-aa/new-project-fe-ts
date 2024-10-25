@@ -39,7 +39,7 @@ async function getStores(
 }
 
 // gets specific store info
-async function getStore(storeId: number) {
+async function getStore(storeId: string) {
   const url = LOCAL_URL + `/stores/store?storeid=${storeId}`;
 
   try {
