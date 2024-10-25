@@ -41,7 +41,9 @@ function NewStoreModal({
     if (userContext.user) {
       setLoading(true);
       const response = await postStore(name, location, userContext.user.id);
+      alert(response);
       setLoading(false);
+      setNewStoreModal(false);
     }
   };
 
@@ -73,7 +75,9 @@ function NewStoreModal({
             ></input>
           </div>
         </div>
-        <button className="modalBtn">Create new store</button>
+        <button className="modalBtn" onClick={() => handleAddClick()}>
+          Create new store
+        </button>
       </div>
     </div>
   );
