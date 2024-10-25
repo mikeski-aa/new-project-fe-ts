@@ -16,12 +16,25 @@ function StoreHolder({ store }: { store: IStore }) {
     setModal(true);
   };
 
+  const handleCancelClick = () => {
+    setModal(false);
+  };
+
+  const handleConfirmClick = async () => {};
+
   return (
     <div className="storeContainer">
       <div className={modal ? "deletemodal show" : "deletemodal hide"}>
         <div className="deleteConfirmContainer">
-          <button className="delModBtn">Confirm Delete</button>
-          <button className="delModBtn">Cancel</button>
+          <div className="deleteText"></div>
+          <div className="deleteBtnContainer">
+            <button className="delModBtn" onClick={() => handleConfirmClick()}>
+              Confirm Delete
+            </button>
+            <button className="delModBtn" onClick={() => handleCancelClick()}>
+              Cancel
+            </button>
+          </div>
         </div>
       </div>
       <div className="budgetHeading">{store.name}</div>
