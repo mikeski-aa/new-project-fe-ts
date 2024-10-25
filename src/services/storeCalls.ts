@@ -39,12 +39,12 @@ async function getStores(
 }
 
 interface IStoreResponse extends IError {
-  id?: number;
-  userId?: number;
-  name?: string;
-  products?: IProduct[];
-  location?: string;
-  picture?: string;
+  id: number | undefined;
+  userId: number | undefined;
+  name: string | undefined;
+  products: IProduct[] | undefined;
+  location: string | undefined;
+  picture: string | undefined;
 }
 
 // gets specific store info
@@ -57,6 +57,12 @@ async function getStore(storeId: string): Promise<IStoreResponse> {
       const test = {
         error: true,
         resTest: "Error getting response from API",
+        id: undefined,
+        userId: undefined,
+        name: undefined,
+        products: undefined,
+        location: undefined,
+        picture: undefined,
       };
       return test;
     }
@@ -65,7 +71,16 @@ async function getStore(storeId: string): Promise<IStoreResponse> {
     const returnJson = { ...json, error: false, resTest: "" };
     return returnJson;
   } catch (error) {
-    const test = { error: true, resTest: "Error fetching url" };
+    const test = {
+      error: true,
+      resTest: "Error fetching url",
+      id: undefined,
+      userId: undefined,
+      name: undefined,
+      products: undefined,
+      location: undefined,
+      picture: undefined,
+    };
     return test;
   }
 }

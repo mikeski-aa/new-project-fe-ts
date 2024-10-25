@@ -16,6 +16,7 @@ function Store() {
       if (id) {
         const test = await getStore(id);
 
+        // error is not present so data can be assigned
         if (!test.error) {
           const store: IStore = {
             id: test.id,
@@ -37,11 +38,11 @@ function Store() {
     <div className="storePageContainer">
       <h1 className="storeName">{id}</h1>
       <div className="store items">
-        {/* {currentStore
-          ? currentStore[0].products.map((product, index) => (
+        {currentStore?.products
+          ? currentStore.products.map((product, index) => (
               <IndividualProduct key={index} product={product} />
             ))
-          : null} */}
+          : null}
       </div>
     </div>
   );
