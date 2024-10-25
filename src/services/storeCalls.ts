@@ -16,7 +16,7 @@ export interface IError {
 async function getStores(
   userId: number | null | undefined
 ): Promise<IStore[] | IError> {
-  const url = LOCAL_URL + `/stores?userid=${userId}`;
+  const url = LOCAL_URL + `stores?userid=${userId}`;
 
   try {
     const response = await fetch(url, { method: "GET", headers: headerInfo });
@@ -49,7 +49,7 @@ interface IStoreResponse extends IError {
 
 // gets specific store info
 async function getStore(storeId: string): Promise<IStoreResponse> {
-  const url = LOCAL_URL + `/stores/store?storeid=${storeId}`;
+  const url = LOCAL_URL + `stores/store?storeid=${storeId}`;
 
   try {
     const response = await fetch(url, { method: "GET", headers: headerInfo });
@@ -90,7 +90,7 @@ async function postStore(
   location: string,
   userId: number | null | undefined
 ): Promise<boolean> {
-  const url = LOCAL_URL + "/stores";
+  const url = LOCAL_URL + "stores";
   const newBody = {
     name: name,
     location: location,
@@ -108,6 +108,31 @@ async function postStore(
     }
 
     console.log(response);
+
+    return true;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+}
+
+// delete a specific store
+async function deleteStore(userId: number, storeId: number): Promise<boolean> {
+  const url = LOCAL_URL + "stores";
+  const newBody = {
+    userId: userId,
+    storeId: storeId,
+  };
+  try {
+    const response = await fetch(url, {
+      method: "DELETE",
+      headers: headerInfo,
+      body: JSON.stringify(newBody),
+    });
+
+    if (!response.ok) {
+      return false;
+    }
 
     return true;
   } catch (error) {
