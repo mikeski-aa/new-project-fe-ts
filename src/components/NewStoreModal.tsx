@@ -7,7 +7,8 @@ import {
 } from "react";
 import "../styles/newstoremodal.css";
 import { UserContext } from "../App";
-import { postStore } from "../services/storeCalls";
+import { getStores, postStore } from "../services/storeCalls";
+import { IStore } from "../interfaces/userContextInterfaces";
 
 function NewStoreModal({
   newStoreModal,
@@ -41,7 +42,8 @@ function NewStoreModal({
     if (userContext.user) {
       setLoading(true);
       const response = await postStore(name, location, userContext.user.id);
-      alert(response);
+      const newStores = await getStores(userContext.user.id);
+      userContext.setStores(newStores as IStore[]);
       setLoading(false);
       setNewStoreModal(false);
     }
@@ -75,6 +77,7 @@ function NewStoreModal({
             ></input>
           </div>
         </div>
+        {loading ? <h1>LOADING...</h1> : null}
         <button className="modalBtn" onClick={() => handleAddClick()}>
           Create new store
         </button>

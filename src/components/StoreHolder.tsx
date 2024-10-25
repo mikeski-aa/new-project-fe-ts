@@ -3,6 +3,7 @@ import { IStore } from "../interfaces/userContextInterfaces";
 import "../styles/storeholder.css";
 import IndividualProduct from "./IndividualProduct";
 import { useState } from "react";
+import ConfirmDeleteBox from "./ConfirmDeleteBox";
 
 function StoreHolder({ store }: { store: IStore }) {
   const [modal, setModal] = useState<boolean>(false);
@@ -16,28 +17,10 @@ function StoreHolder({ store }: { store: IStore }) {
     setModal(true);
   };
 
-  const handleCancelClick = () => {
-    setModal(false);
-  };
-
-  const handleConfirmClick = async () => {};
-
+  // is using useContext for a single instance of passing the props two depths down worth it?
   return (
     <div className="storeContainer">
-      <div className={modal ? "deletemodal show" : "deletemodal hide"}>
-        <div className="deleteConfirmContainer">
-          <div className="deleteText">Would you like to delete:</div>
-          <div className="deleteText second">{store ? store.name : null}</div>
-          <div className="deleteBtnContainer">
-            <button className="delModBtn" onClick={() => handleConfirmClick()}>
-              Confirm Delete
-            </button>
-            <button className="delModBtn" onClick={() => handleCancelClick()}>
-              Cancel
-            </button>
-          </div>
-        </div>
-      </div>
+      <ConfirmDeleteBox modal={modal} setModal={setModal} store={store} />
       <div className="budgetHeading">{store.name}</div>
       <img src={store.picture} className="storePicture"></img>
       <div className="budgetValue">{store.location}</div>
