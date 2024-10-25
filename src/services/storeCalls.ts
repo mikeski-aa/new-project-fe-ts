@@ -117,11 +117,11 @@ async function postStore(
 }
 
 // delete a specific store
-async function deleteStore(userId: number, storeId: number): Promise<boolean> {
+async function deleteStore(userid: number, storeid: number): Promise<boolean> {
   const url = LOCAL_URL + "stores";
   const newBody = {
-    userId: userId,
-    storeId: storeId,
+    userId: userid,
+    storeId: storeid,
   };
   try {
     const response = await fetch(url, {
@@ -141,4 +141,4 @@ async function deleteStore(userId: number, storeId: number): Promise<boolean> {
   }
 }
 
-export { getStores, getStore, postStore };
+export { getStores, getStore, postStore, deleteStore };
