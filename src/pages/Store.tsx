@@ -2,21 +2,21 @@ import { useParams } from "react-router-dom";
 import "../styles/store.css";
 import { useContext, useEffect } from "react";
 import { UserContext } from "../App";
-import { IStore } from "../interfaces/userContextInterfaces";
+import { IProduct, IStore } from "../interfaces/userContextInterfaces";
 
 function Store() {
   const userContext = useContext(UserContext);
   const { paramsId } = useParams();
 
   useEffect(() => {
-    if (userContext.stores && paramsId) {
-      const shallowCopy: IStore[] = [...userContext.stores];
-      const filteredArray: IStore[] = shallowCopy.filter(
-        (item) => item.id != +paramsId
-      );
+    const shallowCopy = userContext.stores
+      ? [...userContext.stores]
+      : undefined;
 
-      console.log(filteredArray);
-    }
+    console.log("shallow copy");
+    console.log(shallowCopy);
+    // console.log(filteredArray);
+
     console.log(userContext.stores);
     console.log("xd");
   }, []);

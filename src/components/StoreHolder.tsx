@@ -16,9 +16,6 @@ function StoreHolder({ store }: { store: IStore }) {
       <div className="budgetValue">{store.location}</div>
       <div className="productHolder">
         Unique products in store: {store.products.length}
-        {/* {store.products.map((product, index) => (
-          <IndividualProduct key={index} product={product} />
-        ))} */}
       </div>
       <div className="storeButtons">
         <button className="storeBtn" onClick={handleOpenClick}>

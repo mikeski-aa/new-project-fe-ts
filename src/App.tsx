@@ -11,6 +11,7 @@ import {
   IStore,
 } from "./interfaces/userContextInterfaces";
 import Store from "./pages/Store";
+import { getStores } from "./services/storeCalls";
 
 // for some reason we have to declare the default values of the context in Typescript?
 // i dont quite understand why
@@ -51,6 +52,9 @@ function App() {
 
       setIsLogged(true);
 
+      // get store data
+      const stores = await getStores(checkResult.id);
+      setStores(stores as IStore[]);
       const newUser: IUser = {
         username: checkResult.username,
         id: checkResult.id,
@@ -58,6 +62,7 @@ function App() {
         stores: checkResult.stores,
       };
       console.log(newUser);
+
       setUser(newUser);
 
       return;

@@ -20,6 +20,7 @@ export interface IUser {
   stores: IStore[];
 }
 
+// interface for individual store
 export interface IStore {
   id: number;
   userId: number;
@@ -29,9 +30,10 @@ export interface IStore {
   picture: string;
 }
 
+// interface for individual product
 export interface IProduct {
   id: number;
-  stoerId: number;
+  storeId: number;
   name: string;
   price: number;
   category: string;
