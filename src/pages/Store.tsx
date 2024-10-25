@@ -1,30 +1,37 @@
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import "../styles/store.css";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../App";
 import { IProduct, IStore } from "../interfaces/userContextInterfaces";
+import IndividualProduct from "../components/IndividualProduct";
 
 function Store() {
+  const [currentStore, setCurrentStore] = useState<IStore[]>();
   const userContext = useContext(UserContext);
-  const { paramsId } = useParams();
+  const { id } = useParams<{ id: string }>();
 
   useEffect(() => {
-    const shallowCopy = userContext.stores
-      ? [...userContext.stores]
-      : undefined;
-
-    console.log("shallow copy");
-    console.log(shallowCopy);
-    // console.log(filteredArray);
-
-    console.log(userContext.stores);
-    console.log("xd");
+    if (id) {
+      const shallowCopy = userContext.stores
+        ? [...userContext.stores]
+        : undefined;
+      const paramId: number = +id;
+      const filteredArray = shallowCopy?.filter((item) => item.id == paramId);
+      console.log(filteredArray ? filteredArray[0] : null);
+      setCurrentStore(filteredArray);
+    }
   }, []);
 
   return (
     <div className="storePageContainer">
       <h1 className="storeName">Placeholder name</h1>
-      <div className="store items">Placeholder items</div>
+      <div className="store items">
+        {currentStore
+          ? currentStore[0].products.map((product, index) => (
+              <IndividualProduct key={index} product={product} />
+            ))
+          : null}
+      </div>
     </div>
   );
 }
