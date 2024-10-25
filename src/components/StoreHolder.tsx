@@ -26,7 +26,8 @@ function StoreHolder({ store }: { store: IStore }) {
     <div className="storeContainer">
       <div className={modal ? "deletemodal show" : "deletemodal hide"}>
         <div className="deleteConfirmContainer">
-          <div className="deleteText"></div>
+          <div className="deleteText">Would you like to delete:</div>
+          <div className="deleteText second">{store ? store.name : null}</div>
           <div className="deleteBtnContainer">
             <button className="delModBtn" onClick={() => handleConfirmClick()}>
               Confirm Delete
