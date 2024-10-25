@@ -36,7 +36,9 @@ function Store() {
 
   return (
     <div className="storePageContainer">
-      <h1 className="storeName">{id}</h1>
+      <h1 className="storeName">
+        {currentStore ? currentStore.name : "Loading"}
+      </h1>
       <div className="store items">
         {currentStore?.products
           ? currentStore.products.map((product, index) => (
