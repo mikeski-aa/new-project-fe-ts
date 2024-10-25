@@ -1,9 +1,16 @@
-import { useContext, useEffect, useState } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import "../styles/home.css";
 import { UserContext } from "../App";
 import { getStores } from "../services/storeCalls";
 import { IStore } from "../interfaces/userContextInterfaces";
 import StoreHolder from "../components/StoreHolder";
+import NewStoreModal from "../components/NewStoreModal";
 
 function Home() {
   const userContext = useContext(UserContext);
@@ -30,11 +37,10 @@ function Home() {
 
   return (
     <div className="homepageContent">
-      <div
-        className={newStoreModal ? "newStoreModal show" : "newStoreModal hide"}
-      >
-        <div className="addNewStoreContainer"></div>
-      </div>
+      <NewStoreModal
+        newStoreModal={newStoreModal}
+        setNewStoreModal={setNewStoreModal}
+      />
       <h1>Your Stores</h1>
       <button className="createNewStore" onClick={handleNewStoreModal}>
         Add new store

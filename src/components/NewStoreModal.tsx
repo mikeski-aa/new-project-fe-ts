@@ -1,10 +1,17 @@
-import { SyntheticEvent, useState } from "react";
+import { Dispatch, SetStateAction, SyntheticEvent, useState } from "react";
 import "../styles/newstoremodal.css";
 
-function NewStoreModal({ newStoreModal }: { newStoreModal: boolean }) {
+function NewStoreModal({
+  newStoreModal,
+  setNewStoreModal,
+}: {
+  newStoreModal: boolean;
+  setNewStoreModal: Dispatch<SetStateAction<boolean>>;
+}) {
   const [location, setLocation] = useState<string>("");
   const [name, setName] = useState<string>("");
 
+  // click and input hanlders
   const handleNameInput = (e: SyntheticEvent) => {
     const input = e.target as HTMLInputElement;
     setName(input.value);
@@ -15,13 +22,19 @@ function NewStoreModal({ newStoreModal }: { newStoreModal: boolean }) {
     setLocation(input.value);
   };
 
+  const handleCloseClick = () => {
+    setNewStoreModal(false);
+  };
+
   return (
     <div
       className={newStoreModal ? "newStoreModal show" : "newStoreModal hide"}
     >
       <div className="addNewStoreContainer">
         <div className="modalBtnContainer">
-          <button className="modalBtn">Close</button>
+          <button className="modalBtn" onClick={handleCloseClick}>
+            Close
+          </button>
         </div>
         <div className="modalInputContainer">
           <div className="modalInputDiv">
