@@ -14,6 +14,9 @@ function Layout() {
   useRedirectHook(userContext.isLogged, userContext.loading);
 
   const handleLogoutClick = () => {
+    // reset store and user info
+    userContext.setUser(undefined);
+    userContext.setStores([]);
     localStorage.removeItem("token");
     navigate("/login");
   };

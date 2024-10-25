@@ -18,16 +18,17 @@ function Home() {
 
   // we probably want to fetch the stores, number of items and maybe stock value - but that's it
   // fetching entire product line here is too much
-  // useEffect(() => {
-  //   const fetchStores = async () => {
-  //     // putting ? returns undefined instead of throwing errors if values are unavailable
-  //     const response = await getStores(userContext?.user?.id);
-  //     console.log(response);
+  useEffect(() => {
+    const fetchStores = async () => {
+      if (userContext.user) {
+        const response = await getStores(userContext?.user?.id);
+        console.log(response);
 
-  //     userContext.setStores(response as IStore[]);
-  //   };
-  //   fetchStores();
-  // }, []);
+        userContext.setStores(response as IStore[]);
+      }
+    };
+    fetchStores();
+  }, []);
 
   const handleNewStoreModal = () => {
     if (!newStoreModal) {
