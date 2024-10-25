@@ -4,26 +4,33 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../App";
 import { IProduct, IStore } from "../interfaces/userContextInterfaces";
 import IndividualProduct from "../components/IndividualProduct";
-import { getStore } from "../services/storeCalls";
+import { getStore, IError } from "../services/storeCalls";
 
 function Store() {
-  const [currentStore, setCurrentStore] = useState<IStore[]>();
+  const [currentStore, setCurrentStore] = useState<IStore>();
   const userContext = useContext(UserContext);
   const { id } = useParams<{ id: string }>();
 
   useEffect(() => {
-    if (id) {
-      const shallowCopy = userContext.stores
-        ? [...userContext.stores]
-        : undefined;
-      const paramId: number = +id;
-      const filteredArray = shallowCopy?.filter((item) => item.id == paramId);
-      console.log(filteredArray ? filteredArray[0] : null);
-      setCurrentStore(filteredArray);
+    const getSpecificStore = async () => {
+      if (id) {
+        const test = await getStore(id);
 
-      const test = getStore(id);
-      console.log(test);
-    }
+        if (!test.error) {
+          const store: IStore = {
+            id: test.id,
+            userId: test.userId,
+            name: test.name,
+            products: test.products,
+            location: test.location,
+            picture: test.picture,
+          };
+          setCurrentStore(store);
+          console.log(test);
+        }
+      }
+    };
+    getSpecificStore();
   }, []);
 
   return (
