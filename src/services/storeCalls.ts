@@ -85,4 +85,35 @@ async function getStore(storeId: string): Promise<IStoreResponse> {
   }
 }
 
-export { getStores, getStore };
+async function postStore(
+  name: string,
+  location: string,
+  userId: number | null | undefined
+): Promise<boolean> {
+  const url = LOCAL_URL + "/stores";
+  const newBody = {
+    name: name,
+    location: location,
+    userId: userId,
+  };
+
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: headerInfo,
+      body: JSON.stringify(newBody),
+    });
+    if (!response.ok) {
+      return false;
+    }
+
+    console.log(response);
+
+    return true;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+}
+
+export { getStores, getStore, postStore };

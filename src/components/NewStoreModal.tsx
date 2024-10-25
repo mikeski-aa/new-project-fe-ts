@@ -1,5 +1,13 @@
-import { Dispatch, SetStateAction, SyntheticEvent, useState } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  SyntheticEvent,
+  useContext,
+  useState,
+} from "react";
 import "../styles/newstoremodal.css";
+import { UserContext } from "../App";
+import { postStore } from "../services/storeCalls";
 
 function NewStoreModal({
   newStoreModal,
@@ -10,6 +18,7 @@ function NewStoreModal({
 }) {
   const [location, setLocation] = useState<string>("");
   const [name, setName] = useState<string>("");
+  const userContext = useContext(UserContext);
 
   // click and input hanlders
   const handleNameInput = (e: SyntheticEvent) => {
@@ -24,6 +33,13 @@ function NewStoreModal({
 
   const handleCloseClick = () => {
     setNewStoreModal(false);
+  };
+
+  const handleAddClick = async () => {
+    // make sure usercontext is not null or undefined
+    if (userContext.user) {
+      const response = await postStore(name, location, userContext.user.id);
+    }
   };
 
   return (
