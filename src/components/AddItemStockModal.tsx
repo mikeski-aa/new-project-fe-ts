@@ -46,19 +46,15 @@ function AddItemStockModal({
   // also no empty inputs allowed on name, type price or quantity.
 
   const handleAddItem = (): void => {
-    // validate input fields
-    validateInputName(name);
-    validateInputSku(sku);
-    validateInputType(type);
-    validateInputPrice(price);
-
     const validatedInputs =
       validateInputName(name) &&
       validateInputSku(sku) &&
       validateInputType(type) &&
       validateInputPrice(price);
 
-    if (!validatedInputs) {
+    const validatedSkus = skuError && skuDuplicate && skuDuplicateCurrent;
+    alert(validatedSkus);
+    if (!validatedInputs && !validatedSkus) {
       const newItem: INewItem = {
         sku: sku,
         name: name,
@@ -85,9 +81,9 @@ function AddItemStockModal({
       const isValid = regex.test(target.value.toUpperCase());
 
       if (!isValid) {
-        setSkuFormatError(true);
+        setSkuError(true);
       } else {
-        setSkuFormatError(false);
+        setSkuError(false);
       }
 
       // checks for duplicate SKU in store items!
@@ -103,10 +99,23 @@ function AddItemStockModal({
       setSku(target.value.toUpperCase());
     } else if (name === "name") {
       setName(target.value);
+      if (validateInputName(target.value)) {
+        return setNameError(true);
+      }
+
+      setNameError(false);
     } else if (name === "type") {
       setType(target.value);
+      if (validateInputType(target.value)) {
+        return setTypeError(true);
+      }
+      setTypeError(false);
     } else if (name === "price") {
       setPrice(+target.value);
+      if (validateInputPrice(+target.value)) {
+        return setPriceError(true);
+      }
+      setPriceError(false);
     } else if (name === "quantity") {
       setQuantity(+target.value);
     }
@@ -172,7 +181,7 @@ function AddItemStockModal({
                     ? "inputErrorNewItem show"
                     : "inputErrorNewItem hide"
                 }
-              >{`Name missing!`}</div>
+              >{`Name required`}</div>
             </div>
             <div className="inputContainer">
               <input
@@ -190,7 +199,7 @@ function AddItemStockModal({
                     ? "inputErrorNewItem show"
                     : "inputErrorNewItem hide"
                 }
-              >{`Type missing!`}</div>
+              >{`Type required`}</div>
             </div>
             <div className="inputContainer">
               <input
@@ -208,7 +217,7 @@ function AddItemStockModal({
                     ? "inputErrorNewItem show"
                     : "inputErrorNewItem hide"
                 }
-              >{`Price missing!`}</div>
+              >{`Price required`}</div>
             </div>
             <div className="inputContainer">
               <input
