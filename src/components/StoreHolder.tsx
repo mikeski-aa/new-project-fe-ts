@@ -20,6 +20,10 @@ function StoreHolder({ store }: { store: IStore }) {
     setModal(true);
   };
 
+  const handleEditClick = () => {
+    setEditModal(true);
+  };
+
   // is using useContext for a single instance of passing the props two depths down worth it?
   return (
     <div className="storeContainer">
@@ -36,7 +40,9 @@ function StoreHolder({ store }: { store: IStore }) {
         <button className="storeBtn" onClick={handleOpenClick}>
           Open
         </button>
-        <button className="storeBtn">Edit</button>
+        <button className="storeBtn" onClick={handleEditClick}>
+          Edit
+        </button>
         <button className="storeBtn" onClick={handleDeleteClick}>
           Delete
         </button>
