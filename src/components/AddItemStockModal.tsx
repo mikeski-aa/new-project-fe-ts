@@ -53,7 +53,6 @@ function AddItemStockModal({
       validateInputPrice(price);
 
     const validatedSkus = skuError || skuDuplicate || skuDuplicateCurrent;
-    alert(validatedSkus);
     if (!validatedInputs && !validatedSkus) {
       const newItem: INewItem = {
         sku: sku,
@@ -69,6 +68,12 @@ function AddItemStockModal({
       setType("");
       setPrice(0);
       setQuantity(0);
+      return;
+    } else {
+      validateInputName(name) ? setNameError(true) : setNameError(false);
+      validateInputType(type) ? setTypeError(true) : setTypeError(false);
+      validateInputPrice(price) ? setPriceError(true) : setPriceError(false);
+      validateInputName(sku) ? setSkuError(true) : setSkuError(false);
     }
   };
 
