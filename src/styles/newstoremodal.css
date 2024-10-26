@@ -18,5 +18,5 @@
   width: fit-content;
   background-color: white;
   padding: 25px;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(-50%);
 }

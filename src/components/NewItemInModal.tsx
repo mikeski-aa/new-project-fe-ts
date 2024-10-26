@@ -10,7 +10,15 @@ function NewItemInModal({
   state: INewItem[];
   setState: Dispatch<SetStateAction<INewItem[]>>;
 }) {
-  const handleRemoveClick = () => {};
+  const handleRemoveClick = () => {
+    const tempState = [...state];
+    const filteredState = tempState.filter(
+      (newItem) => newItem.sku !== item.sku
+    );
+    console.log(filteredState);
+
+    setState(filteredState);
+  };
   return (
     <div className="newAddItem">
       <div className="itemProperty">{item.sku}</div>

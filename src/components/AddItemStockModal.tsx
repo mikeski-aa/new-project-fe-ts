@@ -85,9 +85,15 @@ function AddItemStockModal({
             </div>
             <hr></hr>
             {newItems.map((item, index) => (
-              <NewItemInModal key={index} item={item} />
+              <NewItemInModal
+                key={index}
+                item={item}
+                state={newItems}
+                setState={setNewItems}
+              />
             ))}
           </div>
+          <hr></hr>
           <div className="newItemInputContainer">
             <div className="inputContainer">
               <input
