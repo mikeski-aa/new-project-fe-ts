@@ -7,16 +7,18 @@ function validateStoreSkus(
   currentStore: IStore,
   sku: string,
   setSkuDuplicate: Dispatch<SetStateAction<boolean>>
-): void {
+): boolean {
   // checks for duplicate SKU in store items!
   const productsCopy = [...currentStore.products];
   const filtered = productsCopy.filter((product) => product.sku === sku);
   console.log(filtered.length);
 
   if (filtered.length > 0) {
-    return setSkuDuplicate(true);
+    setSkuDuplicate(true);
+    return true;
   } else {
-    return setSkuDuplicate(false);
+    setSkuDuplicate(false);
+    return false;
   }
 }
 
@@ -25,58 +27,48 @@ function validateNewSkus(
   newItems: INewItem[],
   sku: string,
   setSkuDuplicate: Dispatch<SetStateAction<boolean>>
-): void {
+): boolean {
   const newItemsCopy = [...newItems];
   const filteredItems = newItemsCopy.filter((product) => product.sku === sku);
   console.log(filteredItems.length);
 
   if (filteredItems.length > 0) {
-    return setSkuDuplicate(true);
+    setSkuDuplicate(true);
+    return true;
   } else {
-    return setSkuDuplicate(false);
+    setSkuDuplicate(false);
+    return false;
   }
 }
 
-function validateInputSku(
-  sku: string,
-  setSkuError: Dispatch<SetStateAction<boolean>>
-): void {
+function validateInputSku(sku: string): boolean {
   if (sku.length != 6) {
-    setSkuError(true);
+    return true;
   } else {
-    setSkuError(false);
+    return false;
   }
 }
 
-function validateInputName(
-  name: string,
-  setNameError: Dispatch<SetStateAction<boolean>>
-): void {
+function validateInputName(name: string): boolean {
   if (name.length === 0) {
-    setNameError(true);
+    return true;
   } else {
-    setNameError(false);
+    return false;
   }
 }
-function validateInputType(
-  type: string,
-  setTypeError: Dispatch<SetStateAction<boolean>>
-): void {
+function validateInputType(type: string): boolean {
   if (type.length === 0) {
-    setTypeError(true);
+    return true;
   } else {
-    setTypeError(false);
+    return false;
   }
 }
 
-function validateInputPrice(
-  price: number,
-  setPriceError: Dispatch<SetStateAction<boolean>>
-): void {
+function validateInputPrice(price: number): boolean {
   if (price == 0) {
-    setPriceError(true);
+    return true;
   } else {
-    setPriceError(false);
+    return false;
   }
 }
 

@@ -46,27 +46,19 @@ function AddItemStockModal({
   // also no empty inputs allowed on name, type price or quantity.
 
   const handleAddItem = (): void => {
-    // checks for duplicate SKU in store items!
-    validateStoreSkus(currentStore, sku, setSkuDuplicateCurrent);
-
-    // check for duplicated in new items.
-    validateNewSkus(newItems, sku, setSkuDuplicate);
-
     // validate input fields
-    validateInputName(name, setNameError);
-    validateInputSku(sku, setSkuError);
-    validateInputType(type, setTypeError);
-    validateInputPrice(price, setPriceError);
+    validateInputName(name);
+    validateInputSku(sku);
+    validateInputType(type);
+    validateInputPrice(price);
 
-    if (
-      !skuError &&
-      !nameError &&
-      !typeError &&
-      !priceError &&
-      !skuDuplicate &&
-      !skuFormatError &&
-      !skuDuplicateCurrent
-    ) {
+    const validatedInputs =
+      validateInputName(name) &&
+      validateInputSku(sku) &&
+      validateInputType(type) &&
+      validateInputPrice(price);
+
+    if (!validatedInputs) {
       const newItem: INewItem = {
         sku: sku,
         name: name,
@@ -98,15 +90,22 @@ function AddItemStockModal({
         setSkuFormatError(false);
       }
 
+      // checks for duplicate SKU in store items!
+      validateStoreSkus(
+        currentStore,
+        target.value.toUpperCase(),
+        setSkuDuplicateCurrent
+      );
+
+      // check for duplicated in new items.
+      validateNewSkus(newItems, target.value.toUpperCase(), setSkuDuplicate);
+
       setSku(target.value.toUpperCase());
     } else if (name === "name") {
-      validateInputName(name, setNameError);
       setName(target.value);
     } else if (name === "type") {
-      validateInputType(type, setTypeError);
       setType(target.value);
     } else if (name === "price") {
-      validateInputPrice(price, setPriceError);
       setPrice(+target.value);
     } else if (name === "quantity") {
       setQuantity(+target.value);
@@ -233,7 +232,7 @@ function AddItemStockModal({
                 : "duplicateError hide"
             }
           >
-            Error div
+            This SKU already exists in this store!
           </div>
         </div>
       </div>
