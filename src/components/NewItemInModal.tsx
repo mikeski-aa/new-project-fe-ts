@@ -1,5 +1,4 @@
 import { INewItem } from "../interfaces/storeInterfaces";
-import "../styles/newiteminmodal.css";
 
 function NewItemInModal({ item }: { item: INewItem }) {
   return (

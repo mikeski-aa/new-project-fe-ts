@@ -20,3 +20,20 @@
   padding: 25px;
   transform: translateX(-50%);
 }
+
+.newItemInputContainer {
+  display: flex;
+}
+
+.inputErrorSKU.hide {
+  display: none;
+}
+
+.inputErrorSKU {
+  border: 2px solid red;
+  color: red;
+}
+
+.newAddItem {
+  display: flex;
+}

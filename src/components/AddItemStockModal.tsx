@@ -31,7 +31,7 @@ function AddItemStockModal({
       price: price,
       quantity: quantity,
     };
-    // setNewItems([...newItems], newItem);
+    setNewItems([...newItems, newItem]);
   };
 
   // inputhanlders for each individual field
@@ -80,9 +80,13 @@ function AddItemStockModal({
                 value={sku}
                 type="string"
                 onChange={(e) => handleInput(e, "sku")}
+                maxLength={6}
+                minLength={6}
               ></input>
               <div
-                className={skuError ? "inputError show" : "inputError hide"}
+                className={
+                  skuError ? "inputErrorSKU show" : "inputErrorSKU hide"
+                }
               >{`SKU must be 'AAA000' format!`}</div>
             </div>
             <div className="inputContainer">
@@ -90,6 +94,8 @@ function AddItemStockModal({
                 className="newItemInput"
                 placeholder="Item name"
                 type="string"
+                maxLength={30}
+                minLength={1}
                 onChange={(e) => handleInput(e, "name")}
               ></input>
             </div>
@@ -99,6 +105,8 @@ function AddItemStockModal({
                 placeholder="Item type"
                 type="string"
                 onChange={(e) => handleInput(e, "type")}
+                maxLength={30}
+                minLength={1}
               ></input>
             </div>
             <div className="inputContainer">
@@ -107,6 +115,8 @@ function AddItemStockModal({
                 placeholder="Item price"
                 type="number"
                 onChange={(e) => handleInput(e, "price")}
+                maxLength={30}
+                minLength={1}
               ></input>
             </div>
             <div className="inputContainer">
@@ -115,6 +125,8 @@ function AddItemStockModal({
                 placeholder="Stock quantity"
                 type="number"
                 onChange={(e) => handleInput(e, "quantity")}
+                maxLength={30}
+                minLength={1}
               ></input>
             </div>
             <button className="newItemAddBtn" onClick={handleAddItem}>
