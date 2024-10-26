@@ -4,30 +4,43 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../App";
 import { IProduct, IStore } from "../interfaces/userContextInterfaces";
 import IndividualProduct from "../components/IndividualProduct";
-import { getStore, IError } from "../services/storeCalls";
+import { getStore, IError, IStoreResponse } from "../services/storeCalls";
 
 function Store() {
   const [currentStore, setCurrentStore] = useState<IStore>();
   const userContext = useContext(UserContext);
   const { id } = useParams<{ id: string }>();
 
+  // type guard for types
+  // this type guard will take the response argument, which can be IStoerResponse or IError.
+  // if the response is of type IStoreResponse it will return the !response.error
+  // this can be used in an If statement to evaluate how to proceed depending on resulting data.
+  function isStoreResponse(
+    response: IStoreResponse | IError
+  ): response is IStoreResponse {
+    return !response.error;
+  }
+
   useEffect(() => {
     const getSpecificStore = async () => {
       if (id) {
-        const test = await getStore(id);
+        const storeResponse = await getStore(id);
 
         // error is not present so data can be assigned
-        if (!test.error) {
+
+        if (isStoreResponse(storeResponse)) {
           const store: IStore = {
-            id: test.id,
-            userId: test.userId,
-            name: test.name,
-            products: test.products,
-            location: test.location,
-            picture: test.picture,
+            id: storeResponse.id,
+            userId: storeResponse.userId,
+            name: storeResponse.name,
+            products: storeResponse.products,
+            location: storeResponse.location,
+            picture: storeResponse.picture,
           };
           setCurrentStore(store);
-          console.log(test);
+          console.log(storeResponse);
+        } else {
+          console.log(storeResponse.resTest);
         }
       }
     };
