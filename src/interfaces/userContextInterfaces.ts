@@ -22,12 +22,12 @@ export interface IUser {
 
 // interface for individual store
 export interface IStore {
-  id: number;
-  userId: number;
-  name: string;
-  products: IProduct[];
-  location: string;
-  picture: string;
+  id: number | undefined;
+  userId: number | undefined;
+  name: string | undefined;
+  products: IProduct[] | undefined;
+  location: string | undefined;
+  picture: string | undefined;
 }
 
 // interface for individual product
