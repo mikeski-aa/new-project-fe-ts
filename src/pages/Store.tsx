@@ -8,7 +8,14 @@ import { getStore, IError, IStoreResponse } from "../services/storeCalls";
 import AddItemStockModal from "../components/AddItemStockModal";
 
 function Store() {
-  const [currentStore, setCurrentStore] = useState<IStore>();
+  const [currentStore, setCurrentStore] = useState<IStore>({
+    id: 0,
+    userId: 0,
+    name: "",
+    products: [],
+    location: "",
+    picture: "",
+  });
   const [addItemModal, setAddItemModal] = useState<boolean>(false);
   const userContext = useContext(UserContext);
   const { id } = useParams<{ id: string }>();
@@ -55,7 +62,11 @@ function Store() {
 
   return (
     <div className="storePageContainer">
-      <AddItemStockModal modal={addItemModal} setModal={setAddItemModal} />
+      <AddItemStockModal
+        modal={addItemModal}
+        setModal={setAddItemModal}
+        currentStore={currentStore}
+      />
       <h1 className="storeName">
         {currentStore ? currentStore.name : "Loading"}
       </h1>

@@ -29,7 +29,8 @@
   display: none;
 }
 
-.inputErrorSKU {
+.inputErrorSKU,
+.duplicateError {
   border: 2px solid red;
   color: red;
 }
@@ -50,4 +51,8 @@
 
 .newItemInput {
   width: 100px;
+}
+
+.duplicateError.hide {
+  display: none;
 }
