@@ -141,4 +141,37 @@ async function deleteStore(userid: number, storeid: number): Promise<boolean> {
   }
 }
 
-export { getStores, getStore, postStore, deleteStore };
+// update specific store info
+async function updateStore(
+  userid: number,
+  storeid: number,
+  name: string,
+  location: string
+): Promise<boolean> {
+  const url = LOCAL_URL + "stores";
+  const newBody = {
+    userid: userid,
+    storeid: storeid,
+    name: name,
+    location: location,
+  };
+
+  try {
+    const response = await fetch(url, {
+      method: "PUT",
+      headers: headerInfo,
+      body: JSON.stringify(newBody),
+    });
+
+    if (!response.ok) {
+      return false;
+    }
+
+    return true;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+}
+
+export { getStores, getStore, postStore, deleteStore, updateStore };

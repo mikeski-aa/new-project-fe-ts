@@ -1,20 +1,31 @@
-import { Dispatch, SetStateAction, SyntheticEvent, useState } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  SyntheticEvent,
+  useContext,
+  useState,
+} from "react";
 import "../styles/editshopmodal.css";
+import { updateStore } from "../services/storeCalls";
+import { UserContext } from "../App";
 
 function EditShopModal({
   modal,
   setModal,
   storeName,
   storeLocation,
+  storeid,
 }: {
   modal: boolean;
   setModal: Dispatch<SetStateAction<boolean>>;
   storeName: string;
   storeLocation: string;
+  storeid: number;
 }) {
   const [loading, setLoading] = useState<boolean>(false);
   const [name, setName] = useState<string>(storeName);
   const [location, setLocation] = useState<string>(storeLocation);
+  const userContext = useContext(UserContext);
 
   // handle input change
   const handleNameInput = (e: SyntheticEvent) => {
@@ -28,7 +39,20 @@ function EditShopModal({
   };
 
   // handle button clicks
-  const handleSaveClick = async () => {};
+  const handleSaveClick = async () => {
+    setLoading(true);
+    const response = await updateStore(
+      userContext?.user?.id as number,
+      storeid,
+      name,
+      location
+    );
+    console.log(response);
+
+    // get data from DB to refresh the main page here
+    setLoading(false);
+    setModal(false);
+  };
 
   const handleCancelClick = (): void => {
     setModal(false);
@@ -43,11 +67,15 @@ function EditShopModal({
             className="editModalInput"
             value={name}
             onChange={(e) => handleNameInput(e)}
+            maxLength={30}
+            minLength={1}
           ></input>
           <input
             className="editModalInput"
             value={location}
             onChange={(e) => handleLocationInput(e)}
+            maxLength={30}
+            minLength={1}
           ></input>
         </div>
         {loading ? <h1>LOADING</h1> : null}
