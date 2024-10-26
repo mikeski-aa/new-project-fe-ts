@@ -3,6 +3,14 @@ import "../styles/additemstockmodal.css";
 import { INewItem } from "../interfaces/storeInterfaces";
 import NewItemInModal from "./NewItemInModal";
 import { IStore } from "../interfaces/userContextInterfaces";
+import {
+  validateInputName,
+  validateInputPrice,
+  validateInputSku,
+  validateInputType,
+  validateNewSkus,
+  validateStoreSkus,
+} from "../utils/newItemInputValidation";
 
 function AddItemStockModal({
   modal,
@@ -20,7 +28,13 @@ function AddItemStockModal({
   const [price, setPrice] = useState<number>(0);
   const [quantity, setQuantity] = useState<number>(0);
   const [skuError, setSkuError] = useState<boolean>(false);
+  const [skuFormatError, setSkuFormatError] = useState<boolean>(false);
   const [skuDuplicate, setSkuDuplicate] = useState<boolean>(false);
+  const [skuDuplicateCurrent, setSkuDuplicateCurrent] =
+    useState<boolean>(false);
+  const [nameError, setNameError] = useState<boolean>(false);
+  const [typeError, setTypeError] = useState<boolean>(false);
+  const [priceError, setPriceError] = useState<boolean>(false);
 
   const handleModalClose = () => {
     setModal(false);
@@ -33,32 +47,26 @@ function AddItemStockModal({
 
   const handleAddItem = (): void => {
     // checks for duplicate SKU in store items!
-    const productsCopy = [...currentStore.products];
-    const filtered = productsCopy.filter((product) => product.sku === sku);
-    console.log(filtered.length);
+    validateStoreSkus(currentStore, sku, setSkuDuplicateCurrent);
 
-    if (filtered.length > 0) {
-      return setSkuDuplicate(true);
-    } else {
-      setSkuDuplicate(false);
-    }
+    // check for duplicated in new items.
+    validateNewSkus(newItems, sku, setSkuDuplicate);
 
-    const newItemsCopy = [...newItems];
-    const filteredItems = newItemsCopy.filter((product) => product.sku === sku);
-    console.log(filteredItems.length);
+    // validate input fields
+    validateInputName(name, setNameError);
+    validateInputSku(sku, setSkuError);
+    validateInputType(type, setTypeError);
+    validateInputPrice(price, setPriceError);
 
-    if (filteredItems.length > 0) {
-      return setSkuDuplicate(true);
-    } else {
-      setSkuDuplicate(false);
-    }
-
-    if (!skuError) {
-      setSku("");
-      setName("");
-      setType("");
-      setPrice(0);
-      setQuantity(0);
+    if (
+      !skuError &&
+      !nameError &&
+      !typeError &&
+      !priceError &&
+      !skuDuplicate &&
+      !skuFormatError &&
+      !skuDuplicateCurrent
+    ) {
       const newItem: INewItem = {
         sku: sku,
         name: name,
@@ -66,7 +74,13 @@ function AddItemStockModal({
         price: price,
         quantity: quantity,
       };
+      console.log(newItem);
       setNewItems([...newItems, newItem]);
+      setSku("");
+      setName("");
+      setType("");
+      setPrice(0);
+      setQuantity(0);
     }
   };
 
@@ -79,17 +93,20 @@ function AddItemStockModal({
       const isValid = regex.test(target.value.toUpperCase());
 
       if (!isValid) {
-        setSkuError(true);
+        setSkuFormatError(true);
       } else {
-        setSkuError(false);
+        setSkuFormatError(false);
       }
 
       setSku(target.value.toUpperCase());
     } else if (name === "name") {
+      validateInputName(name, setNameError);
       setName(target.value);
     } else if (name === "type") {
+      validateInputType(type, setTypeError);
       setType(target.value);
     } else if (name === "price") {
+      validateInputPrice(price, setPriceError);
       setPrice(+target.value);
     } else if (name === "quantity") {
       setQuantity(+target.value);
@@ -136,7 +153,7 @@ function AddItemStockModal({
               ></input>
               <div
                 className={
-                  skuError ? "inputErrorSKU show" : "inputErrorSKU hide"
+                  skuError ? "inputErrorNewItem show" : "inputErrorNewItem hide"
                 }
               >{`SKU must be 'AAA000' format!`}</div>
             </div>
@@ -150,6 +167,13 @@ function AddItemStockModal({
                 minLength={1}
                 onChange={(e) => handleInput(e, "name")}
               ></input>
+              <div
+                className={
+                  nameError
+                    ? "inputErrorNewItem show"
+                    : "inputErrorNewItem hide"
+                }
+              >{`Name missing!`}</div>
             </div>
             <div className="inputContainer">
               <input
@@ -161,6 +185,13 @@ function AddItemStockModal({
                 maxLength={30}
                 minLength={1}
               ></input>
+              <div
+                className={
+                  typeError
+                    ? "inputErrorNewItem show"
+                    : "inputErrorNewItem hide"
+                }
+              >{`Type missing!`}</div>
             </div>
             <div className="inputContainer">
               <input
@@ -172,6 +203,13 @@ function AddItemStockModal({
                 maxLength={30}
                 minLength={1}
               ></input>
+              <div
+                className={
+                  priceError
+                    ? "inputErrorNewItem show"
+                    : "inputErrorNewItem hide"
+                }
+              >{`Price missing!`}</div>
             </div>
             <div className="inputContainer">
               <input
@@ -190,7 +228,9 @@ function AddItemStockModal({
           </div>
           <div
             className={
-              skuDuplicate ? "duplicateError show" : "duplicateError hide"
+              skuDuplicate || skuDuplicateCurrent
+                ? "duplicateError show"
+                : "duplicateError hide"
             }
           >
             Error div

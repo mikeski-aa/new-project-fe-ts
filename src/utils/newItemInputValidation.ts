@@ -37,6 +37,54 @@ function validateNewSkus(
   }
 }
 
-function validateInputLength() {}
+function validateInputSku(
+  sku: string,
+  setSkuError: Dispatch<SetStateAction<boolean>>
+): void {
+  if (sku.length != 6) {
+    setSkuError(true);
+  } else {
+    setSkuError(false);
+  }
+}
 
-export { validateInputLength, validateNewSkus, validateStoreSkus };
+function validateInputName(
+  name: string,
+  setNameError: Dispatch<SetStateAction<boolean>>
+): void {
+  if (name.length === 0) {
+    setNameError(true);
+  } else {
+    setNameError(false);
+  }
+}
+function validateInputType(
+  type: string,
+  setTypeError: Dispatch<SetStateAction<boolean>>
+): void {
+  if (type.length === 0) {
+    setTypeError(true);
+  } else {
+    setTypeError(false);
+  }
+}
+
+function validateInputPrice(
+  price: number,
+  setPriceError: Dispatch<SetStateAction<boolean>>
+): void {
+  if (price == 0) {
+    setPriceError(true);
+  } else {
+    setPriceError(false);
+  }
+}
+
+export {
+  validateNewSkus,
+  validateStoreSkus,
+  validateInputName,
+  validateInputPrice,
+  validateInputSku,
+  validateInputType,
+};

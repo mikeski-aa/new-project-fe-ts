@@ -25,11 +25,11 @@
   display: flex;
 }
 
-.inputErrorSKU.hide {
+.inputErrorNewItem.hide {
   display: none;
 }
 
-.inputErrorSKU,
+.inputErrorNewItem,
 .duplicateError {
   border: 2px solid red;
   color: red;
