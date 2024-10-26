@@ -47,12 +47,12 @@ function AddItemStockModal({
 
   const handleAddItem = (): void => {
     const validatedInputs =
-      validateInputName(name) &&
-      validateInputSku(sku) &&
-      validateInputType(type) &&
+      validateInputName(name) ||
+      validateInputSku(sku) ||
+      validateInputType(type) ||
       validateInputPrice(price);
 
-    const validatedSkus = skuError && skuDuplicate && skuDuplicateCurrent;
+    const validatedSkus = skuError || skuDuplicate || skuDuplicateCurrent;
     alert(validatedSkus);
     if (!validatedInputs && !validatedSkus) {
       const newItem: INewItem = {
