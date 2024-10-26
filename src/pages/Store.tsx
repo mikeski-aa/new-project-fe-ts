@@ -5,9 +5,11 @@ import { UserContext } from "../App";
 import { IProduct, IStore } from "../interfaces/userContextInterfaces";
 import IndividualProduct from "../components/IndividualProduct";
 import { getStore, IError, IStoreResponse } from "../services/storeCalls";
+import AddItemStockModal from "../components/AddItemStockModal";
 
 function Store() {
   const [currentStore, setCurrentStore] = useState<IStore>();
+  const [addItemModal, setAddItemModal] = useState<boolean>(false);
   const userContext = useContext(UserContext);
   const { id } = useParams<{ id: string }>();
 
@@ -47,11 +49,19 @@ function Store() {
     getSpecificStore();
   }, []);
 
+  const handleOpenNewItemModal = () => {
+    setAddItemModal(true);
+  };
+
   return (
     <div className="storePageContainer">
+      <AddItemStockModal modal={addItemModal} setModal={setAddItemModal} />
       <h1 className="storeName">
         {currentStore ? currentStore.name : "Loading"}
       </h1>
+      <button className="addItemsBtn" onClick={handleOpenNewItemModal}>
+        Add items to stock
+      </button>
       <div className="store items">
         {currentStore?.products
           ? currentStore.products.map((product, index) => (

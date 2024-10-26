@@ -1,0 +1,22 @@
+.newItemModal.hide {
+  display: none;
+}
+
+.newItemModal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(128, 128, 128, 0.842);
+}
+
+.newItemContainer {
+  position: relative;
+  left: 50%;
+  top: 50%;
+  width: fit-content;
+  background-color: white;
+  padding: 25px;
+  transform: translateX(-50%);
+}
