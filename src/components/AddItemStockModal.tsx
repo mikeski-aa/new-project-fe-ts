@@ -39,7 +39,16 @@ function AddItemStockModal({
     const target = e.target as HTMLInputElement;
 
     if (name === "sku") {
-      setSku(target.value);
+      const regex = /^[A-Z]{3}\d{3}$/;
+      const isValid = regex.test(target.value.toUpperCase());
+
+      if (!isValid) {
+        setSkuError(true);
+      } else {
+        setSkuError(false);
+      }
+
+      setSku(target.value.toUpperCase());
     } else if (name === "name") {
       setName(target.value);
     } else if (name === "type") {
@@ -65,59 +74,48 @@ function AddItemStockModal({
           </div>
           <div className="newItemInputContainer">
             <div className="inputContainer">
-              <div className="inputError">
-                {" "}
-                <input
-                  className="newItemInput"
-                  placeholder="SKU"
-                  type="string"
-                  onChange={(e) => handleInput(e, "sku")}
-                ></input>
-              </div>
+              <input
+                className="newItemInput"
+                placeholder="SKU"
+                value={sku}
+                type="string"
+                onChange={(e) => handleInput(e, "sku")}
+              ></input>
+              <div
+                className={skuError ? "inputError show" : "inputError hide"}
+              >{`SKU must be 'AAA000' format!`}</div>
             </div>
             <div className="inputContainer">
-              <div className="inputError">
-                {" "}
-                <input
-                  className="newItemInput"
-                  placeholder="Item name"
-                  type="string"
-                  onChange={(e) => handleInput(e, "name")}
-                ></input>
-              </div>
+              <input
+                className="newItemInput"
+                placeholder="Item name"
+                type="string"
+                onChange={(e) => handleInput(e, "name")}
+              ></input>
             </div>
             <div className="inputContainer">
-              <div className="inputError">
-                {" "}
-                <input
-                  className="newItemInput"
-                  placeholder="Item type"
-                  type="string"
-                  onChange={(e) => handleInput(e, "type")}
-                ></input>
-              </div>
+              <input
+                className="newItemInput"
+                placeholder="Item type"
+                type="string"
+                onChange={(e) => handleInput(e, "type")}
+              ></input>
             </div>
             <div className="inputContainer">
-              <div className="inputError">
-                {" "}
-                <input
-                  className="newItemInput"
-                  placeholder="Item price"
-                  type="number"
-                  onChange={(e) => handleInput(e, "price")}
-                ></input>
-              </div>
+              <input
+                className="newItemInput"
+                placeholder="Item price"
+                type="number"
+                onChange={(e) => handleInput(e, "price")}
+              ></input>
             </div>
             <div className="inputContainer">
-              <div className="inputError">
-                {" "}
-                <input
-                  className="newItemInput"
-                  placeholder="Stock quantity"
-                  type="number"
-                  onChange={(e) => handleInput(e, "quantity")}
-                ></input>
-              </div>
+              <input
+                className="newItemInput"
+                placeholder="Stock quantity"
+                type="number"
+                onChange={(e) => handleInput(e, "quantity")}
+              ></input>
             </div>
             <button className="newItemAddBtn" onClick={handleAddItem}>
               Add
