@@ -6,25 +6,23 @@ import {
   useState,
 } from "react";
 import "../styles/editshopmodal.css";
-import { updateStore } from "../services/storeCalls";
+import { getStores, updateStore } from "../services/storeCalls";
 import { UserContext } from "../App";
+import { IStore } from "../interfaces/userContextInterfaces";
 
 function EditShopModal({
   modal,
   setModal,
-  storeName,
-  storeLocation,
-  storeid,
+  store,
 }: {
   modal: boolean;
   setModal: Dispatch<SetStateAction<boolean>>;
-  storeName: string;
-  storeLocation: string;
-  storeid: number;
+
+  store: IStore;
 }) {
   const [loading, setLoading] = useState<boolean>(false);
-  const [name, setName] = useState<string>(storeName);
-  const [location, setLocation] = useState<string>(storeLocation);
+  const [name, setName] = useState<string>(store.name);
+  const [location, setLocation] = useState<string>(store.location);
   const userContext = useContext(UserContext);
 
   // handle input change
@@ -43,13 +41,15 @@ function EditShopModal({
     setLoading(true);
     const response = await updateStore(
       userContext?.user?.id as number,
-      storeid,
+      store.id,
       name,
       location
     );
     console.log(response);
 
     // get data from DB to refresh the main page here
+    const newStores = await getStores(userContext?.user?.id);
+    userContext.setStores(newStores as IStore[]);
     setLoading(false);
     setModal(false);
   };
@@ -91,3 +91,5 @@ function EditShopModal({
     </div>
   );
 }
+
+export default EditShopModal;

@@ -4,9 +4,12 @@ import "../styles/storeholder.css";
 import IndividualProduct from "./IndividualProduct";
 import { useState } from "react";
 import ConfirmDeleteBox from "./ConfirmDeleteBox";
+import EditShopModal from "./EditShopModal";
 
 function StoreHolder({ store }: { store: IStore }) {
   const [modal, setModal] = useState<boolean>(false);
+  const [editModal, setEditModal] = useState<boolean>(false);
+
   const navigate = useNavigate();
 
   const handleOpenClick = () => {
@@ -21,6 +24,7 @@ function StoreHolder({ store }: { store: IStore }) {
   return (
     <div className="storeContainer">
       <ConfirmDeleteBox modal={modal} setModal={setModal} store={store} />
+      <EditShopModal modal={editModal} setModal={setEditModal} store={store} />
       <div className="budgetHeading">{store.name}</div>
       <img src={store.picture} className="storePicture"></img>
       <div className="budgetValue">{store.location}</div>
