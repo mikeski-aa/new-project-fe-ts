@@ -24,14 +24,21 @@ function AddItemStockModal({
 
   // needs to validate inputs first before submitting
   const handleAddItem = () => {
-    const newItem: INewItem = {
-      sku: sku,
-      name: name,
-      type: type,
-      price: price,
-      quantity: quantity,
-    };
-    setNewItems([...newItems, newItem]);
+    if (!skuError) {
+      setSku("");
+      setName("");
+      setType("");
+      setPrice(0);
+      setQuantity(0);
+      const newItem: INewItem = {
+        sku: sku,
+        name: name,
+        type: type,
+        price: price,
+        quantity: quantity,
+      };
+      setNewItems([...newItems, newItem]);
+    }
   };
 
   // inputhanlders for each individual field
@@ -93,6 +100,7 @@ function AddItemStockModal({
               <input
                 className="newItemInput"
                 placeholder="Item name"
+                value={name}
                 type="string"
                 maxLength={30}
                 minLength={1}
@@ -103,6 +111,7 @@ function AddItemStockModal({
               <input
                 className="newItemInput"
                 placeholder="Item type"
+                value={type}
                 type="string"
                 onChange={(e) => handleInput(e, "type")}
                 maxLength={30}
@@ -113,6 +122,7 @@ function AddItemStockModal({
               <input
                 className="newItemInput"
                 placeholder="Item price"
+                value={price}
                 type="number"
                 onChange={(e) => handleInput(e, "price")}
                 maxLength={30}
@@ -124,6 +134,7 @@ function AddItemStockModal({
                 className="newItemInput"
                 placeholder="Stock quantity"
                 type="number"
+                value={quantity}
                 onChange={(e) => handleInput(e, "quantity")}
                 maxLength={30}
                 minLength={1}
