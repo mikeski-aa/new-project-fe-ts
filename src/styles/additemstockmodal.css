@@ -37,3 +37,17 @@
 .newAddItem {
   display: flex;
 }
+
+.headingDivs {
+  display: flex;
+}
+
+.itemProperty,
+.headingDivItem {
+  width: 108px;
+  overflow: hidden;
+}
+
+.newItemInput {
+  width: 100px;
+}

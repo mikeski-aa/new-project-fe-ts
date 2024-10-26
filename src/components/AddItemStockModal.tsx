@@ -72,9 +72,18 @@ function AddItemStockModal({
         <button className="newItemModalBtn" onClick={handleModalClose}>
           Close
         </button>
+        <button className="nweItemModalBtn">Save</button>
         <div className="newItemBoxes">
           <div className="addedItemContainer">
             <div className="headingItems">Added items</div>
+            <div className="headingDivs">
+              <div className="headingDivItem">SKU</div>
+              <div className="headingDivItem">Name</div>
+              <div className="headingDivItem">Type</div>
+              <div className="headingDivItem">Price</div>
+              <div className="headingDivItem">Quantity</div>
+            </div>
+            <hr></hr>
             {newItems.map((item, index) => (
               <NewItemInModal key={index} item={item} />
             ))}
