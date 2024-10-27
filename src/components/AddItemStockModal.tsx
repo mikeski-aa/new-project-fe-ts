@@ -17,15 +17,17 @@ function AddItemStockModal({
   modal,
   setModal,
   currentStore,
+  setCurrentStore,
 }: {
   modal: boolean;
   setModal: Dispatch<SetStateAction<boolean>>;
   currentStore: IStore;
+  setCurrentStore: Dispatch<SetStateAction<IStore>>;
 }) {
   const [newItems, setNewItems] = useState<INewItem[]>([]);
   const [sku, setSku] = useState<string>("");
   const [name, setName] = useState<string>("");
-  const [type, setType] = useState<string>("");
+  const [category, setCategory] = useState<string>("");
   const [price, setPrice] = useState<number>(0);
   const [quantity, setQuantity] = useState<number>(0);
   const [skuError, setSkuError] = useState<boolean>(false);
@@ -45,7 +47,7 @@ function AddItemStockModal({
   const resetItem = () => {
     setSku("");
     setName("");
-    setType("");
+    setCategory("");
     setPrice(0);
     setQuantity(0);
   };
@@ -60,7 +62,7 @@ function AddItemStockModal({
     const validatedInputs =
       validateInputName(name) ||
       validateInputSku(sku) ||
-      validateInputType(type) ||
+      validateInputType(category) ||
       validateInputPrice(price);
 
     const validatedSkus = skuError || skuDuplicate || skuDuplicateCurrent;
@@ -68,7 +70,7 @@ function AddItemStockModal({
       const newItem: INewItem = {
         sku: sku,
         name: name,
-        type: type,
+        category: category,
         price: price,
         quantity: quantity,
         storeId: currentStore.id,
@@ -79,7 +81,7 @@ function AddItemStockModal({
       return;
     } else {
       validateInputName(name) ? setNameError(true) : setNameError(false);
-      validateInputType(type) ? setTypeError(true) : setTypeError(false);
+      validateInputType(category) ? setTypeError(true) : setTypeError(false);
       validateInputPrice(price) ? setPriceError(true) : setPriceError(false);
       validateInputName(sku) ? setSkuError(true) : setSkuError(false);
     }
@@ -115,7 +117,7 @@ function AddItemStockModal({
 
       setNameError(false);
     } else if (name === "type") {
-      setType(target.value);
+      setCategory(target.value);
       if (validateInputType(target.value)) {
         return setTypeError(true);
       }
@@ -137,8 +139,13 @@ function AddItemStockModal({
     }
 
     console.log(newItems);
+    setLoading(true);
     const response = await addProducts(currentStore.id, newItems);
+    setNewItems([]);
+    resetItem();
 
+    setLoading(false);
+    setModal(false);
     console.log(response);
   };
 
@@ -158,7 +165,7 @@ function AddItemStockModal({
             <div className="headingDivs">
               <div className="headingDivItem">SKU</div>
               <div className="headingDivItem">Name</div>
-              <div className="headingDivItem">Type</div>
+              <div className="headingDivItem">Category</div>
               <div className="headingDivItem">Price</div>
               <div className="headingDivItem">Quantity</div>
             </div>
@@ -188,7 +195,7 @@ function AddItemStockModal({
                 className={
                   skuError ? "inputErrorNewItem show" : "inputErrorNewItem hide"
                 }
-              >{`SKU must be 'AAA000' format!`}</div>
+              >{`SKU must be at least 6 characters`}</div>
             </div>
             <div className="inputContainer">
               <input
@@ -212,7 +219,7 @@ function AddItemStockModal({
               <input
                 className="newItemInput"
                 placeholder="Item type"
-                value={type}
+                value={category}
                 type="string"
                 onChange={(e) => handleInput(e, "type")}
                 maxLength={30}

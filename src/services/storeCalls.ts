@@ -48,7 +48,9 @@ async function getStores(
 }
 
 // gets specific store info
-async function getStore(storeId: string): Promise<IStoreResponse | IError> {
+async function getStore(
+  storeId: string | number
+): Promise<IStoreResponse | IError> {
   const url = LOCAL_URL + `stores/store?storeid=${storeId}`;
 
   try {

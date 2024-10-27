@@ -66,6 +66,7 @@ function Store() {
         modal={addItemModal}
         setModal={setAddItemModal}
         currentStore={currentStore}
+        setCurrentStore={setCurrentStore}
       />
       <h1 className="storeName">
         {currentStore ? currentStore.name : "Loading"}

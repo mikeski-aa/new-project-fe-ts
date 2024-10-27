@@ -1,7 +1,7 @@
 export interface INewItem {
   sku: string;
   name: string;
-  type: string;
+  category: string;
   price: number;
   quantity: number;
   storeId: number;
