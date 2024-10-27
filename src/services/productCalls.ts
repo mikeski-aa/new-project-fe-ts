@@ -40,7 +40,7 @@ async function deleteProduct(
   itemid: number,
   storeid: number
 ): Promise<boolean> {
-  const url = LOCAL_URL + `product?itemid=${itemid}&storeid=${storeid}`;
+  const url = LOCAL_URL + `product?itemid=${itemid}`;
   try {
     const response = await fetch(url, {
       method: "DELETE",

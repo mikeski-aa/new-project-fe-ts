@@ -79,7 +79,12 @@ function Store() {
       <div className="store items">
         {currentStore?.products
           ? currentStore.products.map((product, index) => (
-              <IndividualProduct key={index} product={product} />
+              <IndividualProduct
+                key={index}
+                product={product}
+                storeid={currentStore.id}
+                setCurrentStore={setCurrentStore}
+              />
             ))
           : null}
       </div>
