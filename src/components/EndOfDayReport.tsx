@@ -1,15 +1,19 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import "../styles/endofdayreport.css";
 import { convertDate } from "../utils/dateConversion";
+import { IProduct } from "../interfaces/userContextInterfaces";
 
 // when opened, the report should check if someone has already upload EOD sales
 function EndOfDayReport({
   modal,
   setModal,
+  products,
 }: {
   modal: boolean;
   setModal: Dispatch<SetStateAction<boolean>>;
+  products: IProduct[];
 }) {
+  const [searchList, setSearchList] = useState<IProduct[]>([]);
   const dateToday = convertDate();
 
   const handleCloseClick = () => {

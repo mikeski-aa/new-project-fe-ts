@@ -76,7 +76,11 @@ function Store() {
         currentStore={currentStore}
         setCurrentStore={setCurrentStore}
       />
-      <EndOfDayReport modal={eodModal} setModal={setEodModal} />
+      <EndOfDayReport
+        modal={eodModal}
+        setModal={setEodModal}
+        products={currentStore.products}
+      />
       <h1 className="storeName">
         {currentStore ? currentStore.name : "Loading"}
       </h1>
