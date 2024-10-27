@@ -12,6 +12,8 @@ import {
   validateStoreSkus,
 } from "../utils/newItemInputValidation";
 import { addProducts } from "../services/productCalls";
+import { getStore } from "../services/storeCalls";
+import { extractStore } from "../utils/storeUpdateHelper";
 
 function AddItemStockModal({
   modal,
@@ -143,7 +145,8 @@ function AddItemStockModal({
     const response = await addProducts(currentStore.id, newItems);
     setNewItems([]);
     resetItem();
-
+    const storeUpdate = await getStore(currentStore.id);
+    extractStore(storeUpdate, setCurrentStore);
     setLoading(false);
     setModal(false);
     console.log(response);
