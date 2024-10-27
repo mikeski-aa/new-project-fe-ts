@@ -1,9 +1,10 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { IProduct, IStore } from "../interfaces/userContextInterfaces";
 import { deleteProduct } from "../services/productCalls";
 import "../styles/individualproduct.css";
 import { getStore } from "../services/storeCalls";
 import { extractStore } from "../utils/storeUpdateHelper";
+import ConfirmDeleteProduct from "./ConfirmDeleteProduct";
 
 function IndividualProduct({
   product,
@@ -15,15 +16,21 @@ function IndividualProduct({
   setCurrentStore: Dispatch<SetStateAction<IStore>>;
 }) {
   const currency: string = "$";
+  const [modal, setModal] = useState<boolean>(false);
 
   const handleRemoveClick = async () => {
-    const response = await deleteProduct(product.id);
-    const store = await getStore(storeid);
-    extractStore(store, setCurrentStore);
+    setModal(true);
   };
 
   return (
     <div className="productContainer">
+      <ConfirmDeleteProduct
+        modal={modal}
+        setModal={setModal}
+        product={product}
+        storeid={storeid}
+        setCurrentStore={setCurrentStore}
+      />
       <div className="skuProd">{product.sku}</div>
       <div className="nameProd">{product.name}</div>
       <div className="categoryProd">{product.category}</div>
