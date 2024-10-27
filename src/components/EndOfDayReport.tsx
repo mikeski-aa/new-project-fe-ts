@@ -5,6 +5,7 @@ import { IProduct } from "../interfaces/userContextInterfaces";
 import SearchResultItem from "./SearchResultItem";
 
 // when opened, the report should check if someone has already upload EOD sales
+// if someone wants to override sale report, there needs to be extra step to confirm
 function EndOfDayReport({
   modal,
   setModal,
@@ -52,9 +53,13 @@ function EndOfDayReport({
           Close
         </button>
         <div className="reportHeading">{`Add sale items for ${dateToday}`}</div>
-
+        <div className="soldContainer">
+          {itemsSold.map((item) => (
+            <div>{item.name}</div>
+          ))}
+        </div>
         <div className="itemSearchContainer">
-          <label>Search item by name or SKU</label>
+          <label>Search item by SKU</label>
           <input
             className="itemSearchInput"
             type="string"
@@ -64,7 +69,12 @@ function EndOfDayReport({
         </div>
         <div className="searchResultContainer">
           {searchList.map((item, index) => (
-            <SearchResultItem item={item} key={index} />
+            <SearchResultItem
+              item={item}
+              key={index}
+              itemsSold={itemsSold}
+              setItemsSold={setItemsSold}
+            />
           ))}
         </div>
       </div>
