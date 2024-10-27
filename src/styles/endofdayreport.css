@@ -1,0 +1,22 @@
+.eodModal.hide {
+  display: none;
+}
+
+.eodModal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(128, 128, 128, 0.842);
+}
+
+.eodMainContainer {
+  position: relative;
+  left: 50%;
+  top: 50%;
+  width: fit-content;
+  background-color: white;
+  padding: 25px;
+  transform: translateX(-50%) translateY(-50%);
+}

@@ -3,3 +3,9 @@
   flex-direction: column;
   align-items: center;
 }
+
+.storeHeadings {
+  display: flex;
+  padding: 7px;
+  gap: 1rem;
+}

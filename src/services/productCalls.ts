@@ -36,10 +36,7 @@ async function addProducts(storeid: number, items: INewItem[]) {
   }
 }
 
-async function deleteProduct(
-  itemid: number,
-  storeid: number
-): Promise<boolean> {
+async function deleteProduct(itemid: number): Promise<boolean> {
   const url = LOCAL_URL + `product?itemid=${itemid}`;
   try {
     const response = await fetch(url, {

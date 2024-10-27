@@ -7,6 +7,7 @@ import IndividualProduct from "../components/IndividualProduct";
 import { getStore, IError, IStoreResponse } from "../services/storeCalls";
 import AddItemStockModal from "../components/AddItemStockModal";
 import { extractStore } from "../utils/storeUpdateHelper";
+import EndOfDayReport from "../components/EndOfDayReport";
 
 function Store() {
   const [currentStore, setCurrentStore] = useState<IStore>({
@@ -18,6 +19,7 @@ function Store() {
     picture: "",
   });
   const [addItemModal, setAddItemModal] = useState<boolean>(false);
+  const [eodModal, setEodModal] = useState<boolean>(false);
   const userContext = useContext(UserContext);
   const { id } = useParams<{ id: string }>();
 
@@ -70,13 +72,27 @@ function Store() {
         currentStore={currentStore}
         setCurrentStore={setCurrentStore}
       />
+      <EndOfDayReport modal={eodModal} setModal={setEodModal} />
       <h1 className="storeName">
         {currentStore ? currentStore.name : "Loading"}
       </h1>
-      <button className="addItemsBtn" onClick={handleOpenNewItemModal}>
-        Add items to stock
-      </button>
+      <div className="buttonContainerStore">
+        {" "}
+        <button className="addItemsBtn" onClick={handleOpenNewItemModal}>
+          Add items to stock
+        </button>
+        <button className="addItemsBtn">Generate EOD report</button>
+      </div>
+
       <div className="store items">
+        <div className="storeHeadings">
+          <div className="headingDivItem">SKU</div>
+          <div className="headingDivItem">Name</div>
+          <div className="headingDivItem">Category</div>
+          <div className="headingDivItem">Price</div>
+          <div className="headingDivItem">Purchase price</div>
+          <div className="headingDivItem">Quantity</div>
+        </div>
         {currentStore?.products
           ? currentStore.products.map((product, index) => (
               <IndividualProduct
