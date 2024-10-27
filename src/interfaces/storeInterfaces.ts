@@ -4,4 +4,5 @@ export interface INewItem {
   type: string;
   price: number;
   quantity: number;
+  storeId: number;
 }

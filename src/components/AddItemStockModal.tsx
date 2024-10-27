@@ -71,6 +71,7 @@ function AddItemStockModal({
         type: type,
         price: price,
         quantity: quantity,
+        storeId: currentStore.id,
       };
       console.log(newItem);
       setNewItems([...newItems, newItem]);
