@@ -13,7 +13,8 @@
 .nameProd,
 .categoryProd,
 .priceProd,
-.stockProd {
+.stockProd,
+.purchasePriceProd {
   width: 108px;
   overflow-x: hidden;
 }

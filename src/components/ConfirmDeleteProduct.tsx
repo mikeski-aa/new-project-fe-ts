@@ -24,6 +24,7 @@ function ConfirmDeleteProduct({
     const response = await deleteProduct(product.id);
     const store = await getStore(storeid);
     extractStore(store, setCurrentStore);
+    setModal(false);
     setLoading(false);
   };
 

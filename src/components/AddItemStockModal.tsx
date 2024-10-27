@@ -54,6 +54,7 @@ function AddItemStockModal({
     setName("");
     setCategory("");
     setPrice(0);
+    setPurchasePrice(0);
     setQuantity(0);
   };
 
@@ -90,6 +91,9 @@ function AddItemStockModal({
       validateInputName(name) ? setNameError(true) : setNameError(false);
       validateInputType(category) ? setTypeError(true) : setTypeError(false);
       validateInputPrice(price) ? setPriceError(true) : setPriceError(false);
+      validateInputPrice(purchasePrice)
+        ? setPurchasePriceError(true)
+        : setPurchasePriceError(false);
       validateInputName(sku) ? setSkuError(true) : setSkuError(false);
     }
   };
