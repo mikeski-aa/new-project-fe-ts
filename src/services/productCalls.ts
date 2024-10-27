@@ -36,4 +36,29 @@ async function addProducts(storeid: number, items: INewItem[]) {
   }
 }
 
-export { addProducts };
+async function deleteProduct(
+  itemid: number,
+  storeid: number
+): Promise<boolean> {
+  const url = LOCAL_URL + `product?itemid=${itemid}&storeid=${storeid}`;
+  try {
+    const response = await fetch(url, {
+      method: "DELETE",
+      headers: headerInfo,
+    });
+
+    if (!response.ok) {
+      console.log(response.status);
+      return false;
+    }
+
+    console.log(response);
+
+    return true;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+}
+
+export { addProducts, deleteProduct };
