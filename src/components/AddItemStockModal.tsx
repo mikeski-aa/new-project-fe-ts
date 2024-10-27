@@ -40,6 +40,14 @@ function AddItemStockModal({
     setModal(false);
   };
 
+  const resetItem = () => {
+    setSku("");
+    setName("");
+    setType("");
+    setPrice(0);
+    setQuantity(0);
+  };
+
   // needs to validate inputs first before submitting
   // check for unique SKU -> this is to prevent same SKU being added multiple times by accident
   // need to check new items are also all unique with eachother
@@ -64,11 +72,7 @@ function AddItemStockModal({
       };
       console.log(newItem);
       setNewItems([...newItems, newItem]);
-      setSku("");
-      setName("");
-      setType("");
-      setPrice(0);
-      setQuantity(0);
+      resetItem();
       return;
     } else {
       console.log("what error");
