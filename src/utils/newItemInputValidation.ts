@@ -72,6 +72,14 @@ function validateInputPrice(price: number): boolean {
   }
 }
 
+function validateInputPurchasePrice(price: number): boolean {
+  if (price == 0) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 export {
   validateNewSkus,
   validateStoreSkus,
@@ -79,4 +87,5 @@ export {
   validateInputPrice,
   validateInputSku,
   validateInputType,
+  validateInputPurchasePrice,
 };

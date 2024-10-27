@@ -25,6 +25,7 @@ function NewItemInModal({
       <div className="itemProperty">{item.name}</div>
       <div className="itemProperty">{item.category}</div>
       <div className="itemProperty">{item.price}</div>
+      <div className="itemProperty">{item.purchasePrice}</div>
       <div className="itemProperty">{item.quantity}</div>
       <button onClick={handleRemoveClick}>Remove</button>
     </div>

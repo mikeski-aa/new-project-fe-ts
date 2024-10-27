@@ -6,6 +6,7 @@ import { IStore } from "../interfaces/userContextInterfaces";
 import {
   validateInputName,
   validateInputPrice,
+  validateInputPurchasePrice,
   validateInputSku,
   validateInputType,
   validateNewSkus,
@@ -31,6 +32,7 @@ function AddItemStockModal({
   const [name, setName] = useState<string>("");
   const [category, setCategory] = useState<string>("");
   const [price, setPrice] = useState<number>(0);
+  const [purchasePrice, setPurchasePrice] = useState<number>(0);
   const [quantity, setQuantity] = useState<number>(0);
   const [skuError, setSkuError] = useState<boolean>(false);
   const [skuFormatError, setSkuFormatError] = useState<boolean>(false);
@@ -40,6 +42,7 @@ function AddItemStockModal({
   const [nameError, setNameError] = useState<boolean>(false);
   const [typeError, setTypeError] = useState<boolean>(false);
   const [priceError, setPriceError] = useState<boolean>(false);
+  const [purchasePriceError, setPurchasePriceError] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleModalClose = () => {
@@ -65,7 +68,8 @@ function AddItemStockModal({
       validateInputName(name) ||
       validateInputSku(sku) ||
       validateInputType(category) ||
-      validateInputPrice(price);
+      validateInputPrice(price) ||
+      validateInputPurchasePrice(purchasePrice);
 
     const validatedSkus = skuError || skuDuplicate || skuDuplicateCurrent;
     if (!validatedInputs && !validatedSkus) {
@@ -74,6 +78,7 @@ function AddItemStockModal({
         name: name,
         category: category,
         price: price,
+        purchasePrice: purchasePrice,
         quantity: quantity,
         storeId: currentStore.id,
       };
@@ -132,6 +137,12 @@ function AddItemStockModal({
       setPriceError(false);
     } else if (name === "quantity") {
       setQuantity(+target.value);
+    } else if (name === "purchasePrice") {
+      setPurchasePrice(+target.value);
+      if (validateInputPurchasePrice(+target.value)) {
+        return setPurchasePriceError(true);
+      }
+      setPurchasePriceError(false);
     }
   };
 
@@ -170,6 +181,7 @@ function AddItemStockModal({
               <div className="headingDivItem">Name</div>
               <div className="headingDivItem">Category</div>
               <div className="headingDivItem">Price</div>
+              <div className="headingDivItem">Purchase price</div>
               <div className="headingDivItem">Quantity</div>
             </div>
             <hr></hr>
@@ -253,6 +265,24 @@ function AddItemStockModal({
                     : "inputErrorNewItem hide"
                 }
               >{`Price required`}</div>
+            </div>
+            <div className="inputContainer">
+              <input
+                className="newItemInput"
+                placeholder="Purchase price"
+                value={purchasePrice}
+                type="number"
+                onChange={(e) => handleInput(e, "purchasePrice")}
+                maxLength={30}
+                minLength={1}
+              ></input>
+              <div
+                className={
+                  purchasePriceError
+                    ? "inputErrorNewItem show"
+                    : "inputErrorNewItem hide"
+                }
+              >{`Purchase price required`}</div>
             </div>
             <div className="inputContainer">
               <input

@@ -29,6 +29,10 @@
   display: none;
 }
 
+.inputErrorNewItem.show {
+  width: 105px;
+}
+
 .inputErrorNewItem,
 .duplicateError {
   border: 2px solid red;

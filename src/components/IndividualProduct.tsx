@@ -1,9 +1,6 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import { IProduct, IStore } from "../interfaces/userContextInterfaces";
-import { deleteProduct } from "../services/productCalls";
 import "../styles/individualproduct.css";
-import { getStore } from "../services/storeCalls";
-import { extractStore } from "../utils/storeUpdateHelper";
 import ConfirmDeleteProduct from "./ConfirmDeleteProduct";
 
 function IndividualProduct({
@@ -37,6 +34,10 @@ function IndividualProduct({
       <div className="priceProd">
         {currency}
         {product.price}
+      </div>
+      <div className="purchasePriceProd">
+        {currency}
+        {product.purchasePrice}
       </div>
       <div className="stockProd">{product.quantity}</div>
       <button className="remItem" onClick={handleRemoveClick}>

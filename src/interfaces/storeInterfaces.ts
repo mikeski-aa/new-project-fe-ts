@@ -3,6 +3,7 @@ export interface INewItem {
   name: string;
   category: string;
   price: number;
+  purchasePrice: number;
   quantity: number;
   storeId: number;
 }

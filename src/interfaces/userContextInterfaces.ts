@@ -36,6 +36,7 @@ export interface IProduct {
   storeId: number;
   name: string;
   price: number;
+  purchasePrice: number;
   category: string;
   sku: string;
   quantity: number;

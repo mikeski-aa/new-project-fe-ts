@@ -6,6 +6,16 @@
   border-radius: 25px;
   justify-content: space-between;
   align-items: center;
+  width: fit-content;
+}
+
+.skuProd,
+.nameProd,
+.categoryProd,
+.priceProd,
+.stockProd {
+  width: 108px;
+  overflow-x: hidden;
 }
 
 .deleteItemModal.hide {
