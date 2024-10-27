@@ -29,13 +29,18 @@ function EndOfDayReport({
     const shallowProducts = [...products];
     const tempArray = [];
 
-    for (let x = 0; x < shallowProducts.length; x++) {
-      if (shallowProducts[x].sku.includes(target.value)) {
-        tempArray.push(shallowProducts[x]);
+    if (target.value != "") {
+      for (let x = 0; x < shallowProducts.length; x++) {
+        if (shallowProducts[x].sku.includes(target.value.toUpperCase())) {
+          tempArray.push(shallowProducts[x]);
+        }
       }
-    }
 
-    setSearchList(tempArray);
+      console.log(shallowProducts);
+      setSearchList(tempArray);
+    } else {
+      setSearchList([]);
+    }
   };
 
   return (
@@ -55,7 +60,11 @@ function EndOfDayReport({
             onChange={(e) => handleInputChange(e)}
           ></input>
         </div>
-        <div className="searchResultContainer"></div>
+        <div className="searchResultContainer">
+          {searchList.map((item, index) => (
+            <div key={index}>{item.name}</div>
+          ))}
+        </div>
       </div>
     </div>
   );
