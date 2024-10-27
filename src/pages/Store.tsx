@@ -64,6 +64,10 @@ function Store() {
     setAddItemModal(true);
   };
 
+  const handleOpenEodModal = () => {
+    setEodModal(true);
+  };
+
   return (
     <div className="storePageContainer">
       <AddItemStockModal
@@ -81,7 +85,9 @@ function Store() {
         <button className="addItemsBtn" onClick={handleOpenNewItemModal}>
           Add items to stock
         </button>
-        <button className="addItemsBtn">Generate EOD report</button>
+        <button className="addItemsBtn" onClick={handleOpenEodModal}>
+          Generate EOD report
+        </button>
       </div>
 
       <div className="store items">

@@ -1,6 +1,8 @@
 import { Dispatch, SetStateAction } from "react";
 import "../styles/endofdayreport.css";
+import { convertDate } from "../utils/dateConversion";
 
+// when opened, the report should check if someone has already upload EOD sales
 function EndOfDayReport({
   modal,
   setModal,
@@ -8,7 +10,7 @@ function EndOfDayReport({
   modal: boolean;
   setModal: Dispatch<SetStateAction<boolean>>;
 }) {
-  const date = new Date();
+  const dateToday = convertDate();
 
   const handleCloseClick = () => {
     setModal(false);
@@ -17,10 +19,11 @@ function EndOfDayReport({
   return (
     <div className={modal ? "eodModal show" : "eodModal hide"}>
       <div className="eodMainContainer">
-        <div className="reportHeading">{`Add sale items for ${date}`}</div>
         <button className="eodModalBtn" onClick={handleCloseClick}>
           Close
         </button>
+        <div className="reportHeading">{`Add sale items for ${dateToday}`}</div>
+
         <div className="itemSearchContainer">
           <label>Search item by name or SKU</label>
           <input
