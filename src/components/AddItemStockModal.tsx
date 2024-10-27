@@ -46,6 +46,7 @@ function AddItemStockModal({
   // also no empty inputs allowed on name, type price or quantity.
 
   const handleAddItem = (): void => {
+    console.log("hello");
     const validatedInputs =
       validateInputName(name) ||
       validateInputSku(sku) ||
@@ -70,6 +71,15 @@ function AddItemStockModal({
       setQuantity(0);
       return;
     } else {
+      console.log("what error");
+      console.log(validatedInputs);
+      console.log("skuError");
+      console.log(validateInputSku(sku));
+      console.log("skuduplicated");
+      console.log(skuDuplicate);
+      console.log("skuduplicatecurrent");
+      console.log(skuDuplicateCurrent);
+      console.log(validatedSkus);
       validateInputName(name) ? setNameError(true) : setNameError(false);
       validateInputType(type) ? setTypeError(true) : setTypeError(false);
       validateInputPrice(price) ? setPriceError(true) : setPriceError(false);
@@ -82,10 +92,9 @@ function AddItemStockModal({
     const target = e.target as HTMLInputElement;
 
     if (name === "sku") {
-      const regex = /^[A-Z]{3}\d{3}$/;
-      const isValid = regex.test(target.value.toUpperCase());
+      setSku(target.value.toUpperCase());
 
-      if (!isValid) {
+      if (target.value.length < 6 || target.value.length >= 8) {
         setSkuError(true);
       } else {
         setSkuError(false);
@@ -100,8 +109,6 @@ function AddItemStockModal({
 
       // check for duplicated in new items.
       validateNewSkus(newItems, target.value.toUpperCase(), setSkuDuplicate);
-
-      setSku(target.value.toUpperCase());
     } else if (name === "name") {
       setName(target.value);
       if (validateInputName(target.value)) {
@@ -161,7 +168,7 @@ function AddItemStockModal({
                 value={sku}
                 type="string"
                 onChange={(e) => handleInput(e, "sku")}
-                maxLength={6}
+                maxLength={7}
                 minLength={6}
               ></input>
               <div

@@ -42,10 +42,10 @@ function validateNewSkus(
 }
 
 function validateInputSku(sku: string): boolean {
-  if (sku.length != 6) {
-    return true;
-  } else {
+  if (sku.length >= 6 && sku.length < 8) {
     return false;
+  } else {
+    return true;
   }
 }
 
