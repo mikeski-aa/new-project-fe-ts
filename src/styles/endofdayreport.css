@@ -20,3 +20,12 @@
   padding: 25px;
   transform: translateX(-50%) translateY(-50%);
 }
+
+.searchItemContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.searchItemBox {
+  width: 108px;
+}

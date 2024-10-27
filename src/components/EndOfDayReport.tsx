@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction, SyntheticEvent, useState } from "react";
 import "../styles/endofdayreport.css";
 import { convertDate } from "../utils/dateConversion";
 import { IProduct } from "../interfaces/userContextInterfaces";
+import SearchResultItem from "./SearchResultItem";
 
 // when opened, the report should check if someone has already upload EOD sales
 function EndOfDayReport({
@@ -14,6 +15,7 @@ function EndOfDayReport({
   products: IProduct[];
 }) {
   const [searchList, setSearchList] = useState<IProduct[]>([]);
+  const [itemsSold, setItemsSold] = useState<IProduct[]>([]);
   const dateToday = convertDate();
 
   const handleCloseClick = () => {
@@ -62,7 +64,7 @@ function EndOfDayReport({
         </div>
         <div className="searchResultContainer">
           {searchList.map((item, index) => (
-            <div key={index}>{item.name}</div>
+            <SearchResultItem item={item} key={index} />
           ))}
         </div>
       </div>
