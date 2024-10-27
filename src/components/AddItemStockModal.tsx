@@ -11,6 +11,7 @@ import {
   validateNewSkus,
   validateStoreSkus,
 } from "../utils/newItemInputValidation";
+import { addProducts } from "../services/productCalls";
 
 function AddItemStockModal({
   modal,
@@ -135,6 +136,9 @@ function AddItemStockModal({
     }
 
     console.log(newItems);
+    const response = await addProducts(currentStore.id, newItems);
+
+    console.log(response);
   };
 
   return (
