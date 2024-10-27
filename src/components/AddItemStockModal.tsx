@@ -35,6 +35,7 @@ function AddItemStockModal({
   const [nameError, setNameError] = useState<boolean>(false);
   const [typeError, setTypeError] = useState<boolean>(false);
   const [priceError, setPriceError] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleModalClose = () => {
     setModal(false);
@@ -75,15 +76,6 @@ function AddItemStockModal({
       resetItem();
       return;
     } else {
-      console.log("what error");
-      console.log(validatedInputs);
-      console.log("skuError");
-      console.log(validateInputSku(sku));
-      console.log("skuduplicated");
-      console.log(skuDuplicate);
-      console.log("skuduplicatecurrent");
-      console.log(skuDuplicateCurrent);
-      console.log(validatedSkus);
       validateInputName(name) ? setNameError(true) : setNameError(false);
       validateInputType(type) ? setTypeError(true) : setTypeError(false);
       validateInputPrice(price) ? setPriceError(true) : setPriceError(false);
@@ -136,13 +128,25 @@ function AddItemStockModal({
       setQuantity(+target.value);
     }
   };
+
+  const handleSaveAction = async () => {
+    if (newItems.length === 0) {
+      return false;
+    }
+
+    console.log(newItems);
+  };
+
   return (
     <div className={modal ? "newItemModal show" : "newItemModal hide"}>
       <div className="newItemContainer">
         <button className="newItemModalBtn" onClick={handleModalClose}>
           Close
         </button>
-        <button className="nweItemModalBtn">Save</button>
+        <button className="nweItemModalBtn" onClick={handleSaveAction}>
+          Save
+        </button>
+        {loading ? <h1>LOADING...</h1> : null}
         <div className="newItemBoxes">
           <div className="addedItemContainer">
             <div className="headingItems">Added items</div>
