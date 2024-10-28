@@ -15,6 +15,9 @@ function SearchResultItem({
   currentItems: IProduct[];
   setCurrentItems: Dispatch<SetStateAction<IProduct[]>>;
 }) {
+  // add item to list of sold items
+  // remove items from search list
+  // add a new field called quantitySold to new item
   const handleAddClick = () => {
     const currentCopy = [...currentItems];
     const filteredItems = currentCopy.filter(
@@ -22,7 +25,10 @@ function SearchResultItem({
     );
     console.log(filteredItems);
     setCurrentItems(filteredItems);
-    setItemsSold([...itemsSold, item]);
+
+    const soldItemChanged: ISoldProduct = { ...item, quantitySold: 0 };
+    console.log(soldItemChanged);
+    setItemsSold([...itemsSold, soldItemChanged]);
   };
   return (
     <div className="searchItemContainer">

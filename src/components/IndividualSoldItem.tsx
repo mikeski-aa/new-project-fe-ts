@@ -1,4 +1,10 @@
-import { Dispatch, SetStateAction, SyntheticEvent, useState } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  SyntheticEvent,
+  useEffect,
+  useState,
+} from "react";
 import { IProduct, ISoldProduct } from "../interfaces/userContextInterfaces";
 
 function IndividualSoldItem({
@@ -46,12 +52,28 @@ function IndividualSoldItem({
     setQuanSold(+target.value);
   };
 
+  // REMOVE quantity sold
   const handleRemoveClick = () => {
     const copySold = [...itemsSold];
     const filtredCopy = copySold.filter((soldItem) => soldItem.sku != item.sku);
     setItemsSold(filtredCopy);
-    setSearchList([item, ...searchList]);
+
+    const removeQuanSold = {
+      id: item.id,
+      storeId: item.storeId,
+      name: item.name,
+      price: item.price,
+      purchasePrice: item.purchasePrice,
+      category: item.category,
+      sku: item.sku,
+      quantity: item.quantity,
+    };
+
+    setSearchList([removeQuanSold, ...searchList]);
+    console.log(searchList);
   };
+
+  useEffect(() => {}, [quanSold]);
 
   return (
     <div className="individualSoldItem">

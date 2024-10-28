@@ -37,7 +37,6 @@ function EndOfDayReport({
         item.sku.includes(target.value.toUpperCase())
       );
 
-      console.log(shallowProducts);
       setSearchList(filteredArray);
     } else {
       setSearchList([]);
