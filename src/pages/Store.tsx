@@ -24,38 +24,11 @@ function Store() {
   const userContext = useContext(UserContext);
   const { id } = useParams<{ id: string }>();
 
-  // type guard for types
-  // this type guard will take the response argument, which can be IStoerResponse or IError.
-  // if the response is of type IStoreResponse it will return the !response.error
-  // this can be used in an If statement to evaluate how to proceed depending on resulting data.
-  //  function isStoreResponse(
-  //     response: IStoreResponse | IError
-  //   ): response is IStoreResponse {
-  //     return !response.error;
-  //   }
-
   useEffect(() => {
     const getSpecificStore = async () => {
       if (id) {
         const storeResponse = await getStore(id);
         extractStore(storeResponse, setCurrentStore);
-
-        // error is not present so data can be assigned
-
-        //   if (isStoreResponse(storeResponse)) {
-        //     const store: IStore = {
-        //       id: storeResponse.id,
-        //       userId: storeResponse.userId,
-        //       name: storeResponse.name,
-        //       products: storeResponse.products,
-        //       location: storeResponse.location,
-        //       picture: storeResponse.picture,
-        //     };
-        //     setCurrentStore(store);
-        //     console.log(storeResponse);
-        //   } else {
-        //     console.log(storeResponse.resTest);
-        //   }
       }
     };
     getSpecificStore();
@@ -82,6 +55,7 @@ function Store() {
         setModal={setEodModal}
         products={filterProducts(currentStore.products)}
         storeId={currentStore.id}
+        setCurrentStore={setCurrentStore}
       />
       <h1 className="storeName">
         {currentStore ? currentStore.name : "Loading"}
