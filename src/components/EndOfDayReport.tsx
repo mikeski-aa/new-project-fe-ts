@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, SyntheticEvent, useState } from "react";
 import "../styles/endofdayreport.css";
 import { convertDate } from "../utils/dateConversion";
-import { IProduct } from "../interfaces/userContextInterfaces";
+import { IProduct, ISoldProduct } from "../interfaces/userContextInterfaces";
 import SearchResultItem from "./SearchResultItem";
 import IndividualSoldItem from "./IndividualSoldItem";
 
@@ -17,7 +17,7 @@ function EndOfDayReport({
   products: IProduct[];
 }) {
   const [searchList, setSearchList] = useState<IProduct[]>([]);
-  const [itemsSold, setItemsSold] = useState<IProduct[]>([]);
+  const [itemsSold, setItemsSold] = useState<ISoldProduct[]>([]);
   const dateToday = convertDate();
 
   const handleCloseClick = () => {

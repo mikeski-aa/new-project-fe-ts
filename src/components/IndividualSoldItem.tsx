@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, SyntheticEvent, useState } from "react";
-import { IProduct } from "../interfaces/userContextInterfaces";
+import { IProduct, ISoldProduct } from "../interfaces/userContextInterfaces";
 
 function IndividualSoldItem({
   item,
@@ -9,8 +9,8 @@ function IndividualSoldItem({
   setSearchList,
 }: {
   item: IProduct;
-  itemsSold: IProduct[];
-  setItemsSold: Dispatch<SetStateAction<IProduct[]>>;
+  itemsSold: ISoldProduct[];
+  setItemsSold: Dispatch<SetStateAction<ISoldProduct[]>>;
   searchList: IProduct[];
   setSearchList: Dispatch<SetStateAction<IProduct[]>>;
 }) {

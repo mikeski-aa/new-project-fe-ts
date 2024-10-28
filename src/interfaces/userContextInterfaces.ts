@@ -41,3 +41,7 @@ export interface IProduct {
   sku: string;
   quantity: number;
 }
+
+export interface ISoldProduct extends IProduct {
+  quantitySold?: number;
+}

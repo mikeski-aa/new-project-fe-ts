@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import { INewItem } from "../interfaces/storeInterfaces";
-import { IProduct } from "../interfaces/userContextInterfaces";
+import { IProduct, ISoldProduct } from "../interfaces/userContextInterfaces";
 
 function SearchResultItem({
   item,
@@ -10,8 +10,8 @@ function SearchResultItem({
   setCurrentItems,
 }: {
   item: IProduct;
-  itemsSold: IProduct[];
-  setItemsSold: Dispatch<SetStateAction<IProduct[]>>;
+  itemsSold: ISoldProduct[];
+  setItemsSold: Dispatch<SetStateAction<ISoldProduct[]>>;
   currentItems: IProduct[];
   setCurrentItems: Dispatch<SetStateAction<IProduct[]>>;
 }) {
