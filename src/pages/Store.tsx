@@ -22,6 +22,7 @@ function Store() {
   });
   const [addItemModal, setAddItemModal] = useState<boolean>(false);
   const [eodModal, setEodModal] = useState<boolean>(false);
+  const [dailyReport, setDailyReport] = useState<boolean>(false);
   const userContext = useContext(UserContext);
   const { id } = useParams<{ id: string }>();
 
@@ -48,7 +49,12 @@ function Store() {
               makedate(item.date).setHours(0, 0, 0, 0) ===
               today.setHours(0, 0, 0, 1)
           );
-          console.log(filtered);
+
+          if (filtered.length === 0) {
+            setDailyReport(false);
+          } else {
+            setDailyReport(true);
+          }
         }
       }
     };
