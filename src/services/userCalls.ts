@@ -1,15 +1,6 @@
-import LOCAL_URL from "../utils/urlConst";
+import { LOCAL_URL } from "../utils/urlConst";
 import { IStore, IUser } from "../interfaces/userContextInterfaces";
-
-// not sure how I feela bout this definition here need to look it up
-// suggestion to make it dynamic:
-const getHeaderInfo = (): HeadersInit => {
-  return {
-    Accept: "application/json",
-    "Content-Type": "application/json",
-    Authorization: "Bearer " + localStorage.getItem("token"),
-  };
-};
+import { getHeaderInfo } from "../utils/urlConst";
 
 // define interface for the expected response
 interface UserResponse {

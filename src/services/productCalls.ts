@@ -1,4 +1,4 @@
-import LOCAL_URL from "../utils/urlConst";
+import { LOCAL_URL } from "../utils/urlConst";
 import { IStore, IProduct } from "../interfaces/userContextInterfaces";
 import { INewItem } from "../interfaces/storeInterfaces";
 
