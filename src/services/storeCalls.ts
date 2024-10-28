@@ -1,5 +1,5 @@
 import LOCAL_URL from "../utils/urlConst";
-import { IStore, IProduct } from "../interfaces/userContextInterfaces";
+import { IStore, IProduct, IReport } from "../interfaces/userContextInterfaces";
 
 const headerInfo: HeadersInit = {
   Accept: "application/json",
@@ -19,6 +19,7 @@ export interface IStoreResponse extends IError {
   products: IProduct[];
   location: string;
   picture: string;
+  reports: IReport[];
 }
 
 // gets all store info

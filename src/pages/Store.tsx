@@ -18,6 +18,7 @@ function Store() {
     products: [],
     location: "",
     picture: "",
+    reports: [],
   });
   const [addItemModal, setAddItemModal] = useState<boolean>(false);
   const [eodModal, setEodModal] = useState<boolean>(false);
@@ -28,7 +29,28 @@ function Store() {
     const getSpecificStore = async () => {
       if (id) {
         const storeResponse = await getStore(id);
-        extractStore(storeResponse, setCurrentStore);
+
+        const store = extractStore(storeResponse, setCurrentStore);
+
+        // guard function
+        function isStore(someItem: IStore | undefined): someItem is IStore {
+          return true;
+        }
+
+        if (isStore(store)) {
+          console.log(store.reports);
+          const today = new Date();
+          const makedate = (xd: Date) => {
+            const now = new Date(xd);
+            return now;
+          };
+          const filtered = store.reports.filter(
+            (item) =>
+              makedate(item.date).setHours(0, 0, 0, 0) ===
+              today.setHours(0, 0, 0, 1)
+          );
+          console.log(filtered);
+        }
       }
     };
     getSpecificStore();
@@ -68,6 +90,7 @@ function Store() {
         <button className="addItemsBtn" onClick={handleOpenEodModal}>
           Generate EOD report
         </button>
+        <button className="addItemsBtn">View previous reports</button>
       </div>
 
       <div className="store items">

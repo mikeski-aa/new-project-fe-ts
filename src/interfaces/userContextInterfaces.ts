@@ -28,6 +28,7 @@ export interface IStore {
   products: IProduct[];
   location: string;
   picture: string;
+  reports: IReport[];
 }
 
 // interface for individual product
@@ -44,4 +45,13 @@ export interface IProduct {
 
 export interface ISoldProduct extends IProduct {
   quantitySold: number;
+}
+
+// interface for report
+export interface IReport {
+  id: number;
+  storeId: number;
+  date: Date;
+  soldProducts: ISoldProduct[];
+  totalSaleValue: number;
 }

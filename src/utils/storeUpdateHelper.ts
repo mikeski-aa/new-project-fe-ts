@@ -24,6 +24,7 @@ function extractStore(
       products: storeResponse.products,
       location: storeResponse.location,
       picture: storeResponse.picture,
+      reports: storeResponse.reports,
     };
     setCurrentStore(store);
     return store;
