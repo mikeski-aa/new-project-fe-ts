@@ -46,9 +46,11 @@ function Store() {
           };
           const filtered = store.reports.filter(
             (item) =>
-              makedate(item.date).setHours(0, 0, 0, 0) ===
-              today.setHours(0, 0, 0, 1)
+              makedate(item.date).setHours(0, 0, 0, 0) ==
+              today.setHours(0, 0, 0, 0)
           );
+
+          console.log(filtered);
 
           if (filtered.length === 0) {
             setDailyReport(false);
@@ -87,6 +89,13 @@ function Store() {
       <h1 className="storeName">
         {currentStore ? currentStore.name : "Loading"}
       </h1>
+      <div
+        className={
+          dailyReport ? "dailyReport yPresent" : "dailyReport nPresent"
+        }
+      >
+        {dailyReport ? "daily report uploaded" : "daily report not uploaded"}
+      </div>
       <div className="buttonContainerStore">
         {" "}
         <button className="addItemsBtn" onClick={handleOpenNewItemModal}>

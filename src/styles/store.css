@@ -9,3 +9,11 @@
   padding: 7px;
   gap: 1rem;
 }
+
+.dailyReport.yPresent {
+  border: 2px solid green;
+}
+
+.dailyReport.nPresent {
+  border: 2px solid rgb(128, 0, 0);
+}
