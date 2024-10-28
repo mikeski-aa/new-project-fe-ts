@@ -43,5 +43,5 @@ export interface IProduct {
 }
 
 export interface ISoldProduct extends IProduct {
-  quantitySold?: number;
+  quantitySold: number;
 }

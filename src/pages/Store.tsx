@@ -8,6 +8,7 @@ import { getStore, IError, IStoreResponse } from "../services/storeCalls";
 import AddItemStockModal from "../components/AddItemStockModal";
 import { extractStore } from "../utils/storeUpdateHelper";
 import EndOfDayReport from "../components/EndOfDayReport";
+import { filterProducts } from "../utils/eodStateUtils";
 
 function Store() {
   const [currentStore, setCurrentStore] = useState<IStore>({
@@ -79,7 +80,8 @@ function Store() {
       <EndOfDayReport
         modal={eodModal}
         setModal={setEodModal}
-        products={currentStore.products}
+        products={filterProducts(currentStore.products)}
+        storeId={currentStore.id}
       />
       <h1 className="storeName">
         {currentStore ? currentStore.name : "Loading"}

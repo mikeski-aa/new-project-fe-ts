@@ -6,6 +6,7 @@ import {
   useState,
 } from "react";
 import { IProduct, ISoldProduct } from "../interfaces/userContextInterfaces";
+import { updateSoldItems } from "../utils/eodStateUtils";
 
 function IndividualSoldItem({
   item,
@@ -33,13 +34,14 @@ function IndividualSoldItem({
     setQuanSold(newValue);
 
     // need to update items sold with new quantity too
-    const shallowCopyItemsSold = [...itemsSold];
+    updateSoldItems(itemsSold, item, newValue, setItemsSold);
+    // const shallowCopyItemsSold = [...itemsSold];
 
-    shallowCopyItemsSold.map((copyItem) =>
-      copyItem.sku === item.sku ? (copyItem.quantitySold = newValue) : copyItem
-    );
-    console.log(shallowCopyItemsSold);
-    setItemsSold(shallowCopyItemsSold);
+    // shallowCopyItemsSold.map((copyItem) =>
+    //   copyItem.sku === item.sku ? (copyItem.quantitySold = newValue) : copyItem
+    // );
+    // console.log(shallowCopyItemsSold);
+    // setItemsSold(shallowCopyItemsSold);
   };
 
   const handleIncrementClick = (): void | null => {
@@ -50,6 +52,9 @@ function IndividualSoldItem({
     }
 
     setQuanSold(newValue);
+
+    // need to update items sold with new quantity too
+    updateSoldItems(itemsSold, item, newValue, setItemsSold);
   };
 
   const handleQuanInput = (e: SyntheticEvent): void | null => {
@@ -60,9 +65,12 @@ function IndividualSoldItem({
     }
 
     setQuanSold(+target.value);
+
+    // need to update items sold with new quantity too
+    updateSoldItems(itemsSold, item, +target.value, setItemsSold);
   };
 
-  // REMOVE quantity sold
+  // REMOVE quantity sold part of object
   const handleRemoveClick = () => {
     const copySold = [...itemsSold];
     const filtredCopy = copySold.filter((soldItem) => soldItem.sku != item.sku);
