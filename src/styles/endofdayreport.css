@@ -31,3 +31,7 @@
 .searchItemBox {
   width: 108px;
 }
+
+.individualSoldItem {
+  display: flex;
+}
