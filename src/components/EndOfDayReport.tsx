@@ -3,6 +3,7 @@ import "../styles/endofdayreport.css";
 import { convertDate } from "../utils/dateConversion";
 import { IProduct } from "../interfaces/userContextInterfaces";
 import SearchResultItem from "./SearchResultItem";
+import IndividualSoldItem from "./IndividualSoldItem";
 
 // when opened, the report should check if someone has already upload EOD sales
 // if someone wants to override sale report, there needs to be extra step to confirm
@@ -30,7 +31,6 @@ function EndOfDayReport({
   const handleInputChange = (e: SyntheticEvent): void => {
     const target = e.target as HTMLInputElement;
     const shallowProducts = [...products];
-    const tempArray = [];
 
     if (target.value != "") {
       const filteredArray = shallowProducts.filter((item) =>
@@ -52,8 +52,15 @@ function EndOfDayReport({
         </button>
         <div className="reportHeading">{`Add sale items for ${dateToday}`}</div>
         <div className="soldContainer">
-          {itemsSold.map((item) => (
-            <div>{item.name}</div>
+          {itemsSold.map((item, index) => (
+            <IndividualSoldItem
+              key={index}
+              item={item}
+              searchList={searchList}
+              setSearchList={setSearchList}
+              itemsSold={itemsSold}
+              setItemsSold={setItemsSold}
+            />
           ))}
         </div>
         <div className="itemSearchContainer">
