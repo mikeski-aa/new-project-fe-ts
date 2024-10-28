@@ -10,14 +10,14 @@ const headerInfo: HeadersInit = {
 
 // define interface for the expected response
 interface UserResponse {
-  error: string;
-  errorPresent?: boolean;
-  token?: string | undefined;
+  error?: string;
+  errorPresent: boolean;
+  token?: string;
   user?: IUser;
   username?: string;
   id?: number;
   isGuest?: boolean;
-  stores: IStore[];
+  stores?: IStore[];
 }
 
 // need to better handle errors from backend validation
@@ -48,15 +48,14 @@ async function createUser(
       return {
         errorPresent: true,
         error: "Input validation error",
-      } as UserResponse;
+      };
     }
 
-    const json: object = await response.json();
+    const json: Omit<UserResponse, "errorPresent"> = await response.json();
     console.log({ ...json, errorPresent: false });
-    return { ...json, errorPresent: false } as UserResponse;
+    return { ...json, errorPresent: false };
   } catch (error) {
-    console.log(error);
-    return { error: error } as UserResponse;
+    return { errorPresent: true, error: "Network or server error" };
   }
 }
 
@@ -90,17 +89,19 @@ async function loginUser(
       return {
         errorPresent: true,
         error: "Invalid credentials entered",
-      } as UserResponse;
+      };
     }
 
-    const json: any = await response.json();
-    console.log(json);
-    localStorage.setItem("token", json.token);
+    const json: Omit<UserResponse, "errorPreset"> = await response.json();
 
-    return { ...json, errorPresent: false } as UserResponse;
+    // type guard
+    if (json.token) {
+      localStorage.setItem("token", json.token);
+    }
+
+    return { ...json, errorPresent: false };
   } catch (error) {
-    console.log(error);
-    return { error: error } as UserResponse;
+    return { errorPresent: true, error: "Network or server error" };
   }
 }
 
@@ -115,14 +116,14 @@ async function loginCheck() {
       return {
         errorPresent: true,
         error: "Token not found!",
-      } as UserResponse;
+      };
     }
 
-    const json = await response.json();
-    return { ...json, errorPresent: false } as UserResponse;
+    const json: Omit<UserResponse, "errorPresent"> = await response.json();
+    return { ...json, errorPresent: false };
   } catch (error) {
     console.log(error);
-    return { error: error } as UserResponse;
+    return { errorPresent: true, error: "Network or server error" };
   }
 }
 
@@ -140,15 +141,16 @@ async function guestLogin() {
       } as UserResponse;
     }
 
-    const json: any = await response.json();
+    const json: Omit<UserResponse, "errorPresent"> = await response.json();
 
-    localStorage.setItem("token", json.token);
+    // type guard
+    if (json.token) {
+      localStorage.setItem("token", json.token);
+    }
 
-    return { ...json, errorPresent: false } as UserResponse;
+    return { ...json, errorPresent: false };
   } catch (error) {
-    console.log(error);
-
-    return { error: error } as UserResponse;
+    return { errorPresent: true, error: "Network or server error" };
   }
 }
 

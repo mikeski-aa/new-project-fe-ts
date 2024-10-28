@@ -34,45 +34,20 @@ function Store() {
         const store = extractStore(storeResponse, setCurrentStore);
 
         dailyReportCheck(store, setDailyReport);
-
-        // // guard function
-        // function isStore(someItem: IStore | undefined): someItem is IStore {
-        //   return true;
-        // }
-
-        // // this is very ugly probably need to refactor
-        // if (isStore(store)) {
-        //   const today = new Date();
-        //   const makedate = (xd: Date) => {
-        //     const now = new Date(xd);
-        //     return now;
-        //   };
-        //   const filtered = store.reports.filter(
-        //     (item) =>
-        //       makedate(item.date).setHours(0, 0, 0, 0) ==
-        //       today.setHours(0, 0, 0, 0)
-        //   );
-
-        //   console.log(filtered);
-
-        //   if (filtered.length === 0) {
-        //     setDailyReport(false);
-        //   } else {
-        //     setDailyReport(true);
-        //   }
-        // }
       }
     };
     getSpecificStore();
   }, []);
 
-  const handleOpenNewItemModal = () => {
+  const handleOpenNewItemModal = (): void => {
     setAddItemModal(true);
   };
 
-  const handleOpenEodModal = () => {
+  const handleOpenEodModal = (): void => {
     setEodModal(true);
   };
+
+  const handleOpenReportHistory = () => {};
 
   return (
     <div className="storePageContainer">
@@ -88,6 +63,7 @@ function Store() {
         products={filterProducts(currentStore.products)}
         storeId={currentStore.id}
         setCurrentStore={setCurrentStore}
+        dailyReport={dailyReport}
         setDailyReport={setDailyReport}
       />
       <h1 className="storeName">
@@ -108,7 +84,9 @@ function Store() {
         <button className="addItemsBtn" onClick={handleOpenEodModal}>
           Generate EOD report
         </button>
-        <button className="addItemsBtn">View previous reports</button>
+        <button className="addItemsBtn" onClick={handleOpenReportHistory}>
+          View previous reports
+        </button>
       </div>
 
       <div className="store items">

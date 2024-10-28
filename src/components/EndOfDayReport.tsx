@@ -20,6 +20,7 @@ function EndOfDayReport({
   products,
   storeId,
   setCurrentStore,
+  dailyReport,
   setDailyReport,
 }: {
   modal: boolean;
@@ -27,6 +28,7 @@ function EndOfDayReport({
   products: IProduct[];
   storeId: number;
   setCurrentStore: Dispatch<SetStateAction<IStore>>;
+  dailyReport: boolean;
   setDailyReport: Dispatch<SetStateAction<boolean>>;
 }) {
   const [searchList, setSearchList] = useState<IProduct[]>([]);
@@ -97,6 +99,12 @@ function EndOfDayReport({
         </button>
         <div className="reportHeading">{`Add sale items for ${dateToday}`}</div>
         {loading ? <h1>LOADING</h1> : null}
+        {dailyReport ? (
+          <h4>
+            DAILY REPORT ALREADY SUBMITTED! If you want to generate a new daily
+            report, you first need to revert the last daily report.
+          </h4>
+        ) : null}
         <div className="soldContainer">
           {itemsSold.map((item, index) => (
             <IndividualSoldItem
