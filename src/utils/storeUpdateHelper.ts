@@ -33,4 +33,34 @@ function extractStore(
   }
 }
 
-export { extractStore };
+// guard function
+function isStore(someItem: IStore | undefined): someItem is IStore {
+  return true;
+}
+
+function dailyReportCheck(
+  store: IStore | undefined,
+  setDailyReport: Dispatch<SetStateAction<boolean>>
+) {
+  if (isStore(store)) {
+    const today = new Date();
+    const makedate = (xd: Date) => {
+      const now = new Date(xd);
+      return now;
+    };
+    const filtered = store.reports.filter(
+      (item) =>
+        makedate(item.date).setHours(0, 0, 0, 0) == today.setHours(0, 0, 0, 0)
+    );
+
+    console.log(filtered);
+
+    if (filtered.length === 0) {
+      setDailyReport(false);
+    } else {
+      setDailyReport(true);
+    }
+  }
+}
+
+export { extractStore, dailyReportCheck };

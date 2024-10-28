@@ -6,7 +6,7 @@ import { IProduct, IStore } from "../interfaces/userContextInterfaces";
 import IndividualProduct from "../components/IndividualProduct";
 import { getStore, IError, IStoreResponse } from "../services/storeCalls";
 import AddItemStockModal from "../components/AddItemStockModal";
-import { extractStore } from "../utils/storeUpdateHelper";
+import { dailyReportCheck, extractStore } from "../utils/storeUpdateHelper";
 import EndOfDayReport from "../components/EndOfDayReport";
 import { filterProducts } from "../utils/eodStateUtils";
 
@@ -33,31 +33,34 @@ function Store() {
 
         const store = extractStore(storeResponse, setCurrentStore);
 
-        // guard function
-        function isStore(someItem: IStore | undefined): someItem is IStore {
-          return true;
-        }
+        dailyReportCheck(store, setDailyReport);
 
-        if (isStore(store)) {
-          const today = new Date();
-          const makedate = (xd: Date) => {
-            const now = new Date(xd);
-            return now;
-          };
-          const filtered = store.reports.filter(
-            (item) =>
-              makedate(item.date).setHours(0, 0, 0, 0) ==
-              today.setHours(0, 0, 0, 0)
-          );
+        // // guard function
+        // function isStore(someItem: IStore | undefined): someItem is IStore {
+        //   return true;
+        // }
 
-          console.log(filtered);
+        // // this is very ugly probably need to refactor
+        // if (isStore(store)) {
+        //   const today = new Date();
+        //   const makedate = (xd: Date) => {
+        //     const now = new Date(xd);
+        //     return now;
+        //   };
+        //   const filtered = store.reports.filter(
+        //     (item) =>
+        //       makedate(item.date).setHours(0, 0, 0, 0) ==
+        //       today.setHours(0, 0, 0, 0)
+        //   );
 
-          if (filtered.length === 0) {
-            setDailyReport(false);
-          } else {
-            setDailyReport(true);
-          }
-        }
+        //   console.log(filtered);
+
+        //   if (filtered.length === 0) {
+        //     setDailyReport(false);
+        //   } else {
+        //     setDailyReport(true);
+        //   }
+        // }
       }
     };
     getSpecificStore();
@@ -85,6 +88,7 @@ function Store() {
         products={filterProducts(currentStore.products)}
         storeId={currentStore.id}
         setCurrentStore={setCurrentStore}
+        setDailyReport={setDailyReport}
       />
       <h1 className="storeName">
         {currentStore ? currentStore.name : "Loading"}

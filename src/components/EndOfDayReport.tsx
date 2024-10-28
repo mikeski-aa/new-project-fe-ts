@@ -9,7 +9,7 @@ import {
 import SearchResultItem from "./SearchResultItem";
 import IndividualSoldItem from "./IndividualSoldItem";
 import { createReport } from "../services/reportCalls";
-import { extractStore } from "../utils/storeUpdateHelper";
+import { dailyReportCheck, extractStore } from "../utils/storeUpdateHelper";
 import { getStore } from "../services/storeCalls";
 
 // when opened, the report should check if someone has already upload EOD sales
@@ -20,12 +20,14 @@ function EndOfDayReport({
   products,
   storeId,
   setCurrentStore,
+  setDailyReport,
 }: {
   modal: boolean;
   setModal: Dispatch<SetStateAction<boolean>>;
   products: IProduct[];
   storeId: number;
   setCurrentStore: Dispatch<SetStateAction<IStore>>;
+  setDailyReport: Dispatch<SetStateAction<boolean>>;
 }) {
   const [searchList, setSearchList] = useState<IProduct[]>([]);
   const [itemsSold, setItemsSold] = useState<ISoldProduct[]>([]);
@@ -80,7 +82,9 @@ function EndOfDayReport({
     setSearchInput("");
     setItemsSold([]);
     const storeResponse = await getStore(storeId);
-    extractStore(storeResponse, setCurrentStore);
+    const store = extractStore(storeResponse, setCurrentStore);
+    dailyReportCheck(store, setDailyReport);
+
     setLoading(false);
     setModal(false);
   };
