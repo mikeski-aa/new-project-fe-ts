@@ -92,7 +92,7 @@ async function loginUser(
       };
     }
 
-    const json: Omit<UserResponse, "errorPreset"> = await response.json();
+    const json: Omit<UserResponse, "errorPresent"> = await response.json();
 
     // type guard
     if (json.token) {
