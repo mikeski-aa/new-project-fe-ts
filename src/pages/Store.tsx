@@ -38,7 +38,6 @@ function Store() {
         }
 
         if (isStore(store)) {
-          console.log(store.reports);
           const today = new Date();
           const makedate = (xd: Date) => {
             const now = new Date(xd);
