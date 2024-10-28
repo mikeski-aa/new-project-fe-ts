@@ -23,11 +23,9 @@ function SearchResultItem({
     const filteredItems = currentCopy.filter(
       (filItem) => filItem.sku != item.sku
     );
-    console.log(filteredItems);
     setCurrentItems(filteredItems);
 
-    const soldItemChanged: ISoldProduct = { ...item, quantitySold: 0 };
-    console.log(soldItemChanged);
+    const soldItemChanged: ISoldProduct = { ...item, quantitySold: 1 };
     setItemsSold([...itemsSold, soldItemChanged]);
   };
   return (

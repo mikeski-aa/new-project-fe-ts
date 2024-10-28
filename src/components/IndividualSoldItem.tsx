@@ -14,13 +14,13 @@ function IndividualSoldItem({
   searchList,
   setSearchList,
 }: {
-  item: IProduct;
+  item: ISoldProduct;
   itemsSold: ISoldProduct[];
   setItemsSold: Dispatch<SetStateAction<ISoldProduct[]>>;
   searchList: IProduct[];
   setSearchList: Dispatch<SetStateAction<IProduct[]>>;
 }) {
-  const [quanSold, setQuanSold] = useState<number>(0);
+  const [quanSold, setQuanSold] = useState<number>(1);
 
   const handleDecrementClick = (): void | null => {
     const newValue = quanSold - 1;
@@ -29,7 +29,17 @@ function IndividualSoldItem({
       return null;
     }
 
+    console.log(item);
     setQuanSold(newValue);
+
+    // need to update items sold with new quantity too
+    const shallowCopyItemsSold = [...itemsSold];
+
+    shallowCopyItemsSold.map((copyItem) =>
+      copyItem.sku === item.sku ? (copyItem.quantitySold = newValue) : copyItem
+    );
+    console.log(shallowCopyItemsSold);
+    setItemsSold(shallowCopyItemsSold);
   };
 
   const handleIncrementClick = (): void | null => {
@@ -72,8 +82,6 @@ function IndividualSoldItem({
     setSearchList([removeQuanSold, ...searchList]);
     console.log(searchList);
   };
-
-  useEffect(() => {}, [quanSold]);
 
   return (
     <div className="individualSoldItem">
