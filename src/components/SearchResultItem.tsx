@@ -6,12 +6,22 @@ function SearchResultItem({
   item,
   itemsSold,
   setItemsSold,
+  currentItems,
+  setCurrentItems,
 }: {
   item: IProduct;
   itemsSold: IProduct[];
   setItemsSold: Dispatch<SetStateAction<IProduct[]>>;
+  currentItems: IProduct[];
+  setCurrentItems: Dispatch<SetStateAction<IProduct[]>>;
 }) {
   const handleAddClick = () => {
+    const currentCopy = [...currentItems];
+    const filteredItems = currentCopy.filter(
+      (filItem) => filItem.sku != item.sku
+    );
+    console.log(filteredItems);
+    setCurrentItems(filteredItems);
     setItemsSold([...itemsSold, item]);
   };
   return (

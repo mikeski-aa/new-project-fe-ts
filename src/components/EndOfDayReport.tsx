@@ -33,14 +33,12 @@ function EndOfDayReport({
     const tempArray = [];
 
     if (target.value != "") {
-      for (let x = 0; x < shallowProducts.length; x++) {
-        if (shallowProducts[x].sku.includes(target.value.toUpperCase())) {
-          tempArray.push(shallowProducts[x]);
-        }
-      }
+      const filteredArray = shallowProducts.filter((item) =>
+        item.sku.includes(target.value.toUpperCase())
+      );
 
       console.log(shallowProducts);
-      setSearchList(tempArray);
+      setSearchList(filteredArray);
     } else {
       setSearchList([]);
     }
@@ -74,6 +72,8 @@ function EndOfDayReport({
               key={index}
               itemsSold={itemsSold}
               setItemsSold={setItemsSold}
+              currentItems={searchList}
+              setCurrentItems={setSearchList}
             />
           ))}
         </div>
