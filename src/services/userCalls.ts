@@ -2,10 +2,13 @@ import LOCAL_URL from "../utils/urlConst";
 import { IStore, IUser } from "../interfaces/userContextInterfaces";
 
 // not sure how I feela bout this definition here need to look it up
-const headerInfo: HeadersInit = {
-  Accept: "application/json",
-  "Content-Type": "application/json",
-  Authorization: "Bearer " + localStorage.getItem("token"),
+// suggestion to make it dynamic:
+const getHeaderInfo = (): HeadersInit => {
+  return {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+    Authorization: "Bearer " + localStorage.getItem("token"),
+  };
 };
 
 // define interface for the expected response
@@ -37,7 +40,7 @@ async function createUser(
   try {
     const response = await fetch(url, {
       method: "POST",
-      headers: headerInfo,
+      headers: getHeaderInfo(),
       body: JSON.stringify(newBody),
     });
 
@@ -79,7 +82,7 @@ async function loginUser(
   try {
     const response = await fetch(url, {
       method: "POST",
-      headers: headerInfo,
+      headers: getHeaderInfo(),
       body: JSON.stringify(newBody),
     });
 
@@ -110,7 +113,10 @@ async function loginCheck() {
   const url = LOCAL_URL + "login";
 
   try {
-    const response = await fetch(url, { method: "GET", headers: headerInfo });
+    const response = await fetch(url, {
+      method: "GET",
+      headers: getHeaderInfo(),
+    });
 
     if (!response.ok) {
       return {
@@ -132,7 +138,10 @@ async function guestLogin() {
   const url = LOCAL_URL + "login/guest";
 
   try {
-    const response = await fetch(url, { method: "POST", headers: headerInfo });
+    const response = await fetch(url, {
+      method: "POST",
+      headers: getHeaderInfo(),
+    });
 
     if (!response.ok) {
       return {
