@@ -17,7 +17,7 @@ export interface IUser {
   username: string | undefined | null;
   id: number | undefined | null;
   isGuest: boolean | undefined | null;
-  stores: IStore[];
+  stores: IStore[] | undefined;
 }
 
 // interface for individual store

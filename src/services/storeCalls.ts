@@ -1,5 +1,11 @@
-import { getHeaderInfo, LOCAL_URL } from "../utils/urlConst";
-import { IStore, IProduct, IReport } from "../interfaces/userContextInterfaces";
+import { LOCAL_URL } from "../utils/urlConst";
+import { IStore, IProduct } from "../interfaces/userContextInterfaces";
+
+const headerInfo: HeadersInit = {
+  Accept: "application/json",
+  "Content-Type": "application/json",
+  Authorization: "Bearer " + localStorage.getItem("token"),
+};
 
 export interface IError {
   error: boolean;
@@ -13,7 +19,6 @@ export interface IStoreResponse extends IError {
   products: IProduct[];
   location: string;
   picture: string;
-  reports: IReport[];
 }
 
 // gets all store info
@@ -23,10 +28,7 @@ async function getStores(
   const url = LOCAL_URL + `stores?userid=${userId}`;
 
   try {
-    const response = await fetch(url, {
-      method: "GET",
-      headers: getHeaderInfo(),
-    });
+    const response = await fetch(url, { method: "GET", headers: headerInfo });
 
     if (!response.ok) {
       const test: IError = {
@@ -52,10 +54,7 @@ async function getStore(
   const url = LOCAL_URL + `stores/store?storeid=${storeId}`;
 
   try {
-    const response = await fetch(url, {
-      method: "GET",
-      headers: getHeaderInfo(),
-    });
+    const response = await fetch(url, { method: "GET", headers: headerInfo });
     if (!response.ok) {
       const test = {
         error: true,
@@ -91,7 +90,7 @@ async function postStore(
   try {
     const response = await fetch(url, {
       method: "POST",
-      headers: getHeaderInfo(),
+      headers: headerInfo,
       body: JSON.stringify(newBody),
     });
     if (!response.ok) {
@@ -117,7 +116,7 @@ async function deleteStore(userid: number, storeid: number): Promise<boolean> {
   try {
     const response = await fetch(url, {
       method: "DELETE",
-      headers: getHeaderInfo(),
+      headers: headerInfo,
       body: JSON.stringify(newBody),
     });
 
@@ -150,7 +149,7 @@ async function updateStore(
   try {
     const response = await fetch(url, {
       method: "PUT",
-      headers: getHeaderInfo(),
+      headers: headerInfo,
       body: JSON.stringify(newBody),
     });
 
