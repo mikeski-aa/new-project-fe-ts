@@ -23,9 +23,12 @@ function ConfirmDeleteProduct({
     setLoading(true);
     const response = await deleteProduct(product.id);
     const store = await getStore(storeid);
-    extractStore(store, setCurrentStore);
-    setModal(false);
-    setLoading(false);
+
+    if (!store.errorPresent && store.store) {
+      setCurrentStore(store.store);
+      setModal(false);
+      setLoading(false);
+    }
   };
 
   const handleCancelClick = () => {

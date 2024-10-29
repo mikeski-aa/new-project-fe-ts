@@ -161,10 +161,12 @@ function AddItemStockModal({
     setNewItems([]);
     resetItem();
     const storeUpdate = await getStore(currentStore.id);
-    extractStore(storeUpdate, setCurrentStore);
-    setLoading(false);
-    setModal(false);
-    console.log(response);
+    if (!storeUpdate.errorPresent && storeUpdate.store) {
+      setCurrentStore(storeUpdate.store);
+      setLoading(false);
+      setModal(false);
+      console.log(response);
+    }
   };
 
   return (

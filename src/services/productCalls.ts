@@ -1,6 +1,7 @@
 import { LOCAL_URL } from "../utils/urlConst";
 import { IStore, IProduct } from "../interfaces/userContextInterfaces";
 import { INewItem } from "../interfaces/storeInterfaces";
+import { INewProdResponse } from "../interfaces/userContextInterfaces";
 
 const getHeaderInfo = (): HeadersInit => {
   return {
@@ -10,7 +11,10 @@ const getHeaderInfo = (): HeadersInit => {
   };
 };
 
-async function addProducts(storeid: number, items: INewItem[]) {
+async function addProducts(
+  storeid: number,
+  items: INewItem[]
+): Promise<INewProdResponse> {
   const url = LOCAL_URL + "product";
   const newbody = {
     items: items,
@@ -25,20 +29,21 @@ async function addProducts(storeid: number, items: INewItem[]) {
     });
 
     if (!response.ok) {
-      console.log(response.status);
-      return;
+      return {
+        errorPresent: true,
+        error: "Input validation error",
+      };
     }
 
-    const json = await response.json();
-
-    return json;
+    const count: number = await response.json();
+    return { count, errorPresent: false };
   } catch (error) {
     console.log(error);
-    return error;
+    return { errorPresent: true, error: "Network or server error" };
   }
 }
 
-async function deleteProduct(itemid: number): Promise<boolean> {
+async function deleteProduct(itemid: number): Promise<INewProdResponse> {
   const url = LOCAL_URL + `product?itemid=${itemid}`;
   try {
     const response = await fetch(url, {
@@ -47,16 +52,18 @@ async function deleteProduct(itemid: number): Promise<boolean> {
     });
 
     if (!response.ok) {
-      console.log(response.status);
-      return false;
+      return {
+        errorPresent: true,
+        error: "Input validation error",
+      };
     }
 
-    console.log(response);
+    const item: IProduct = await response.json();
 
-    return true;
+    return { item, errorPresent: false };
   } catch (error) {
     console.log(error);
-    return false;
+    return { errorPresent: true, error: "Network or server error" };
   }
 }
 

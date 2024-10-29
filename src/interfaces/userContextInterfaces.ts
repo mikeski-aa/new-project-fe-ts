@@ -62,3 +62,11 @@ export interface INewRwResponse {
   error?: string;
   store?: IStore[];
 }
+
+// interface for store responses
+export interface INewProdResponse {
+  errorPresent: boolean;
+  error?: string;
+  item?: IProduct;
+  count?: number;
+}
