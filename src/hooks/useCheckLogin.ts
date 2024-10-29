@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { UserContext } from "../App";
 import { loginCheck } from "../services/userCalls";
-import { IUser } from "../App";
+import { IUser } from "../interfaces/userContextInterfaces";
 
 function useCheckLogin() {
   const userContext = useContext(UserContext);
@@ -21,15 +21,11 @@ function useCheckLogin() {
 
       userContext.setIsLogged(true);
 
-      const newUser: IUser = {
-        username: checkResult.username,
-        id: checkResult.id,
-        isGuest: checkResult.isGuest,
-      };
-      console.log(newUser);
-      userContext.setUser(newUser);
+      if (checkResult.user) {
+        userContext.setUser(checkResult.user);
 
-      return;
+        return;
+      }
     };
 
     checkForLogin();

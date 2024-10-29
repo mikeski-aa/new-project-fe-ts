@@ -1,5 +1,5 @@
 // interface definition for the user context
-interface UserContextInt {
+export interface UserContextInt {
   user: IUser | null;
   setUser: (user: IUser | null) => void;
   isLogged: boolean;

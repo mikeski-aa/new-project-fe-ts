@@ -55,3 +55,10 @@ interface IReport {
   soldProducts: ISoldProduct[];
   totalSaleValue: number;
 }
+
+// interface for store responses
+export interface INewRwResponse {
+  errorPresent: boolean;
+  error?: string;
+  store?: IStore[];
+}

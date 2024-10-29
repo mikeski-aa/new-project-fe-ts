@@ -33,9 +33,7 @@ interface INewRwResponse {
 }
 
 // gets all store info
-async function getStores(
-  userId: number | null | undefined
-): Promise<INewRwResponse> {
+async function getStores(userId: number | null): Promise<INewRwResponse> {
   const url = LOCAL_URL + `stores?userid=${userId}`;
 
   try {

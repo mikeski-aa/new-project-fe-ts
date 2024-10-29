@@ -116,9 +116,11 @@ function Login() {
       console.log("i should navigate away");
       // redirect to login
       console.log(response);
-      userContext.setUser(response.user);
-      userContext.setIsLogged(true);
-      navigate("/");
+      if (response.user) {
+        userContext.setUser(response.user);
+        userContext.setIsLogged(true);
+        navigate("/");
+      }
     }
     console.log(response);
   };
@@ -127,12 +129,20 @@ function Login() {
   // needs to call service to create guest instance
   const handleGuestClick = async () => {
     const response = await guestLogin();
+
+    if (response.errorPresent) {
+      // throw error - as logging in has failed
+    }
+
     setLoginError(false);
     console.log("handling guest click");
     console.log(response);
-    userContext.setUser(response.user);
-    userContext.setIsLogged(true);
-    navigate("/");
+
+    if (response.user) {
+      userContext.setUser(response.user);
+      userContext.setIsLogged(true);
+      navigate("/");
+    }
   };
 
   return (

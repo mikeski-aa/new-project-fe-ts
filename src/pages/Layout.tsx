@@ -15,7 +15,7 @@ function Layout() {
 
   const handleLogoutClick = () => {
     // reset store and user info
-    userContext.setUser(undefined);
+    userContext.setUser(null);
     userContext.setStores([]);
     localStorage.removeItem("token");
     navigate("/login");

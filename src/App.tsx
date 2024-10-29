@@ -29,7 +29,7 @@ export const UserContext = createContext<UserContextInt>({
 });
 
 function App() {
-  const [user, setUser] = useState<IUser | null>();
+  const [user, setUser] = useState<IUser | null>(null);
   const [isLogged, setIsLogged] = useState<boolean>(false);
   const [theme, setTheme] = useState<string>("light");
   const [loading, setLoading] = useState<boolean>(true);
@@ -56,7 +56,7 @@ function App() {
       // get store data
       const response = await getStores(checkResult?.user?.id);
 
-      if (!response.errorPresent && response.stores) {
+      if (!response.errorPresent && response.stores && checkResult.user) {
         setStores(response.stores);
         // console.log(newUser);
         console.log(stores);

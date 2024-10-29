@@ -35,9 +35,9 @@ async function createReport(
       };
     }
 
-    const json: IReportResponse = await response.json();
+    const reportItem: IReport = await response.json();
 
-    return { ...json, errorPresent: false };
+    return { reportItem, errorPresent: false };
   } catch (error) {
     console.log(error);
     return { errorPresent: true, error: `Server or network error` };

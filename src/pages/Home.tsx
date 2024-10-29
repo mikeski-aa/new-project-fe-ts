@@ -24,7 +24,7 @@ function Home() {
         const response = await getStores(userContext?.user?.id);
         console.log(response.stores);
 
-        if (!response.errorPresent) {
+        if (!response.errorPresent && response.stores) {
           userContext.setStores(response.stores);
         }
       }

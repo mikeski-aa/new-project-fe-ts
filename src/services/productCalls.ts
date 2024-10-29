@@ -2,10 +2,12 @@ import { LOCAL_URL } from "../utils/urlConst";
 import { IStore, IProduct } from "../interfaces/userContextInterfaces";
 import { INewItem } from "../interfaces/storeInterfaces";
 
-const headerInfo: HeadersInit = {
-  Accept: "application/json",
-  "Content-Type": "application/json",
-  Authorization: "Bearer " + localStorage.getItem("token"),
+const getHeaderInfo = (): HeadersInit => {
+  return {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+    Authorization: "Bearer " + localStorage.getItem("token"),
+  };
 };
 
 async function addProducts(storeid: number, items: INewItem[]) {
@@ -18,7 +20,7 @@ async function addProducts(storeid: number, items: INewItem[]) {
   try {
     const response = await fetch(url, {
       method: "POST",
-      headers: headerInfo,
+      headers: getHeaderInfo(),
       body: JSON.stringify(newbody),
     });
 
@@ -41,7 +43,7 @@ async function deleteProduct(itemid: number): Promise<boolean> {
   try {
     const response = await fetch(url, {
       method: "DELETE",
-      headers: headerInfo,
+      headers: getHeaderInfo(),
     });
 
     if (!response.ok) {
