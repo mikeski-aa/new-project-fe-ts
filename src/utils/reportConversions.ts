@@ -18,13 +18,19 @@ function getMonthsFromReports(reports: IReport[]) {
     const tempDate = new Date(reports[x].date);
     const monthName = tempDate.toLocaleString("default", { month: "long" });
     if (testArray.includes(monthName)) {
-      console.log("duplicate found!");
+      monthArray.map((month) =>
+        month.name === monthName
+          ? (month.reports = [...month.reports, reports[x]])
+          : null
+      );
     } else {
       testArray.push(monthName);
+      monthArray.push({ name: monthName, reports: [reports[x]] });
     }
   }
 
   console.log(testArray);
+  console.log(monthArray);
 }
 
 export { getMonthsFromReports };
