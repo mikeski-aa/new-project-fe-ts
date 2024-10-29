@@ -84,11 +84,14 @@ function EndOfDayReport({
     setSearchInput("");
     setItemsSold([]);
     const storeResponse = await getStore(storeId);
-    const store = extractStore(storeResponse, setCurrentStore);
-    dailyReportCheck(store, setDailyReport);
 
-    setLoading(false);
-    setModal(false);
+    if (!storeResponse.errorPresent && storeResponse.store) {
+      setCurrentStore(storeResponse.store);
+      dailyReportCheck(storeResponse.store, setDailyReport);
+
+      setLoading(false);
+      setModal(false);
+    }
   };
 
   return (

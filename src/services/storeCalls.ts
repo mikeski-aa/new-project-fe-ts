@@ -9,22 +9,7 @@ const getHeaderInfo = (): HeadersInit => {
   };
 };
 
-interface IError {
-  error: boolean;
-  resTest: string;
-}
-
-interface IStoreResponse extends IError {
-  id: number;
-  userId: number;
-  name: string;
-  products: IProduct[];
-  location: string;
-  picture: string;
-}
-
 // rewritten response interface
-
 interface INewRwResponse {
   errorPresent: boolean;
   error?: string;
@@ -143,6 +128,7 @@ async function deleteStore(
     }
 
     const json: IStore = await response.json();
+    console.log(json);
     return { ...json, errorPresent: false };
   } catch (error) {
     return { errorPresent: true, error: "Network or server error" };
