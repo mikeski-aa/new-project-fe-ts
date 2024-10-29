@@ -5,7 +5,7 @@ import { IReport } from "../interfaces/userContextInterfaces";
 // needs to after that assign each report to each existing month
 // order in asc order for months and items inside
 
-interface IMonth {
+export interface IMonth {
   name: string;
   reports: IReport[];
 }

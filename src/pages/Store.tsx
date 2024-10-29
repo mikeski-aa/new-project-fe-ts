@@ -8,7 +8,7 @@ import AddItemStockModal from "../components/AddItemStockModal";
 import { dailyReportCheck } from "../utils/storeUpdateHelper";
 import EndOfDayReport from "../components/EndOfDayReport";
 import { filterProducts } from "../utils/eodStateUtils";
-import { getMonthsFromReports } from "../utils/reportConversions";
+import { getMonthsFromReports, IMonth } from "../utils/reportConversions";
 
 function Store() {
   const [currentStore, setCurrentStore] = useState<IStore>({
@@ -25,6 +25,7 @@ function Store() {
   const [dailyReport, setDailyReport] = useState<boolean>(false);
   const [showItems, setShowItems] = useState<boolean>(true);
   const [showReports, setShowReports] = useState<boolean>(false);
+  const [reportMonthArray, setReportMonthArray] = useState<IMonth[]>([]);
   const { id } = useParams<{ id: string }>();
 
   useEffect(() => {
@@ -53,7 +54,7 @@ function Store() {
   const handleOpenReportHistory = () => {
     setShowItems(false);
     setShowReports(true);
-    getMonthsFromReports(currentStore.reports);
+    setReportMonthArray(getMonthsFromReports(currentStore.reports));
   };
 
   const handleShowItems = () => {
@@ -129,11 +130,9 @@ function Store() {
       <div className={showReports ? "storeReports show" : "storeReports hide"}>
         <div className="monthContainer">
           {" "}
-          {currentStore.reports
-            ? currentStore.reports.map((item, index) => (
-                <div key={index}>{item.id}</div>
-              ))
-            : null}
+          {reportMonthArray.map((item, index) => (
+            <div key={index}>{item.name}</div>
+          ))}
         </div>
       </div>
     </div>
