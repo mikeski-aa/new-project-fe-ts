@@ -10,27 +10,25 @@ interface IMonth {
   reports: IReport[];
 }
 
-function getMonthsFromReports(reports: IReport[]) {
+function getMonthsFromReports(reports: IReport[]): IMonth[] {
   const monthArray: IMonth[] = [];
-  const testArray: string[] = [];
 
-  for (let x = 0; x < reports.length; x++) {
-    const tempDate = new Date(reports[x].date);
-    const monthName = tempDate.toLocaleString("default", { month: "long" });
-    if (testArray.includes(monthName)) {
-      monthArray.map((month) =>
-        month.name === monthName
-          ? (month.reports = [...month.reports, reports[x]])
-          : null
-      );
+  reports.forEach((report) => {
+    const reportDate = new Date(report.date);
+    const reportMonth = reportDate.toLocaleString("default", { month: "long" });
+
+    const findMonth = monthArray.find((month) => month.name === reportMonth);
+
+    if (findMonth) {
+      findMonth.reports.push(report);
     } else {
-      testArray.push(monthName);
-      monthArray.push({ name: monthName, reports: [reports[x]] });
+      monthArray.push({ name: reportMonth, reports: [report] });
     }
-  }
+  });
 
-  console.log(testArray);
   console.log(monthArray);
+
+  return monthArray;
 }
 
 export { getMonthsFromReports };
