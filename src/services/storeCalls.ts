@@ -9,12 +9,12 @@ const getHeaderInfo = (): HeadersInit => {
   };
 };
 
-export interface IError {
+interface IError {
   error: boolean;
   resTest: string;
 }
 
-export interface IStoreResponse extends IError {
+interface IStoreResponse extends IError {
   id: number;
   userId: number;
   name: string;
@@ -23,10 +23,19 @@ export interface IStoreResponse extends IError {
   picture: string;
 }
 
+// rewritten response interface
+
+interface INewRwResponse {
+  errorPresent: boolean;
+  error?: string;
+  stores?: IStore[];
+  store?: IStore;
+}
+
 // gets all store info
 async function getStores(
   userId: number | null | undefined
-): Promise<IStore[] | IError> {
+): Promise<INewRwResponse> {
   const url = LOCAL_URL + `stores?userid=${userId}`;
 
   try {
@@ -39,28 +48,22 @@ async function getStores(
     });
 
     if (!response.ok) {
-      const test: IError = {
-        error: true,
-        resTest: "Error getting response from API",
+      return {
+        errorPresent: true,
+        error: "Input validation error",
       };
-      return test;
     }
 
-    const json: IStore[] = await response.json();
+    const stores: IStore[] = await response.json();
 
-    console.log(json);
-
-    return json;
+    return { stores, errorPresent: false };
   } catch (error) {
-    const test: IError = { error: true, resTest: "Error fetching url" };
-    return test;
+    return { errorPresent: true, error: "Network or server error" };
   }
 }
 
 // gets specific store info
-async function getStore(
-  storeId: string | number
-): Promise<IStoreResponse | IError> {
+async function getStore(storeId: string | number): Promise<INewRwResponse> {
   const url = LOCAL_URL + `stores/store?storeid=${storeId}`;
 
   try {
@@ -69,30 +72,25 @@ async function getStore(
       headers: getHeaderInfo(),
     });
     if (!response.ok) {
-      const test = {
-        error: true,
-        resTest: "Error getting response from API",
+      return {
+        errorPresent: true,
+        error: "Input validation error",
       };
-      return test;
     }
 
-    const json: IStore = await response.json();
-    const returnJson = { ...json, error: false, resTest: "" };
-    return returnJson;
+    const store: IStore = await response.json();
+
+    return { store, errorPresent: false };
   } catch (error) {
-    const test = {
-      error: true,
-      resTest: "Error fetching url",
-    };
-    return test;
+    return { errorPresent: true, error: "Network or server error" };
   }
 }
 
 async function postStore(
   name: string,
   location: string,
-  userId: number | null | undefined
-): Promise<boolean> {
+  userId: number | null
+): Promise<INewRwResponse> {
   const url = LOCAL_URL + "stores";
   const newBody = {
     name: name,
@@ -107,21 +105,26 @@ async function postStore(
       body: JSON.stringify(newBody),
     });
     if (!response.ok) {
-      return false;
+      return {
+        errorPresent: true,
+        error: "Input validation error",
+      };
     }
 
-    const json = await response.json();
+    const json: IStore = await response.json();
     console.log(json);
 
-    return true;
+    return { ...json, errorPresent: false };
   } catch (error) {
-    console.log(error);
-    return false;
+    return { errorPresent: true, error: "Network or server error" };
   }
 }
 
 // delete a specific store
-async function deleteStore(userid: number, storeid: number): Promise<boolean> {
+async function deleteStore(
+  userid: number,
+  storeid: number
+): Promise<INewRwResponse> {
   const url = LOCAL_URL + "stores";
   const newBody = {
     userId: userid,
@@ -135,16 +138,16 @@ async function deleteStore(userid: number, storeid: number): Promise<boolean> {
     });
 
     if (!response.ok) {
-      return false;
+      return {
+        errorPresent: true,
+        error: "Input validation error",
+      };
     }
 
-    console.log(response);
-    const json = await response.json();
-    console.log(json);
-    return true;
+    const json: IStore = await response.json();
+    return { ...json, errorPresent: false };
   } catch (error) {
-    console.log(error);
-    return false;
+    return { errorPresent: true, error: "Network or server error" };
   }
 }
 
@@ -154,7 +157,7 @@ async function updateStore(
   storeid: number,
   name: string,
   location: string
-): Promise<boolean> {
+): Promise<INewRwResponse> {
   const url = LOCAL_URL + "stores";
   const newBody = {
     userid: userid,
@@ -171,15 +174,18 @@ async function updateStore(
     });
 
     if (!response.ok) {
-      return false;
+      return {
+        errorPresent: true,
+        error: "Input validation error",
+      };
     }
 
-    const json = await response.json();
-    console.log(json);
-    return true;
+    const json: IStore = await response.json();
+
+    return { ...json, errorPresent: false };
   } catch (error) {
     console.log(error);
-    return false;
+    return { errorPresent: true, error: "Network or server error" };
   }
 }
 

@@ -125,8 +125,10 @@ async function loginCheck() {
       };
     }
 
-    const json: Omit<UserResponse, "errorPresent"> = await response.json();
-    return { ...json, errorPresent: false };
+    const user: IUser = await response.json();
+    console.log("//////////////////////////");
+    console.log(user);
+    return { user, errorPresent: false };
   } catch (error) {
     console.log(error);
     return { errorPresent: true, error: "Network or server error" };

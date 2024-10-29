@@ -16,7 +16,7 @@ import { getStores } from "./services/storeCalls";
 // for some reason we have to declare the default values of the context in Typescript?
 // i dont quite understand why
 export const UserContext = createContext<UserContextInt>({
-  user: undefined,
+  user: null,
   setUser: () => {},
   isLogged: false,
   setIsLogged: () => {},
@@ -24,16 +24,16 @@ export const UserContext = createContext<UserContextInt>({
   setTheme: () => {},
   loading: true,
   setLoading: () => {},
-  stores: undefined,
+  stores: [],
   setStores: () => {},
 });
 
 function App() {
-  const [user, setUser] = useState<IUser | null | undefined>();
+  const [user, setUser] = useState<IUser | null>();
   const [isLogged, setIsLogged] = useState<boolean>(false);
   const [theme, setTheme] = useState<string>("light");
   const [loading, setLoading] = useState<boolean>(true);
-  const [stores, setStores] = useState<IStore[] | undefined>([]);
+  const [stores, setStores] = useState<IStore[]>([]);
 
   useEffect(() => {
     console.log("Logging current user");
@@ -41,6 +41,7 @@ function App() {
     const checkForLogin = async () => {
       console.log(isLogged);
       const checkResult = await loginCheck();
+      console.log(checkResult);
       setLoading(false);
       // console.log("check result error present");
       // console.log(checkResult.errorPresent);
@@ -53,19 +54,16 @@ function App() {
       setIsLogged(true);
 
       // get store data
-      const stores = await getStores(checkResult.id);
-      setStores(stores as IStore[]);
-      const newUser: IUser = {
-        username: checkResult.username,
-        id: checkResult.id,
-        isGuest: checkResult.isGuest,
-        stores: checkResult.stores,
-      };
-      // console.log(newUser);
-      console.log(stores);
-      setUser(newUser);
+      const response = await getStores(checkResult?.user?.id);
 
-      return;
+      if (!response.errorPresent && response.stores) {
+        setStores(response.stores);
+        // console.log(newUser);
+        console.log(stores);
+        setUser(checkResult.user);
+
+        return;
+      }
     };
 
     checkForLogin();

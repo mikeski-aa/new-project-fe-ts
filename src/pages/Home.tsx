@@ -22,9 +22,11 @@ function Home() {
     const fetchStores = async () => {
       if (userContext.user) {
         const response = await getStores(userContext?.user?.id);
-        console.log(response);
+        console.log(response.stores);
 
-        userContext.setStores(response as IStore[]);
+        if (!response.errorPresent) {
+          userContext.setStores(response.stores);
+        }
       }
     };
     fetchStores();
@@ -48,7 +50,7 @@ function Home() {
       </button>
       <div className="homeStoreContainer">
         {userContext.stores
-          ? userContext.stores.map((item, index) => (
+          ? userContext.stores.map((item: IStore, index: number) => (
               <StoreHolder key={index} store={item} />
             ))
           : null}

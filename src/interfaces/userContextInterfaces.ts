@@ -1,23 +1,23 @@
 // interface definition for the user context
-export interface UserContextInt {
-  user: IUser | null | undefined;
-  setUser: (user: IUser | null | undefined) => void;
+interface UserContextInt {
+  user: IUser | null;
+  setUser: (user: IUser | null) => void;
   isLogged: boolean;
   setIsLogged: (isLogged: boolean) => void;
   theme: string;
   setTheme: (theme: string) => void;
   loading: boolean;
   setLoading: (loading: boolean) => void;
-  stores: IStore[] | undefined;
+  stores: IStore[];
   setStores: (stores: IStore[]) => void;
 }
 
 // interface for the user object
 export interface IUser {
-  username: string | undefined | null;
-  id: number | undefined | null;
-  isGuest: boolean | undefined | null;
-  stores: IStore[] | undefined;
+  username: string | null;
+  id: number | null;
+  isGuest: boolean | null;
+  stores: IStore[];
 }
 
 // interface for individual store
@@ -25,10 +25,10 @@ export interface IStore {
   id: number;
   userId: number;
   name: string;
-  products?: IProduct[];
+  products: IProduct[];
   location: string;
   picture: string;
-  reports?: IReport[];
+  reports: IReport[];
 }
 
 // interface for individual product
@@ -54,4 +54,11 @@ export interface IReport {
   date: Date;
   soldProducts: ISoldProduct[];
   totalSaleValue: number;
+}
+
+// interface for store responses
+export interface INewRwResponse {
+  errorPresent: boolean;
+  error?: string;
+  store?: IStore[];
 }
