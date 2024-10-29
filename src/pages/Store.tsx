@@ -111,7 +111,7 @@ function Store() {
           <div className="headingDivItem">Purchase price</div>
           <div className="headingDivItem">Quantity</div>
         </div>
-        <div className="individualProductStoreContainer">
+        {/* <div className="individualProductStoreContainer">
           {currentStore?.products
             ? currentStore.products.map((product, index) => (
                 <IndividualProduct
@@ -122,14 +122,17 @@ function Store() {
                 />
               ))
             : null}
-        </div>
+        </div> */}
       </div>
-      <div className={showReports ? "storeReport show" : "storeReports hide"}>
-        {currentStore.reports
-          ? currentStore.reports.map((item, index) => (
-              <div key={index}>{item.id}</div>
-            ))
-          : null}
+      <div className={showReports ? "storeReports show" : "storeReports hide"}>
+        <div className="monthContainer">
+          {" "}
+          {currentStore.reports
+            ? currentStore.reports.map((item, index) => (
+                <div key={index}>{item.id}</div>
+              ))
+            : null}
+        </div>
       </div>
     </div>
   );
