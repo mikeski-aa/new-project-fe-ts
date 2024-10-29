@@ -9,6 +9,7 @@ import { dailyReportCheck } from "../utils/storeUpdateHelper";
 import EndOfDayReport from "../components/EndOfDayReport";
 import { filterProducts } from "../utils/eodStateUtils";
 import { getMonthsFromReports, IMonth } from "../utils/reportConversions";
+import ReportCalendar from "../components/ReportCalendarElement";
 
 function Store() {
   const [currentStore, setCurrentStore] = useState<IStore>({
@@ -131,7 +132,7 @@ function Store() {
         <div className="monthContainer">
           {" "}
           {reportMonthArray.map((item, index) => (
-            <div key={index}>{item.name}</div>
+            <ReportCalendar month={item} key={index} />
           ))}
         </div>
       </div>
