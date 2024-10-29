@@ -6,8 +6,10 @@
 
 .storeHeadings {
   display: flex;
-  padding: 7px;
   gap: 1rem;
+  border-radius: 25px;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .dailyReport.yPresent {
@@ -16,4 +18,28 @@
 
 .dailyReport.nPresent {
   border: 2px solid rgb(128, 0, 0);
+}
+
+.storeItems,
+.storeReports {
+  transition-duration: 0.5s;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.storeItems.hide,
+.storeReports.hide {
+  opacity: 0.2;
+  transform: scale(0);
+  max-height: 0;
+}
+
+.individualProductStoreContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  max-width: 100%;
+  transition-duration: 0.2s;
 }

@@ -12,6 +12,7 @@ function IndividualProduct({
   storeid: number;
   setCurrentStore: Dispatch<SetStateAction<IStore>>;
 }) {
+  //TODO: Replace with someting else that can be changed depending on currency req.
   const currency: string = "$";
   const [modal, setModal] = useState<boolean>(false);
 

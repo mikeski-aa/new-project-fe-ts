@@ -22,6 +22,8 @@ function Store() {
   const [addItemModal, setAddItemModal] = useState<boolean>(false);
   const [eodModal, setEodModal] = useState<boolean>(false);
   const [dailyReport, setDailyReport] = useState<boolean>(false);
+  const [showItems, setShowItems] = useState<boolean>(true);
+  const [showReports, setShowReports] = useState<boolean>(false);
   const { id } = useParams<{ id: string }>();
 
   useEffect(() => {
@@ -47,7 +49,15 @@ function Store() {
     setEodModal(true);
   };
 
-  const handleOpenReportHistory = () => {};
+  const handleOpenReportHistory = () => {
+    setShowItems(false);
+    setShowReports(true);
+  };
+
+  const handleShowItems = () => {
+    setShowReports(false);
+    setShowItems(true);
+  };
 
   return (
     <div className="storePageContainer">
@@ -78,18 +88,21 @@ function Store() {
       </div>
       <div className="buttonContainerStore">
         {" "}
+        <button className="addItemsBtn" onClick={handleShowItems}>
+          Show store items
+        </button>
+        <button className="addItemsBtn" onClick={handleOpenReportHistory}>
+          View previous reports
+        </button>
         <button className="addItemsBtn" onClick={handleOpenNewItemModal}>
           Add items to stock
         </button>
         <button className="addItemsBtn" onClick={handleOpenEodModal}>
           Generate EOD report
         </button>
-        <button className="addItemsBtn" onClick={handleOpenReportHistory}>
-          View previous reports
-        </button>
       </div>
 
-      <div className="store items">
+      <div className={showItems ? "storeItems show" : "storeItems hide"}>
         <div className="storeHeadings">
           <div className="headingDivItem">SKU</div>
           <div className="headingDivItem">Name</div>
@@ -98,14 +111,23 @@ function Store() {
           <div className="headingDivItem">Purchase price</div>
           <div className="headingDivItem">Quantity</div>
         </div>
-        {currentStore?.products
-          ? currentStore.products.map((product, index) => (
-              <IndividualProduct
-                key={index}
-                product={product}
-                storeid={currentStore.id}
-                setCurrentStore={setCurrentStore}
-              />
+        <div className="individualProductStoreContainer">
+          {currentStore?.products
+            ? currentStore.products.map((product, index) => (
+                <IndividualProduct
+                  key={index}
+                  product={product}
+                  storeid={currentStore.id}
+                  setCurrentStore={setCurrentStore}
+                />
+              ))
+            : null}
+        </div>
+      </div>
+      <div className={showReports ? "storeReport show" : "storeReports hide"}>
+        {currentStore.reports
+          ? currentStore.reports.map((item, index) => (
+              <div key={index}>{item.id}</div>
             ))
           : null}
       </div>
