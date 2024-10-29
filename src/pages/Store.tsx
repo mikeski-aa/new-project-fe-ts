@@ -8,6 +8,7 @@ import AddItemStockModal from "../components/AddItemStockModal";
 import { dailyReportCheck } from "../utils/storeUpdateHelper";
 import EndOfDayReport from "../components/EndOfDayReport";
 import { filterProducts } from "../utils/eodStateUtils";
+import { getMonthsFromReports } from "../utils/reportConversions";
 
 function Store() {
   const [currentStore, setCurrentStore] = useState<IStore>({
@@ -52,6 +53,7 @@ function Store() {
   const handleOpenReportHistory = () => {
     setShowItems(false);
     setShowReports(true);
+    getMonthsFromReports(currentStore.reports);
   };
 
   const handleShowItems = () => {
@@ -111,7 +113,7 @@ function Store() {
           <div className="headingDivItem">Purchase price</div>
           <div className="headingDivItem">Quantity</div>
         </div>
-        {/* <div className="individualProductStoreContainer">
+        <div className="individualProductStoreContainer">
           {currentStore?.products
             ? currentStore.products.map((product, index) => (
                 <IndividualProduct
@@ -122,7 +124,7 @@ function Store() {
                 />
               ))
             : null}
-        </div> */}
+        </div>
       </div>
       <div className={showReports ? "storeReports show" : "storeReports hide"}>
         <div className="monthContainer">
