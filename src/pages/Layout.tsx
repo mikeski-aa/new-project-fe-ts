@@ -3,7 +3,6 @@ import "../styles/layout.css";
 import { useContext } from "react";
 import { UserContext } from "../App";
 import useRedirectHook from "../hooks/useRedierctHook";
-import useCheckLogin from "../hooks/useCheckLogin";
 
 function Layout() {
   const navigate = useNavigate();

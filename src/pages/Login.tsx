@@ -1,5 +1,5 @@
 import "../styles/loginregister.css";
-import React, { SyntheticEvent, useContext, useState } from "react";
+import { SyntheticEvent, useContext, useState } from "react";
 import { createUser, loginUser, guestLogin } from "../services/userCalls";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../App";

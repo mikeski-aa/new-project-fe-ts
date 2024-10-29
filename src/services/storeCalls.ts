@@ -1,5 +1,5 @@
 import { LOCAL_URL } from "../utils/urlConst";
-import { IStore, IProduct } from "../interfaces/userContextInterfaces";
+import { IStore } from "../interfaces/userContextInterfaces";
 
 const getHeaderInfo = (): HeadersInit => {
   return {

@@ -1,7 +1,6 @@
 import { useContext, useEffect } from "react";
 import { UserContext } from "../App";
 import { loginCheck } from "../services/userCalls";
-import { IUser } from "../interfaces/userContextInterfaces";
 
 function useCheckLogin() {
   const userContext = useContext(UserContext);

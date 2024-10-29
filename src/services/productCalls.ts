@@ -1,5 +1,5 @@
 import { LOCAL_URL } from "../utils/urlConst";
-import { IStore, IProduct } from "../interfaces/userContextInterfaces";
+import { IProduct } from "../interfaces/userContextInterfaces";
 import { INewItem } from "../interfaces/storeInterfaces";
 import { INewProdResponse } from "../interfaces/userContextInterfaces";
 

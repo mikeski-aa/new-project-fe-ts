@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { IStore } from "../interfaces/userContextInterfaces";
 import "../styles/storeholder.css";
-import IndividualProduct from "./IndividualProduct";
 import { useState } from "react";
 import ConfirmDeleteBox from "./ConfirmDeleteBox";
 import EditShopModal from "./EditShopModal";

@@ -2,7 +2,6 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { IProduct, IStore } from "../interfaces/userContextInterfaces";
 import { deleteProduct } from "../services/productCalls";
 import { getStore } from "../services/storeCalls";
-import { extractStore } from "../utils/storeUpdateHelper";
 
 function ConfirmDeleteProduct({
   modal,
@@ -21,7 +20,7 @@ function ConfirmDeleteProduct({
 
   const handleConfirmClick = async () => {
     setLoading(true);
-    const response = await deleteProduct(product.id);
+    await deleteProduct(product.id);
     const store = await getStore(storeid);
 
     if (!store.errorPresent && store.store) {

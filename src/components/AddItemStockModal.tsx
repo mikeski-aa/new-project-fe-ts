@@ -14,7 +14,6 @@ import {
 } from "../utils/newItemInputValidation";
 import { addProducts } from "../services/productCalls";
 import { getStore } from "../services/storeCalls";
-import { extractStore } from "../utils/storeUpdateHelper";
 
 function AddItemStockModal({
   modal,
@@ -35,7 +34,6 @@ function AddItemStockModal({
   const [purchasePrice, setPurchasePrice] = useState<number>(0);
   const [quantity, setQuantity] = useState<number>(0);
   const [skuError, setSkuError] = useState<boolean>(false);
-  const [skuFormatError, setSkuFormatError] = useState<boolean>(false);
   const [skuDuplicate, setSkuDuplicate] = useState<boolean>(false);
   const [skuDuplicateCurrent, setSkuDuplicateCurrent] =
     useState<boolean>(false);

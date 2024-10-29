@@ -1,10 +1,4 @@
-import {
-  Dispatch,
-  SetStateAction,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { useContext, useEffect, useState } from "react";
 import "../styles/home.css";
 import { UserContext } from "../App";
 import { getStores } from "../services/storeCalls";

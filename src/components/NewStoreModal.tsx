@@ -8,7 +8,6 @@ import {
 import "../styles/newstoremodal.css";
 import { UserContext } from "../App";
 import { getStores, postStore } from "../services/storeCalls";
-import { IStore } from "../interfaces/userContextInterfaces";
 
 function NewStoreModal({
   newStoreModal,
@@ -41,7 +40,7 @@ function NewStoreModal({
     // make sure usercontext is not null or undefined
     if (userContext.user) {
       setLoading(true);
-      const response = await postStore(name, location, userContext.user.id);
+      await postStore(name, location, userContext.user.id);
       const newStores = await getStores(userContext.user.id);
 
       if (!newStores.errorPresent && newStores.stores) {

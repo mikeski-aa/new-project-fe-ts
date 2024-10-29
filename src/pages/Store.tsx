@@ -1,12 +1,11 @@
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "../styles/store.css";
-import { useContext, useEffect, useState } from "react";
-import { UserContext } from "../App";
-import { IProduct, IStore } from "../interfaces/userContextInterfaces";
+import { useEffect, useState } from "react";
+import { IStore } from "../interfaces/userContextInterfaces";
 import IndividualProduct from "../components/IndividualProduct";
 import { getStore } from "../services/storeCalls";
 import AddItemStockModal from "../components/AddItemStockModal";
-import { dailyReportCheck, extractStore } from "../utils/storeUpdateHelper";
+import { dailyReportCheck } from "../utils/storeUpdateHelper";
 import EndOfDayReport from "../components/EndOfDayReport";
 import { filterProducts } from "../utils/eodStateUtils";
 
@@ -23,7 +22,6 @@ function Store() {
   const [addItemModal, setAddItemModal] = useState<boolean>(false);
   const [eodModal, setEodModal] = useState<boolean>(false);
   const [dailyReport, setDailyReport] = useState<boolean>(false);
-  const userContext = useContext(UserContext);
   const { id } = useParams<{ id: string }>();
 
   useEffect(() => {

@@ -9,7 +9,7 @@ import {
 import SearchResultItem from "./SearchResultItem";
 import IndividualSoldItem from "./IndividualSoldItem";
 import { createReport } from "../services/reportCalls";
-import { dailyReportCheck, extractStore } from "../utils/storeUpdateHelper";
+import { dailyReportCheck } from "../utils/storeUpdateHelper";
 import { getStore } from "../services/storeCalls";
 
 // when opened, the report should check if someone has already upload EOD sales
@@ -80,7 +80,7 @@ function EndOfDayReport({
       return total + item.quantitySold * item.price;
     }, 0);
 
-    const response = await createReport(storeId, tVal, itemsSold);
+    await createReport(storeId, tVal, itemsSold);
     setSearchInput("");
     setItemsSold([]);
     const storeResponse = await getStore(storeId);
