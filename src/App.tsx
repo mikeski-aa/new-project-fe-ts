@@ -51,18 +51,19 @@ function App() {
         return console.log("yep no token found, error present");
       }
 
-      setIsLogged(true);
+      if (checkResult.user) {
+        setIsLogged(true);
 
-      // get store data
-      const response = await getStores(checkResult?.user?.id);
+        // get store data
+        const response = await getStores(checkResult.user.id);
+        if (!response.errorPresent && response.stores) {
+          setStores(response.stores);
+          // console.log(newUser);
+          console.log(stores);
+          setUser(checkResult.user);
 
-      if (!response.errorPresent && response.stores && checkResult.user) {
-        setStores(response.stores);
-        // console.log(newUser);
-        console.log(stores);
-        setUser(checkResult.user);
-
-        return;
+          return;
+        }
       }
     };
 

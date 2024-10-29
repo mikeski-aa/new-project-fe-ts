@@ -40,20 +40,27 @@ function EditShopModal({
   const handleSaveClick = async () => {
     console.log("hello i am here");
     setLoading(true);
-    const response = await updateStore(
-      userContext?.user?.id as number,
-      store.id,
-      name,
-      location
-    );
-    console.log(response);
+    if (userContext.user) {
+      const response = await updateStore(
+        userContext.user.id as number,
+        store.id,
+        name,
+        location
+      );
+      console.log(response);
+    }
 
     console.log("hello i am here");
     // get data from DB to refresh the main page here
-    const newStores = await getStores(userContext?.user?.id);
-    userContext.setStores(newStores as IStore[]);
-    setLoading(false);
-    setModal(false);
+
+    if (userContext.user) {
+      const newStores = await getStores(userContext.user.id);
+      if (newStores.stores && !newStores.errorPresent) {
+        userContext.setStores(newStores.stores);
+        setLoading(false);
+        setModal(false);
+      }
+    }
   };
 
   const handleCancelClick = (): void => {

@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../App";
 import { IProduct, IStore } from "../interfaces/userContextInterfaces";
 import IndividualProduct from "../components/IndividualProduct";
-import { getStore, IError, IStoreResponse } from "../services/storeCalls";
+import { getStore } from "../services/storeCalls";
 import AddItemStockModal from "../components/AddItemStockModal";
 import { dailyReportCheck, extractStore } from "../utils/storeUpdateHelper";
 import EndOfDayReport from "../components/EndOfDayReport";
@@ -30,10 +30,12 @@ function Store() {
     const getSpecificStore = async () => {
       if (id) {
         const storeResponse = await getStore(id);
+        console.log(storeResponse);
 
-        const store = extractStore(storeResponse, setCurrentStore);
-
-        dailyReportCheck(store, setDailyReport);
+        if (!storeResponse.errorPresent && storeResponse.store) {
+          setCurrentStore(storeResponse.store);
+          dailyReportCheck(storeResponse.store, setDailyReport);
+        }
       }
     };
     getSpecificStore();

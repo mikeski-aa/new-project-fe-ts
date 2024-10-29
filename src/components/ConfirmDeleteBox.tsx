@@ -26,10 +26,16 @@ function ConfirmDeleteBox({
       userContext?.user?.id as number,
       store.id as number
     );
-    const newStores = await getStores(userContext?.user?.id);
-    userContext.setStores(newStores as IStore[]);
-    setLoading(false);
-    setModal(false);
+
+    if (userContext.user) {
+      const newStores = await getStores(userContext.user.id);
+
+      if (!newStores.errorPresent && newStores.stores) {
+        userContext.setStores(newStores.stores);
+        setLoading(false);
+        setModal(false);
+      }
+    }
   };
 
   return (

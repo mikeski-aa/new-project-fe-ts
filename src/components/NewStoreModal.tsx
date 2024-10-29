@@ -43,9 +43,12 @@ function NewStoreModal({
       setLoading(true);
       const response = await postStore(name, location, userContext.user.id);
       const newStores = await getStores(userContext.user.id);
-      userContext.setStores(newStores as IStore[]);
-      setLoading(false);
-      setNewStoreModal(false);
+
+      if (!newStores.errorPresent && newStores.stores) {
+        userContext.setStores(newStores.stores);
+        setLoading(false);
+        setNewStoreModal(false);
+      }
     }
   };
 
