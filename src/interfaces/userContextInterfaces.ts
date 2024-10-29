@@ -25,10 +25,10 @@ export interface IStore {
   id: number;
   userId: number;
   name: string;
-  products: IProduct[];
+  products?: IProduct[];
   location: string;
   picture: string;
-  reports: IReport[];
+  reports?: IReport[];
 }
 
 // interface for individual product

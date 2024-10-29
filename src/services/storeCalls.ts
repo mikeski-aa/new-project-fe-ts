@@ -138,6 +138,9 @@ async function deleteStore(userid: number, storeid: number): Promise<boolean> {
       return false;
     }
 
+    console.log(response);
+    const json = await response.json();
+    console.log(json);
     return true;
   } catch (error) {
     console.log(error);
@@ -171,6 +174,8 @@ async function updateStore(
       return false;
     }
 
+    const json = await response.json();
+    console.log(json);
     return true;
   } catch (error) {
     console.log(error);

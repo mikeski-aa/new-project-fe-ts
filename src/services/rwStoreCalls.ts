@@ -89,7 +89,7 @@ async function postStore(
   name: string,
   location: string,
   userId: number | null
-): Promise<boolean> {
+): Promise<INewRwResponse> {
   const url = LOCAL_URL + "stores";
   const newBody = {
     name: name,
@@ -110,17 +110,20 @@ async function postStore(
       };
     }
 
-    const json = await response.json();
+    const json: IStore = await response.json();
     console.log(json);
 
-    return true;
+    return { ...json, errorPresent: false };
   } catch (error) {
     return { errorPresent: true, error: "Network or server error" };
   }
 }
 
 // delete a specific store
-async function deleteStore(userid: number, storeid: number): Promise<boolean> {
+async function deleteStore(
+  userid: number,
+  storeid: number
+): Promise<INewRwResponse> {
   const url = LOCAL_URL + "stores";
   const newBody = {
     userId: userid,
@@ -140,10 +143,10 @@ async function deleteStore(userid: number, storeid: number): Promise<boolean> {
       };
     }
 
-    return true;
+    const json: IStore = await response.json();
+    return { ...json, errorPresent: false };
   } catch (error) {
-    console.log(error);
-    return false;
+    return { errorPresent: true, error: "Network or server error" };
   }
 }
 
@@ -153,7 +156,7 @@ async function updateStore(
   storeid: number,
   name: string,
   location: string
-): Promise<boolean> {
+): Promise<INewRwResponse> {
   const url = LOCAL_URL + "stores";
   const newBody = {
     userid: userid,
@@ -170,13 +173,18 @@ async function updateStore(
     });
 
     if (!response.ok) {
-      return false;
+      return {
+        errorPresent: true,
+        error: "Input validation error",
+      };
     }
 
-    return true;
+    const json: IStore = await response.json();
+
+    return { ...json, errorPresent: false };
   } catch (error) {
     console.log(error);
-    return false;
+    return { errorPresent: true, error: "Network or server error" };
   }
 }
 
