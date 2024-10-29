@@ -1,10 +1,12 @@
 import { LOCAL_URL } from "../utils/urlConst";
 import { IStore, IProduct } from "../interfaces/userContextInterfaces";
 
-const headerInfo: HeadersInit = {
-  Accept: "application/json",
-  "Content-Type": "application/json",
-  Authorization: "Bearer " + localStorage.getItem("token"),
+const getHeaderInfo = (): HeadersInit => {
+  return {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+    Authorization: "Bearer " + localStorage.getItem("token"),
+  };
 };
 
 export interface IError {
@@ -28,7 +30,13 @@ async function getStores(
   const url = LOCAL_URL + `stores?userid=${userId}`;
 
   try {
-    const response = await fetch(url, { method: "GET", headers: headerInfo });
+    console.log("GOING INTO GET STORES CALL");
+    console.log("token?");
+    console.log(localStorage.getItem("token"));
+    const response = await fetch(url, {
+      method: "GET",
+      headers: getHeaderInfo(),
+    });
 
     if (!response.ok) {
       const test: IError = {
@@ -54,7 +62,10 @@ async function getStore(
   const url = LOCAL_URL + `stores/store?storeid=${storeId}`;
 
   try {
-    const response = await fetch(url, { method: "GET", headers: headerInfo });
+    const response = await fetch(url, {
+      method: "GET",
+      headers: getHeaderInfo(),
+    });
     if (!response.ok) {
       const test = {
         error: true,
@@ -90,7 +101,7 @@ async function postStore(
   try {
     const response = await fetch(url, {
       method: "POST",
-      headers: headerInfo,
+      headers: getHeaderInfo(),
       body: JSON.stringify(newBody),
     });
     if (!response.ok) {
@@ -116,7 +127,7 @@ async function deleteStore(userid: number, storeid: number): Promise<boolean> {
   try {
     const response = await fetch(url, {
       method: "DELETE",
-      headers: headerInfo,
+      headers: getHeaderInfo(),
       body: JSON.stringify(newBody),
     });
 
@@ -149,7 +160,7 @@ async function updateStore(
   try {
     const response = await fetch(url, {
       method: "PUT",
-      headers: headerInfo,
+      headers: getHeaderInfo(),
       body: JSON.stringify(newBody),
     });
 

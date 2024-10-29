@@ -128,6 +128,8 @@ function Login() {
   const handleGuestClick = async () => {
     const response = await guestLogin();
     setLoginError(false);
+    console.log("handling guest click");
+    console.log(response);
     userContext.setUser(response.user);
     userContext.setIsLogged(true);
     navigate("/");

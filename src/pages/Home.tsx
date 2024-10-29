@@ -47,9 +47,11 @@ function Home() {
         Add new store
       </button>
       <div className="homeStoreContainer">
-        {userContext?.stores?.map((item, index) => (
-          <StoreHolder key={index} store={item} />
-        ))}
+        {userContext.stores
+          ? userContext.stores.map((item, index) => (
+              <StoreHolder key={index} store={item} />
+            ))
+          : null}
       </div>
     </div>
   );
