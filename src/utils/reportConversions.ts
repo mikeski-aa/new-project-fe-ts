@@ -10,6 +10,46 @@ export interface IMonth {
   reports: IReport[];
 }
 
+function sortMonths(monthArray: IMonth[]) {
+  const tempArray: IMonth[] = [];
+
+  const jan = monthArray.filter((item) => item.name === "January");
+  const feb = monthArray.filter((item) => item.name === "February");
+  const mar = monthArray.filter((item) => item.name === "March");
+  const apr = monthArray.filter((item) => item.name === "April");
+  const may = monthArray.filter((item) => item.name === "May");
+  const jun = monthArray.filter((item) => item.name === "June");
+  const jul = monthArray.filter((item) => item.name === "July");
+  const aug = monthArray.filter((item) => item.name === "August");
+  const sep = monthArray.filter((item) => item.name === "September");
+  const oct = monthArray.filter((item) => item.name === "October");
+  const nov = monthArray.filter((item) => item.name === "November");
+  const dec = monthArray.filter((item) => item.name === "December");
+
+  const newMonthArray = [
+    jan,
+    feb,
+    mar,
+    apr,
+    may,
+    jun,
+    jul,
+    aug,
+    sep,
+    oct,
+    nov,
+    dec,
+  ];
+
+  newMonthArray.forEach((month) => {
+    if (month.length > 0) {
+      tempArray.push(month);
+    }
+  });
+
+  return tempArray;
+}
+
 function getMonthsFromReports(reports: IReport[]): IMonth[] {
   const monthArray: IMonth[] = [];
 
@@ -26,7 +66,7 @@ function getMonthsFromReports(reports: IReport[]): IMonth[] {
     }
   });
 
-  console.log(monthArray);
+  console.log(sortMonths(monthArray));
 
   return monthArray;
 }
