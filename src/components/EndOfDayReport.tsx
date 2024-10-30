@@ -40,6 +40,7 @@ function EndOfDayReport({
   const [searchList, setSearchList] = useState<IProduct[]>([]);
   const [itemsSold, setItemsSold] = useState<ISoldProduct[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const [revertLoading, setRevertLoading] = useState<boolean>(false);
   const [searchInput, setSearchInput] = useState<string>("");
   const dateToday = convertDate();
 
@@ -101,13 +102,28 @@ function EndOfDayReport({
   };
 
   const handleRevertClick = async () => {
+    setRevertLoading(true);
     // since reports are ordered in ascending order, the last report in the array
     // the last report is the one we want to use to revert data
-    console.log(currentStore.reports[currentStore.reports.length - 1]);
-    // await rollbackData(currentStore.reports[currentStore.reports.length - 1]);
+    // first we roll back -> then delete
+    await rollbackData(currentStore.reports[currentStore.reports.length - 1]);
     await deleteReport(
       currentStore.reports[currentStore.reports.length - 1].id
     );
+
+    // now we need to update store to reflect reversion
+    const storeResponse = await getStore(storeId);
+
+    if (!storeResponse.errorPresent && storeResponse.store) {
+      setCurrentStore(storeResponse.store);
+      dailyReportCheck(storeResponse.store, setDailyReport);
+
+      setLoading(false);
+      setModal(false);
+    }
+
+    setRevertLoading(false);
+    setDailyReport(false);
   };
 
   return (
@@ -118,15 +134,22 @@ function EndOfDayReport({
         </button>
         {dailyReport ? (
           <>
-            <h4>
-              DAILY REPORT ALREADY SUBMITTED for {dateToday}! If the existing
-              report has a mistake or was submitted accidentally, you will need
-              to revert it. This cannot be undone, you will lose all report data
-              you have submitted!
-            </h4>
-            <button onClick={handleRevertClick}>
-              I have read the warning and would like to revert
-            </button>
+            {revertLoading ? (
+              <h1>REVERTING PREVIOUS SALE REPORT</h1>
+            ) : (
+              <>
+                {" "}
+                <h4>
+                  DAILY REPORT ALREADY SUBMITTED for {dateToday}! If the
+                  existing report has a mistake or was submitted accidentally,
+                  you will need to revert it. This cannot be undone, you will
+                  lose all report data you have submitted!
+                </h4>
+                <button onClick={handleRevertClick}>
+                  I have read the warning and would like to revert
+                </button>
+              </>
+            )}
           </>
         ) : (
           <>
