@@ -47,6 +47,7 @@
 
 .monthContainer {
   display: flex;
+  gap: 1rem;
 }
 
 .testclassxd {

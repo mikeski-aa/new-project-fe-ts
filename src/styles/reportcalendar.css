@@ -1,3 +1,11 @@
-.monthContainer {
+.calendarReportHolder {
   display: flex;
+  flex-wrap: wrap;
+  width: 101px;
+  gap: 2px;
+  height: auto;
+}
+
+.calendarHolder {
+  width: 101px;
 }
