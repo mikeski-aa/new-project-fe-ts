@@ -8,7 +8,12 @@ import AddItemStockModal from "../components/AddItemStockModal";
 import { dailyReportCheck } from "../utils/storeUpdateHelper";
 import EndOfDayReport from "../components/EndOfDayReport";
 import { filterProducts } from "../utils/eodStateUtils";
-import { getMonthsFromReports, IMonth } from "../utils/reportConversions";
+import {
+  assignYearToMonth,
+  getMonthsFromReports,
+  IMonth,
+  IYearArrayHolder,
+} from "../utils/reportConversions";
 import ReportCalendar from "../components/ReportCalendarElement";
 
 function Store() {
@@ -27,6 +32,9 @@ function Store() {
   const [showItems, setShowItems] = useState<boolean>(true);
   const [showReports, setShowReports] = useState<boolean>(false);
   const [reportMonthArray, setReportMonthArray] = useState<IMonth[]>([]);
+  const [reportYearArray, setReportYearArray] = useState<IYearArrayHolder[]>(
+    []
+  );
   const { id } = useParams<{ id: string }>();
 
   useEffect(() => {
@@ -56,6 +64,10 @@ function Store() {
     setShowItems(false);
     setShowReports(true);
     setReportMonthArray(getMonthsFromReports(currentStore.reports));
+    setReportYearArray(
+      assignYearToMonth(getMonthsFromReports(currentStore.reports))
+    );
+    console.log(assignYearToMonth(getMonthsFromReports(currentStore.reports)));
   };
 
   const handleShowItems = () => {
@@ -136,7 +148,6 @@ function Store() {
             <ReportCalendar month={item} key={index} />
           ))}
         </div>
-        <div>2024</div>
       </div>
     </div>
   );

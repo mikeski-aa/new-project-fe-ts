@@ -43,7 +43,7 @@ function getMonthsFromReports(reports: IReport[]): IMonth[] {
   return monthArray;
 }
 
-interface IYearArrayHolder {
+export interface IYearArrayHolder {
   months: IMonth[];
   year: number;
 }
@@ -64,4 +64,4 @@ function assignYearToMonth(monthArray: IMonth[]) {
   return yearArray;
 }
 
-export { getMonthsFromReports };
+export { getMonthsFromReports, assignYearToMonth };
