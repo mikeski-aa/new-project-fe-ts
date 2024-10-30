@@ -9,8 +9,8 @@ function ReportCalendar({ month }: { month: IMonth }) {
       <div className="calendarReportHolder">
         {/* <div className="calendarReportItem">{`Number of reports: ${month.reports.length}`}</div>
         <button>{`Show reports for ${month.name}`}</button> */}
-        {month.reports.map((report) => (
-          <ReportCalendarReportElement reportItem={report} />
+        {month.reports.map((report, index) => (
+          <ReportCalendarReportElement key={index} reportItem={report} />
         ))}
       </div>
     </div>
