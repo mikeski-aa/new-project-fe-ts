@@ -15,6 +15,8 @@ import {
   IYearArrayHolder,
 } from "../utils/reportConversions";
 import ReportCalendar from "../components/ReportCalendarElement";
+import ReportCalendars from "../components/ReportCalendarHolderComp";
+import ReportCalendarHolderComp from "../components/ReportCalendarHolderComp";
 
 function Store() {
   const [currentStore, setCurrentStore] = useState<IStore>({
@@ -144,9 +146,12 @@ function Store() {
       <div className={showReports ? "storeReports show" : "storeReports hide"}>
         <div className="monthContainer">
           {" "}
-          {reportMonthArray.map((item, index) => (
+          {/* {reportMonthArray.map((item, index) => (
             <ReportCalendar month={item} key={index} />
-          ))}
+          ))} */}
+          {typeof reportYearArray == "undefined" ? (
+            <ReportCalendarHolderComp yearArray={reportYearArray} />
+          ) : null}
         </div>
       </div>
     </div>
