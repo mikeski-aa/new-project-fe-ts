@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { IReport } from "../interfaces/userContextInterfaces";
+import { convertDate } from "../utils/dateConversion";
 
 function ReportCalendarReportElement({ reportItem }: { reportItem: IReport }) {
   const [modal, setModal] = useState<boolean>(false);
@@ -22,6 +23,7 @@ function ReportCalendarReportElement({ reportItem }: { reportItem: IReport }) {
       <div className={modal ? "report show" : "report hide"}>
         <div className="reportModalInner">
           <button onClick={handleCloseClick}>close</button>
+          <h4>{`Sales report for ${convertDate(reportItem.date)}`}</h4>
           <div className="modalSoldHeading">
             <div className="soldProdItem">SKU</div>
             <div className="soldProdItem">Name</div>

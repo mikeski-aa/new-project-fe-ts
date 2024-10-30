@@ -1,6 +1,11 @@
 // converts date to EU format
-function convertDate(): string {
-  const today: Date = new Date();
+function convertDate(optDate: Date): string {
+  let today: Date = new Date();
+
+  if (optDate) {
+    today = new Date(optDate);
+  }
+
   const month: string = today.toLocaleString("default", { month: "long" });
   let day: string | number = today.getDate();
   let newDate: string = "";
