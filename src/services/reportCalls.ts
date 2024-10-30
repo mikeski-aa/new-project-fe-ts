@@ -44,9 +44,11 @@ async function createReport(
   }
 }
 
-async function deleteReport(): Promise<IReportResponse> {
+async function deleteReport(reportid: number): Promise<IReportResponse> {
   const url = LOCAL_URL + "report";
-  const newBody = {};
+  const newBody = {
+    reportid: reportid,
+  };
   try {
     const response = await fetch(url, {
       method: "DELETE",

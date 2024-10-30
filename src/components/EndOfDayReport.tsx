@@ -8,7 +8,11 @@ import {
 } from "../interfaces/userContextInterfaces";
 import SearchResultItem from "./SearchResultItem";
 import IndividualSoldItem from "./IndividualSoldItem";
-import { createReport, rollbackData } from "../services/reportCalls";
+import {
+  createReport,
+  deleteReport,
+  rollbackData,
+} from "../services/reportCalls";
 import { dailyReportCheck } from "../utils/storeUpdateHelper";
 import { getStore } from "../services/storeCalls";
 
@@ -100,7 +104,10 @@ function EndOfDayReport({
     // since reports are ordered in ascending order, the last report in the array
     // the last report is the one we want to use to revert data
     console.log(currentStore.reports[currentStore.reports.length - 1]);
-    await rollbackData(currentStore.reports[currentStore.reports.length - 1]);
+    // await rollbackData(currentStore.reports[currentStore.reports.length - 1]);
+    await deleteReport(
+      currentStore.reports[currentStore.reports.length - 1].id
+    );
   };
 
   return (
