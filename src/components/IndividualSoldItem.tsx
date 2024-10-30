@@ -14,12 +14,14 @@ function IndividualSoldItem({
   setItemsSold,
   searchList,
   setSearchList,
+  setCurrentProducts,
 }: {
   item: ISoldProduct;
   itemsSold: ISoldProduct[];
   setItemsSold: Dispatch<SetStateAction<ISoldProduct[]>>;
   searchList: IProduct[];
   setSearchList: Dispatch<SetStateAction<IProduct[]>>;
+  setCurrentProducts: Dispatch<SetStateAction<IProduct[]>>;
 }) {
   const [quanSold, setQuanSold] = useState<number>(1);
 
@@ -88,6 +90,7 @@ function IndividualSoldItem({
     };
 
     setSearchList([removeQuanSold, ...searchList]);
+    setCurrentProducts([removeQuanSold, ...searchList]);
     console.log(searchList);
   };
 

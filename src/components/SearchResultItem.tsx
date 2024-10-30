@@ -8,12 +8,16 @@ function SearchResultItem({
   setItemsSold,
   currentItems,
   setCurrentItems,
+  currentProducts,
+  setCurrentProducts,
 }: {
   item: IProduct;
   itemsSold: ISoldProduct[];
   setItemsSold: Dispatch<SetStateAction<ISoldProduct[]>>;
   currentItems: IProduct[];
   setCurrentItems: Dispatch<SetStateAction<IProduct[]>>;
+  currentProducts: IProduct[];
+  setCurrentProducts: Dispatch<SetStateAction<IProduct[]>>;
 }) {
   // add item to list of sold items
   // remove items from search list
@@ -24,7 +28,7 @@ function SearchResultItem({
       (filItem) => filItem.sku != item.sku
     );
     setCurrentItems(filteredItems);
-
+    setCurrentProducts(filteredItems);
     const soldItemChanged: ISoldProduct = { ...item, quantitySold: 1 };
     setItemsSold([...itemsSold, soldItemChanged]);
   };

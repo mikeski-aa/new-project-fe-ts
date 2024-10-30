@@ -51,6 +51,10 @@ function EndOfDayReport({
   const [searchInput, setSearchInput] = useState<string>("");
   const dateToday = convertDate();
 
+  useEffect(() => {
+    setCurrentProducts(products);
+  }, [products]);
+
   const handleCloseClick = () => {
     setSearchInput("");
     setSearchList([]);
@@ -66,9 +70,7 @@ function EndOfDayReport({
     const target = e.target as HTMLInputElement;
     setSearchInput(target.value);
 
-    const shallowProducts = [...products];
-    console.log(currentProducts);
-    console.log(products);
+    const shallowProducts = [...currentProducts];
     if (target.value != "") {
       const filteredArray = shallowProducts.filter((item) =>
         item.sku.includes(target.value.toUpperCase())
@@ -136,10 +138,6 @@ function EndOfDayReport({
     setDailyReport(false);
   };
 
-  useEffect(() => {
-    setCurrentProducts(products);
-  }, []);
-
   return (
     <div className={modal ? "eodModal show" : "eodModal hide"}>
       <div className="eodMainContainer">
@@ -183,6 +181,7 @@ function EndOfDayReport({
                   setSearchList={setSearchList}
                   itemsSold={itemsSold}
                   setItemsSold={setItemsSold}
+                  setCurrentProducts={setCurrentProducts}
                 />
               ))}
             </div>
@@ -205,6 +204,8 @@ function EndOfDayReport({
                   setItemsSold={setItemsSold}
                   currentItems={searchList}
                   setCurrentItems={setSearchList}
+                  currentProducts={currentProducts}
+                  setCurrentProducts={setCurrentProducts}
                 />
               ))}
             </div>
