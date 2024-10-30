@@ -8,7 +8,7 @@ import {
 } from "../interfaces/userContextInterfaces";
 import SearchResultItem from "./SearchResultItem";
 import IndividualSoldItem from "./IndividualSoldItem";
-import { createReport } from "../services/reportCalls";
+import { createReport, rollbackData } from "../services/reportCalls";
 import { dailyReportCheck } from "../utils/storeUpdateHelper";
 import { getStore } from "../services/storeCalls";
 
@@ -22,6 +22,7 @@ function EndOfDayReport({
   setCurrentStore,
   dailyReport,
   setDailyReport,
+  currentStore,
 }: {
   modal: boolean;
   setModal: Dispatch<SetStateAction<boolean>>;
@@ -30,6 +31,7 @@ function EndOfDayReport({
   setCurrentStore: Dispatch<SetStateAction<IStore>>;
   dailyReport: boolean;
   setDailyReport: Dispatch<SetStateAction<boolean>>;
+  currentStore: IStore;
 }) {
   const [searchList, setSearchList] = useState<IProduct[]>([]);
   const [itemsSold, setItemsSold] = useState<ISoldProduct[]>([]);
@@ -94,57 +96,75 @@ function EndOfDayReport({
     }
   };
 
+  const handleRevertClick = async () => {
+    // since reports are ordered in ascending order, the last report in the array
+    // the last report is the one we want to use to revert data
+    console.log(currentStore.reports[currentStore.reports.length - 1]);
+    await rollbackData(currentStore.reports[currentStore.reports.length - 1]);
+  };
+
   return (
     <div className={modal ? "eodModal show" : "eodModal hide"}>
       <div className="eodMainContainer">
         <button className="eodModalBtn" onClick={handleCloseClick}>
           Close
         </button>
-        <div className="reportHeading">{`Add sale items for ${dateToday}`}</div>
-        {loading ? <h1>LOADING</h1> : null}
         {dailyReport ? (
-          <h4>
-            DAILY REPORT ALREADY SUBMITTED! If you want to generate a new daily
-            report, you first need to revert the last daily report.
-          </h4>
-        ) : null}
-        <div className="soldContainer">
-          {itemsSold.map((item, index) => (
-            <IndividualSoldItem
-              key={index}
-              item={item}
-              searchList={searchList}
-              setSearchList={setSearchList}
-              itemsSold={itemsSold}
-              setItemsSold={setItemsSold}
-            />
-          ))}
-        </div>
-        <div className="itemSearchContainer">
-          <label>Search item by SKU</label>
-          <input
-            className="itemSearchInput"
-            type="string"
-            placeholder="Item SKU"
-            value={searchInput}
-            onChange={(e) => handleInputChange(e)}
-          ></input>
-        </div>
-        <div className="searchResultContainer">
-          {searchList.map((item, index) => (
-            <SearchResultItem
-              item={item}
-              key={index}
-              itemsSold={itemsSold}
-              setItemsSold={setItemsSold}
-              currentItems={searchList}
-              setCurrentItems={setSearchList}
-            />
-          ))}
-        </div>
-        <button className="eodModalBtn" onClick={handleSaveClick}>
-          Save
-        </button>
+          <>
+            <h4>
+              DAILY REPORT ALREADY SUBMITTED for {dateToday}! If the existing
+              report has a mistake or was submitted accidentally, you will need
+              to revert it. This cannot be undone, you will lose all report data
+              you have submitted!
+            </h4>
+            <button onClick={handleRevertClick}>
+              I have read the warning and would like to revert
+            </button>
+          </>
+        ) : (
+          <>
+            <div className="reportHeading">{`Add sale items for ${dateToday}`}</div>
+            {loading ? <h1>LOADING</h1> : null}
+
+            <div className="soldContainer">
+              {itemsSold.map((item, index) => (
+                <IndividualSoldItem
+                  key={index}
+                  item={item}
+                  searchList={searchList}
+                  setSearchList={setSearchList}
+                  itemsSold={itemsSold}
+                  setItemsSold={setItemsSold}
+                />
+              ))}
+            </div>
+            <div className="itemSearchContainer">
+              <label>Search item by SKU</label>
+              <input
+                className="itemSearchInput"
+                type="string"
+                placeholder="Item SKU"
+                value={searchInput}
+                onChange={(e) => handleInputChange(e)}
+              ></input>
+            </div>
+            <div className="searchResultContainer">
+              {searchList.map((item, index) => (
+                <SearchResultItem
+                  item={item}
+                  key={index}
+                  itemsSold={itemsSold}
+                  setItemsSold={setItemsSold}
+                  currentItems={searchList}
+                  setCurrentItems={setSearchList}
+                />
+              ))}
+            </div>
+            <button className="eodModalBtn" onClick={handleSaveClick}>
+              Save
+            </button>
+          </>
+        )}
       </div>
     </div>
   );

@@ -44,4 +44,59 @@ async function createReport(
   }
 }
 
-export { createReport };
+async function deleteReport(): Promise<IReportResponse> {
+  const url = LOCAL_URL + "report";
+  const newBody = {};
+  try {
+    const response = await fetch(url, {
+      method: "DELETE",
+      headers: getHeaderInfo(),
+      body: JSON.stringify(newBody),
+    });
+    if (!response.ok) {
+      console.log(response.status);
+      return {
+        errorPresent: true,
+        error: `API response erro ${response.status}`,
+      };
+    }
+
+    const reportItem: IReport = await response.json();
+
+    return { reportItem, errorPresent: false };
+  } catch (error) {
+    console.log(error);
+    return { errorPresent: true, error: `Server or network error` };
+  }
+}
+
+async function rollbackData(report: IReport): Promise<IReportResponse> {
+  const url = LOCAL_URL + "report";
+  const newBody = {
+    storeId: report.storeId,
+    soldProducts: report.soldProducts,
+  };
+  try {
+    const response = await fetch(url, {
+      method: "PUT",
+      headers: getHeaderInfo(),
+      body: JSON.stringify(newBody),
+    });
+    if (!response.ok) {
+      console.log(response.status);
+      return {
+        errorPresent: true,
+        error: `API response erro ${response.status}`,
+      };
+    }
+
+    const reportItem: IReport = await response.json();
+
+    return { reportItem, errorPresent: false };
+  } catch (error) {
+    console.log(error);
+    return { errorPresent: true, error: `Server or network error` };
+  }
+}
+
+export { createReport, deleteReport, rollbackData };

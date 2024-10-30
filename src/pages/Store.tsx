@@ -79,6 +79,7 @@ function Store() {
         setCurrentStore={setCurrentStore}
         dailyReport={dailyReport}
         setDailyReport={setDailyReport}
+        currentStore={currentStore}
       />
       <h1 className="storeName">
         {currentStore ? currentStore.name : "Loading"}

@@ -1,5 +1,5 @@
 // converts date to EU format
-function convertDate(optDate: Date): string {
+function convertDate(optDate?: Date): string {
   let today: Date = new Date();
 
   if (optDate) {
