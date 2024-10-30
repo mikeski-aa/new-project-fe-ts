@@ -144,10 +144,6 @@ function Store() {
       </div>
       <div className={showReports ? "storeReports show" : "storeReports hide"}>
         <div className="monthContainer">
-          {" "}
-          {/* {reportMonthArray.map((item, index) => (
-            <ReportCalendar month={item} key={index} />
-          ))} */}
           <ReportCalendarHolderComp yearArray={reportYearArray} />
         </div>
       </div>

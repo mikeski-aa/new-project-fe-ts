@@ -27,14 +27,23 @@ function ReportCalendarHolderComp({
 
   return (
     <div className="yearCalendarContainer">
-      {activeDisplay.map((item, index) => (
-        <ReportCalendar month={item} key={index} />
-      ))}
-      {yearArray.map((item) => (
-        <button className="yearText" onClick={() => handleYearClick(item.year)}>
-          {item.year}
-        </button>
-      ))}
+      <div className="mappedMonthContainer">
+        {activeDisplay.map((item, index) => (
+          <ReportCalendar month={item} key={index} />
+        ))}
+      </div>
+
+      <div className="mappedButtonsContainer">
+        {yearArray.map((item, index) => (
+          <button
+            key={index}
+            className="yearText"
+            onClick={() => handleYearClick(item.year)}
+          >
+            {item.year}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }
