@@ -8,6 +8,7 @@ import { IReport } from "../interfaces/userContextInterfaces";
 export interface IMonth {
   name: string;
   reports: IReport[];
+  year: number;
 }
 
 function getMonthsFromReports(reports: IReport[]): IMonth[] {
@@ -16,19 +17,51 @@ function getMonthsFromReports(reports: IReport[]): IMonth[] {
   reports.forEach((report) => {
     const reportDate = new Date(report.date);
     const reportMonth = reportDate.toLocaleString("default", { month: "long" });
+    const reportYear = reportDate.getFullYear();
 
-    const findMonth = monthArray.find((month) => month.name === reportMonth);
+    console.log(reportYear);
+
+    const findMonth = monthArray.find(
+      (month) => month.name === reportMonth && month.year === reportYear
+    );
 
     if (findMonth) {
       findMonth.reports.push(report);
     } else {
-      monthArray.push({ name: reportMonth, reports: [report] });
+      monthArray.push({
+        name: reportMonth,
+        reports: [report],
+        year: reportYear,
+      });
     }
   });
 
   console.log(monthArray);
 
+  console.log(assignYearToMonth(monthArray));
+
   return monthArray;
+}
+
+interface IYearArrayHolder {
+  months: IMonth[];
+  year: number;
+}
+
+function assignYearToMonth(monthArray: IMonth[]) {
+  const yearArray: IYearArrayHolder[] = [];
+
+  monthArray.forEach((month) => {
+    const findYear = yearArray.find((year) => year.year === month.year);
+
+    if (findYear) {
+      findYear.months.push(month);
+    } else {
+      yearArray.push({ months: [month], year: month.year });
+    }
+  });
+
+  return yearArray;
 }
 
 export { getMonthsFromReports };
