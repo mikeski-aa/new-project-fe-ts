@@ -1,4 +1,10 @@
-import { Dispatch, SetStateAction, SyntheticEvent, useState } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  SyntheticEvent,
+  useEffect,
+  useState,
+} from "react";
 import "../styles/endofdayreport.css";
 import { convertDate } from "../utils/dateConversion";
 import {
@@ -38,6 +44,7 @@ function EndOfDayReport({
   currentStore: IStore;
 }) {
   const [searchList, setSearchList] = useState<IProduct[]>([]);
+  const [currentProducts, setCurrentProducts] = useState<IProduct[]>([]);
   const [itemsSold, setItemsSold] = useState<ISoldProduct[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [revertLoading, setRevertLoading] = useState<boolean>(false);
@@ -46,6 +53,8 @@ function EndOfDayReport({
 
   const handleCloseClick = () => {
     setSearchInput("");
+    setSearchList([]);
+    setItemsSold([]);
     setModal(false);
   };
 
@@ -58,7 +67,8 @@ function EndOfDayReport({
     setSearchInput(target.value);
 
     const shallowProducts = [...products];
-
+    console.log(currentProducts);
+    console.log(products);
     if (target.value != "") {
       const filteredArray = shallowProducts.filter((item) =>
         item.sku.includes(target.value.toUpperCase())
@@ -126,6 +136,10 @@ function EndOfDayReport({
     setDailyReport(false);
   };
 
+  useEffect(() => {
+    setCurrentProducts(products);
+  }, []);
+
   return (
     <div className={modal ? "eodModal show" : "eodModal hide"}>
       <div className="eodMainContainer">
@@ -143,7 +157,11 @@ function EndOfDayReport({
                   DAILY REPORT ALREADY SUBMITTED for {dateToday}! If the
                   existing report has a mistake or was submitted accidentally,
                   you will need to revert it. This cannot be undone, you will
-                  lose all report data you have submitted!
+                  lose all report data you have submitted! If you removed an
+                  item from the store after subbmitting it in a report, it will
+                  be restored. Manually re-adding the same SKU after deleting
+                  post report submission will cause restore to change current
+                  quanitity.
                 </h4>
                 <button onClick={handleRevertClick}>
                   I have read the warning and would like to revert
