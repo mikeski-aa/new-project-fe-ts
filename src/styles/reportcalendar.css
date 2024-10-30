@@ -1,11 +1,28 @@
 .calendarReportHolder {
   display: flex;
   flex-wrap: wrap;
-  width: 101px;
+  width: 175px;
   gap: 2px;
   height: auto;
 }
 
 .calendarHolder {
-  width: 101px;
+  width: 175px;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.calendarDayBtn {
+  padding: 0;
+  margin: 0;
+  width: 25px;
+  background: none;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 3px;
+}
+
+.calendarDayBtn:hover {
+  cursor: pointer;
 }
