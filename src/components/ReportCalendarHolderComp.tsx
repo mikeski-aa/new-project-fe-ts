@@ -11,14 +11,18 @@ function ReportCalendarHolderComp({
   const [activeDisplay, setActiveDisplay] = useState<IMonth[]>([]);
 
   useEffect(() => {
-    console.log("SEE IF THIS WILL RETURN UNDEFINED AT ANY POINT?");
-    console.log(yearArray);
-    setActiveYear(yearArray[0].year);
-    setActiveDisplay(yearArray[0].months);
+    if (yearArray[0]) {
+      setActiveYear(yearArray[0].year);
+      setActiveDisplay(yearArray[0].months);
+    }
   }, [yearArray]);
 
   const handleYearClick = (year: number) => {
-    console.log(yearArray);
+    const foundYear = yearArray.find((item) => item.year === year);
+    setActiveYear(year);
+    if (foundYear) {
+      setActiveDisplay(foundYear.months);
+    }
   };
 
   return (

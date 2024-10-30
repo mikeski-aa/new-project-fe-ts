@@ -63,13 +63,12 @@ function Store() {
   };
 
   const handleOpenReportHistory = () => {
-    setShowItems(false);
-    setShowReports(true);
     setReportMonthArray(getMonthsFromReports(currentStore.reports));
     setReportYearArray(
       assignYearToMonth(getMonthsFromReports(currentStore.reports))
     );
-    console.log(assignYearToMonth(getMonthsFromReports(currentStore.reports)));
+    setShowItems(false);
+    setShowReports(true);
   };
 
   const handleShowItems = () => {
@@ -149,9 +148,7 @@ function Store() {
           {/* {reportMonthArray.map((item, index) => (
             <ReportCalendar month={item} key={index} />
           ))} */}
-          {typeof reportYearArray == "undefined" ? (
-            <ReportCalendarHolderComp yearArray={reportYearArray} />
-          ) : null}
+          <ReportCalendarHolderComp yearArray={reportYearArray} />
         </div>
       </div>
     </div>
