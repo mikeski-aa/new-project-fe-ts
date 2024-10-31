@@ -88,7 +88,7 @@ async function rollbackData(report: IReport): Promise<IReportResponse> {
       console.log(response.status);
       return {
         errorPresent: true,
-        error: `API response erro ${response.status}`,
+        error: `API response error ${response.status}`,
       };
     }
 

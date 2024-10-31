@@ -17,6 +17,7 @@ import {
 import ReportCalendar from "../components/ReportCalendarElement";
 import ReportCalendars from "../components/ReportCalendarHolderComp";
 import ReportCalendarHolderComp from "../components/ReportCalendarHolderComp";
+import OrderItems from "../components/OrderItems";
 
 function Store() {
   const [currentStore, setCurrentStore] = useState<IStore>({
@@ -38,6 +39,7 @@ function Store() {
     []
   );
   const { id } = useParams<{ id: string }>();
+  const [orderItemsModal, setOrderItemsModal] = useState<boolean>(false);
 
   useEffect(() => {
     const getSpecificStore = async () => {
@@ -76,6 +78,10 @@ function Store() {
     setShowItems(true);
   };
 
+  const handleOrderItems = () => {
+    setOrderItemsModal(true);
+  };
+
   return (
     <div className="storePageContainer">
       <AddItemStockModal
@@ -92,6 +98,11 @@ function Store() {
         setCurrentStore={setCurrentStore}
         dailyReport={dailyReport}
         setDailyReport={setDailyReport}
+        currentStore={currentStore}
+      />
+      <OrderItems
+        modal={orderItemsModal}
+        setModal={setOrderItemsModal}
         currentStore={currentStore}
       />
       <h1 className="storeName">
@@ -117,6 +128,9 @@ function Store() {
         </button>
         <button className="addItemsBtn" onClick={handleOpenEodModal}>
           Generate EOD report
+        </button>
+        <button className="addItemsBtn" onClick={handleOrderItems}>
+          Order items
         </button>
       </div>
 
