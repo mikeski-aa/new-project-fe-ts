@@ -15,7 +15,13 @@ function IndividualOrderItem({
   const handleOrderQuantChange = (e: SyntheticEvent) => {
     const target = e.target as HTMLInputElement;
     setOrderQuant(+target.value);
-    console.log(copyProducts);
+    const copyState = [...copyProducts];
+    copyState.map((product) => {
+      product.sku === item.sku ? (product.quantity = +target.value) : null;
+    });
+
+    console.log(copyState);
+    setCopyProducts(copyState);
   };
 
   return (

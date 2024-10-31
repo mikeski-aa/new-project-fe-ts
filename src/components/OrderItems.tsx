@@ -17,12 +17,15 @@ function OrderItems({
 
   useEffect(() => {
     const shallowCopy = [...currentStore.products];
+    shallowCopy.map((product) => (product.quantity = 0));
     setCopyProducts(shallowCopy);
   }, [currentStore.products]);
 
   const handleCloseClick = () => {
     setModal(false);
   };
+
+  const handleOrderClick = async () => {};
 
   return (
     <div className={modal ? "newOrderItems show" : "newOrderItems hide"}>
@@ -33,7 +36,7 @@ function OrderItems({
           </button>
         </div>
         <div className="orderItemText">Order items</div>
-        {currentStore.products.map((product, index) => (
+        {copyProducts.map((product, index) => (
           <IndividualOrderItem
             item={product}
             key={index}
@@ -42,7 +45,9 @@ function OrderItems({
           />
         ))}
         {loading ? <h1>LOADING...</h1> : null}
-        <button className="modalBtn">Save</button>
+        <button className="modalBtn" onClick={handleOrderClick}>
+          Order items
+        </button>
       </div>
     </div>
   );
