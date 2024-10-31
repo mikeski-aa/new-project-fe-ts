@@ -171,15 +171,20 @@ function Login() {
               maxLength={30}
             ></input>
           </form>
-          <button className="welcomeButton" onClick={() => handleLoginClick()}>
-            Login
-          </button>
-          <button className="welcomeButton" onClick={handleGuestClick}>
-            Guest Login
-          </button>
-          <button className="welcomeButton" onClick={handleGoRegister}>
-            I want to create a new account
-          </button>
+          <div className="logBtnCont">
+            <button
+              className="welcomeButton"
+              onClick={() => handleLoginClick()}
+            >
+              Login
+            </button>
+            <button className="welcomeButton" onClick={handleGuestClick}>
+              Guest Login
+            </button>
+            <button className="welcomeButton" onClick={handleGoRegister}>
+              I want to create a new account
+            </button>
+          </div>
         </div>
         <div
           className={loginError ? "loginErrorBox showError" : "loginErrorBox"}
@@ -221,16 +226,18 @@ function Login() {
               value={regConfirmPassword}
               maxLength={30}
             ></input>
+          </form>
+          <div className="logBtnCont">
             <button
               className="welcomeButton"
               onClick={() => handleRegisterClick()}
             >
               Register
             </button>
-          </form>
-          <button className="welcomeButton" onClick={handleGoLogin}>
-            I have an account
-          </button>
+            <button className="welcomeButton" onClick={handleGoLogin}>
+              I have an account
+            </button>
+          </div>
         </div>
         <div className={regError ? "regErrorBox showError" : "regErrorBox"}>
           {regErrorArray.map((item, index) => (
