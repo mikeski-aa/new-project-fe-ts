@@ -152,7 +152,6 @@ function Login() {
           page === "login" ? "loginMainDiv active" : "loginMainDiv inactive"
         }
       >
-        <div className="loginHeader">Login</div>
         <div className="loginForm">
           <form onSubmit={(e) => e.preventDefault()} className="loginForm">
             <input
@@ -171,13 +170,10 @@ function Login() {
               value={logPassword}
               maxLength={30}
             ></input>
-            <button
-              className="welcomeButton"
-              onClick={() => handleLoginClick()}
-            >
-              Login
-            </button>
           </form>
+          <button className="welcomeButton" onClick={() => handleLoginClick()}>
+            Login
+          </button>
           <button className="welcomeButton" onClick={handleGuestClick}>
             Guest Login
           </button>
@@ -199,7 +195,6 @@ function Login() {
             : "registerMainDiv inactive"
         }
       >
-        <div className="registerHeader">Register</div>
         <div className="registerForm">
           <form onSubmit={(e) => e.preventDefault()} className="registerForm">
             <input
