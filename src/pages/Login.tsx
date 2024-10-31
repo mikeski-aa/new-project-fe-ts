@@ -187,7 +187,9 @@ function Login() {
           </div>
         </div>
         <div
-          className={loginError ? "loginErrorBox showError" : "loginErrorBox"}
+          className={
+            loginError ? "loginErrorBox showError" : "loginErrorBox hidden"
+          }
         >
           Username or password provided is incorrect
         </div>
@@ -239,7 +241,9 @@ function Login() {
             </button>
           </div>
         </div>
-        <div className={regError ? "regErrorBox showError" : "regErrorBox"}>
+        <div
+          className={regError ? "regErrorBox showError" : "regErrorBox hidden"}
+        >
           {regErrorArray.map((item, index) => (
             <div key={index} className="errorItem">
               {item}
