@@ -12,8 +12,10 @@ const getHeaderInfo = (): HeadersInit => {
 async function createOrder(orderProducts: IProduct[]): Promise<boolean> {
   const url = LOCAL_URL + "orders";
 
+  const filteredOrders = orderProducts.filter((item) => item.quantity != 0);
+
   const newBody = {
-    orderProducts: orderProducts,
+    orderProducts: filteredOrders,
   };
 
   try {

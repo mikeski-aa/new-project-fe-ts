@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import "../styles/orderitems.css";
 import { IProduct, IStore } from "../interfaces/userContextInterfaces";
 import IndividualOrderItem from "./IndividualOrderItem";
+import { createOrder } from "../services/orderCalls";
 
 function OrderItems({
   modal,
@@ -25,7 +26,12 @@ function OrderItems({
     setModal(false);
   };
 
-  const handleOrderClick = async () => {};
+  const handleOrderClick = async () => {
+    setLoading(true);
+    await createOrder(copyProducts);
+    setLoading(false);
+    setModal(false);
+  };
 
   return (
     <div className={modal ? "newOrderItems show" : "newOrderItems hide"}>
