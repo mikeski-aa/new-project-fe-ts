@@ -1,12 +1,21 @@
-import { SyntheticEvent, useState } from "react";
+import { Dispatch, SetStateAction, SyntheticEvent, useState } from "react";
 import { IProduct } from "../interfaces/userContextInterfaces";
 
-function IndividualOrderItem({ item }: { item: IProduct }) {
+function IndividualOrderItem({
+  item,
+  copyProducts,
+  setCopyProducts,
+}: {
+  item: IProduct;
+  copyProducts: IProduct[];
+  setCopyProducts: Dispatch<SetStateAction<IProduct[]>>;
+}) {
   const [orderQuant, setOrderQuant] = useState<number>(0);
 
   const handleOrderQuantChange = (e: SyntheticEvent) => {
     const target = e.target as HTMLInputElement;
     setOrderQuant(+target.value);
+    console.log(copyProducts);
   };
 
   return (
