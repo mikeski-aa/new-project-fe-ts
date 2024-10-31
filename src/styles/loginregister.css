@@ -30,7 +30,7 @@
 
 .inactive {
   opacity: 0;
-  /* transform: translateX(50%); */
+  transform: translateX(50%) scale(0%);
   visibility: hidden;
 }
 
