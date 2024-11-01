@@ -2,9 +2,9 @@
   display: flex;
   gap: 1rem;
 
-  border-radius: 25px;
   justify-content: space-between;
   align-items: center;
+  border: 2px solid black;
 }
 
 .skuProd,
@@ -13,7 +13,7 @@
 .priceProd,
 .stockProd,
 .purchasePriceProd {
-  width: 108px;
+  width: 100px;
   overflow-x: hidden;
 }
 
@@ -48,4 +48,23 @@
   border-radius: 25px;
   justify-content: space-between;
   align-items: center;
+}
+
+.remItem {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  justify-content: center;
+  border: 2px solid rgba(255, 255, 255, 0);
+  background: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition-duration: 0.4s;
+}
+
+.remItem:hover {
+  cursor: pointer;
+  border-radius: 3px;
+  border: 2px solid rgb(255, 0, 0);
 }

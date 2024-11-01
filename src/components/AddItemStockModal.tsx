@@ -170,12 +170,6 @@ function AddItemStockModal({
   return (
     <div className={modal ? "newItemModal show" : "newItemModal hide"}>
       <div className="newItemContainer">
-        <button className="newItemModalBtn" onClick={handleModalClose}>
-          Close
-        </button>
-        <button className="nweItemModalBtn" onClick={handleSaveAction}>
-          Save
-        </button>
         {loading ? <h1>LOADING...</h1> : null}
         <div className="newItemBoxes">
           <div className="addedItemContainer">
@@ -311,6 +305,17 @@ function AddItemStockModal({
             }
           >
             This SKU already exists in this store!
+          </div>
+          <div className="newItemBtnHolder">
+            <button className="newItemModalBtn save" onClick={handleSaveAction}>
+              Save
+            </button>
+            <button
+              className="newItemModalBtn close "
+              onClick={handleModalClose}
+            >
+              Close
+            </button>
           </div>
         </div>
       </div>

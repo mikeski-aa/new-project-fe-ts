@@ -27,7 +27,9 @@ function NewItemInModal({
       <div className="itemProperty">{item.price}</div>
       <div className="itemProperty">{item.purchasePrice}</div>
       <div className="itemProperty">{item.quantity}</div>
-      <button onClick={handleRemoveClick}>Remove</button>
+      <button onClick={handleRemoveClick} className="modalBtn remove thing">
+        Remove
+      </button>
     </div>
   );
 }
