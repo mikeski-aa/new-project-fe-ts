@@ -28,9 +28,9 @@ function StoreHolder({ store }: { store: IStore }) {
     <div className="storeContainer">
       <ConfirmDeleteBox modal={modal} setModal={setModal} store={store} />
       <EditShopModal modal={editModal} setModal={setEditModal} store={store} />
-      <div className="budgetHeading">{store.name}</div>
+      <div className="storeHeading">{store.name}</div>
       <img src={store.picture} className="storePicture"></img>
-      <div className="budgetValue">{store.location}</div>
+      <div className="storeLocation">{store.location}</div>
       <div className="productHolder">
         Unique products in store:{" "}
         {store.products ? store.products.length : null}
