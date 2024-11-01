@@ -79,11 +79,17 @@ function NewStoreModal({
         </div>
         {loading ? <h1>LOADING...</h1> : null}
         <div className="deleteBtnContainer">
-          <button className="modalBtn" onClick={() => handleAddClick()}>
+          <button
+            className="modalBtn newstore"
+            onClick={() => handleAddClick()}
+          >
             Create new store
           </button>
-          <button className="modalBtn" onClick={handleCloseClick}>
-            Close
+          <button
+            className="modalBtn newstore cancel"
+            onClick={handleCloseClick}
+          >
+            Cancel
           </button>
         </div>
       </div>

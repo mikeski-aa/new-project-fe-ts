@@ -33,3 +33,30 @@
   outline: 2px solid green;
   border-color: rgba(0, 0, 0, 0);
 }
+
+.modalBtn.newstore {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  justify-content: center;
+  border: 3px solid rgb(78, 3, 216);
+  color: rgb(78, 3, 216);
+  border-radius: 5px;
+  background: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition-duration: 0.4s;
+  padding: 10px;
+}
+.modalBtn.newstore:hover {
+  border-color: rgb(78, 3, 216);
+  background-color: rgb(78, 3, 216);
+  box-shadow: 2px 2px 4px rgb(0, 0, 0);
+  color: white;
+  cursor: pointer;
+}
+
+.modalBtn.newstore.cancel {
+  border: none;
+}
