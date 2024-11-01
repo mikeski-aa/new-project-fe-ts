@@ -135,14 +135,15 @@ function Store() {
       </div>
 
       <div className={showItems ? "storeItems show" : "storeItems hide"}>
-        {/* <div className="storeHeadings">
-          <div className="headingDivItem">SKU</div>
-          <div className="headingDivItem">Name</div>
-          <div className="headingDivItem">Category</div>
-          <div className="headingDivItem">Price</div>
-          <div className="headingDivItem">Purchase price</div>
-          <div className="headingDivItem">Quantity</div>
-        </div> */}
+        <div className="storeHeadings">
+          <div className="headingDivItemStore">SKU</div>
+          <div className="headingDivItemStore">Name</div>
+          <div className="headingDivItemStore">Category</div>
+          <div className="headingDivItemStore">Price</div>
+          <div className="headingDivItemStore">Purchase price</div>
+          <div className="headingDivItemStore">Quantity</div>
+          <div className="headingDivItemStore"></div>
+        </div>
         <div className="individualProductStoreContainer">
           {currentStore?.products
             ? currentStore.products.map((product, index) => (

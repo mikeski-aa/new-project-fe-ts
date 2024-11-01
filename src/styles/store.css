@@ -10,6 +10,9 @@
   border-radius: 25px;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .dailyReport.yPresent {
@@ -43,6 +46,13 @@
   gap: 0.2rem;
   max-width: 100%;
   transition-duration: 0.2s;
+  width: 100%;
+}
+
+.headingDivItemStore {
+  width: 120px;
+  font-weight: 600;
+  font-size: 1.1rem;
 }
 
 .mappedMonthContainer {
@@ -85,4 +95,6 @@
 .buttonContainerStore {
   display: flex;
   gap: 1rem;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
