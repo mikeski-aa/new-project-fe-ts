@@ -3,10 +3,20 @@
   flex-direction: column;
   width: 100%;
   height: 100%;
+  align-items: center;
 }
 
 .homeStoreContainer {
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
+}
+
+.createNewStoreBtn {
+  width: fit-content;
+}
+
+.pageHeading {
+  margin: 0;
+  padding: 0;
 }

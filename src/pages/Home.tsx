@@ -38,8 +38,8 @@ function Home() {
         newStoreModal={newStoreModal}
         setNewStoreModal={setNewStoreModal}
       />
-      <h1>Your Stores</h1>
-      <button className="createNewStore" onClick={handleNewStoreModal}>
+      <h1 className="pageHeading">Your Stores</h1>
+      <button className="createNewStoreBtn" onClick={handleNewStoreModal}>
         Add new store
       </button>
       <div className="homeStoreContainer">
