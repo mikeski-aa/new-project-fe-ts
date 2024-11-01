@@ -15,6 +15,10 @@
 
 .createNewStoreBtn {
   width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  justify-content: center;
 }
 
 .pageHeading {
@@ -25,14 +29,7 @@
 }
 
 .icontest {
-  fill: rgb(190, 38, 38);
-}
-
-.xd {
-  filter: invert();
-}
-
-.iconSvg {
-  width: 25px;
-  height: 25px;
+  fill: red;
+  width: 40px;
+  height: 40px;
 }
