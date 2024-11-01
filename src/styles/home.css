@@ -11,6 +11,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
+  justify-content: center;
 }
 
 .createNewStoreBtn {
@@ -19,6 +20,16 @@
   align-items: center;
   gap: 0.25rem;
   justify-content: center;
+  border: 2px solid rgba(255, 255, 255, 0);
+  background: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition-duration: 0.4s;
+}
+.createNewStoreBtn:hover {
+  border-bottom: 2px solid green;
+  transform: scale(1.1);
+  cursor: pointer;
 }
 
 .pageHeading {
@@ -30,6 +41,6 @@
 
 .icontest {
   fill: red;
-  width: 40px;
-  height: 40px;
+  width: 25px;
+  height: 25px;
 }
