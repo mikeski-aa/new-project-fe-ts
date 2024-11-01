@@ -56,13 +56,10 @@ function NewStoreModal({
       className={newStoreModal ? "newStoreModal show" : "newStoreModal hide"}
     >
       <div className="addNewStoreContainer">
-        <div className="modalBtnContainer">
-          <button className="modalBtn" onClick={handleCloseClick}>
-            Close
-          </button>
-        </div>
+        <div className="modalBtnContainer"></div>
         <div className="modalInputContainer">
-          <div className="modalInputDiv">
+          <div className="inputCont">
+            <label className="inputLabelEdit">Store name</label>
             <input
               placeholder="Store name"
               className="modalInput"
@@ -70,7 +67,8 @@ function NewStoreModal({
               onChange={(e) => handleNameInput(e)}
             ></input>
           </div>
-          <div className="modalInput">
+          <div className="inputCont">
+            <label className="inputLabelEdit">Store location</label>
             <input
               placeholder="Store Location"
               className="modalInput"
@@ -80,9 +78,14 @@ function NewStoreModal({
           </div>
         </div>
         {loading ? <h1>LOADING...</h1> : null}
-        <button className="modalBtn" onClick={() => handleAddClick()}>
-          Create new store
-        </button>
+        <div className="deleteBtnContainer">
+          <button className="modalBtn" onClick={() => handleAddClick()}>
+            Create new store
+          </button>
+          <button className="modalBtn" onClick={handleCloseClick}>
+            Close
+          </button>
+        </div>
       </div>
     </div>
   );
