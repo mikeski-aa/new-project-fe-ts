@@ -5,6 +5,7 @@ import { getStores } from "../services/storeCalls";
 import { IStore } from "../interfaces/userContextInterfaces";
 import StoreHolder from "../components/StoreHolder";
 import NewStoreModal from "../components/NewStoreModal";
+import plusCircle from "../assets/pluscircle.svg";
 
 function Home() {
   const userContext = useContext(UserContext);
@@ -40,7 +41,7 @@ function Home() {
       />
       <h1 className="pageHeading">Your Stores</h1>
       <button className="createNewStoreBtn" onClick={handleNewStoreModal}>
-        Add new store
+        <img src="plusCircle" alt="" className="iconSvg" />
       </button>
       <div className="homeStoreContainer">
         {userContext.stores

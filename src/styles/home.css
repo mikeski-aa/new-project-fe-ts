@@ -4,6 +4,7 @@
   width: 100%;
   height: 100%;
   align-items: center;
+  gap: 1rem;
 }
 
 .homeStoreContainer {
@@ -19,4 +20,19 @@
 .pageHeading {
   margin: 0;
   padding: 0;
+  width: 100%;
+  text-align: left;
+}
+
+.icontest {
+  fill: rgb(190, 38, 38);
+}
+
+.xd {
+  filter: invert();
+}
+
+.iconSvg {
+  width: 25px;
+  height: 25px;
 }
