@@ -135,14 +135,14 @@ function Store() {
       </div>
 
       <div className={showItems ? "storeItems show" : "storeItems hide"}>
-        <div className="storeHeadings">
+        {/* <div className="storeHeadings">
           <div className="headingDivItem">SKU</div>
           <div className="headingDivItem">Name</div>
           <div className="headingDivItem">Category</div>
           <div className="headingDivItem">Price</div>
           <div className="headingDivItem">Purchase price</div>
           <div className="headingDivItem">Quantity</div>
-        </div>
+        </div> */}
         <div className="individualProductStoreContainer">
           {currentStore?.products
             ? currentStore.products.map((product, index) => (

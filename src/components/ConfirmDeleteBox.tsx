@@ -47,10 +47,16 @@ function ConfirmDeleteBox({
         <div className="deleteText second">{store ? store.name : null}</div>
         {loading ? <h1>LOADING</h1> : null}
         <div className="deleteBtnContainer">
-          <button className="delModBtn" onClick={() => handleConfirmClick()}>
+          <button
+            className="delModBtn confirm"
+            onClick={() => handleConfirmClick()}
+          >
             Confirm Delete
           </button>
-          <button className="delModBtn" onClick={() => handleCancelClick()}>
+          <button
+            className="delModBtn cancel"
+            onClick={() => handleCancelClick()}
+          >
             Cancel
           </button>
         </div>

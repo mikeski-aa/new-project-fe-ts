@@ -61,3 +61,28 @@
 .testclassxd {
   display: flex;
 }
+
+.addItemsBtn {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  justify-content: center;
+  border: 2px solid rgba(255, 255, 255, 0);
+  background: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition-duration: 0.4s;
+  border-bottom: 2px solid green;
+}
+
+.addItemsBtn:hover {
+  cursor: pointer;
+  border-radius: 3px;
+  border: 2px solid green;
+}
+
+.buttonContainerStore {
+  display: flex;
+  gap: 1rem;
+}

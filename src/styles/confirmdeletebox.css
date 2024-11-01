@@ -9,6 +9,7 @@
   width: 100%;
   height: 100%;
   background-color: rgba(128, 128, 128, 0.842);
+  backdrop-filter: blur(5px);
 }
 
 .deleteConfirmContainer {
@@ -19,4 +20,48 @@
   background-color: white;
   padding: 25px;
   transform: translateX(-50%) translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 8px;
+  box-shadow: 2px 2px 4px black;
+}
+
+.delModBtn {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  justify-content: center;
+  border: 2px solid rgba(255, 255, 255, 0);
+  background: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition-duration: 0.4s;
+}
+
+.delModBtn:hover {
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.delModBtn.confirm:hover {
+  border: 2px solid green;
+}
+
+.delModBtn.cancel:hover {
+  border: 2px solid rgb(255, 0, 0);
+}
+
+.delModBtn.cancel {
+  border-bottom: 2px solid red;
+}
+
+.delModBtn.confirm {
+  border-bottom: 2px solid green;
+}
+
+.deleteText.second {
+  font-weight: 700;
+  font-size: 1.7rem;
 }
