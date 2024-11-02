@@ -37,4 +37,25 @@ async function createOrder(orderProducts: IProduct[]): Promise<boolean> {
   }
 }
 
-export { createOrder };
+async function getOrdersForStore(storeid: number) {
+  const url = LOCAL_URL + `orders?storeid=${storeid}`;
+
+  try {
+    const response = await fetch(url, {
+      method: "GET",
+      headers: getHeaderInfo(),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error validating request query`);
+    }
+
+    const json = await response.json();
+
+    return json;
+  } catch (error) {
+    throw new Error(`Server or network error`);
+  }
+}
+
+export { createOrder, getOrdersForStore };

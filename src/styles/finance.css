@@ -1,4 +1,4 @@
-.finStoerBtn {
+.finStoreBtn {
   width: fit-content;
   display: flex;
   align-items: center;
@@ -13,7 +13,7 @@
   transition-duration: 0.4s;
   padding: 10px;
 }
-.finStoerBtn:hover {
+.finStoreBtn:hover {
   border-color: rgb(78, 3, 216);
   background-color: rgb(78, 3, 216);
   box-shadow: 2px 2px 4px rgb(0, 0, 0);
