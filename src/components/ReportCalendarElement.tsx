@@ -5,7 +5,7 @@ import ReportCalendarReportElement from "./ReportCalendarReportElement";
 function ReportCalendar({ month }: { month: IMonth }) {
   return (
     <div className="calendarHolder">
-      <h4>{month.name}</h4>
+      <h4 className="headingMonth">{month.name}</h4>
       <div className="calendarReportHolder">
         {/* <div className="calendarReportItem">{`Number of reports: ${month.reports.length}`}</div>
         <button>{`Show reports for ${month.name}`}</button> */}

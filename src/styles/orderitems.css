@@ -25,3 +25,17 @@
   display: flex;
   gap: 1rem;
 }
+
+.buttonContainerNewOrderModal {
+  display: flex;
+  position: relative;
+  width: fit-content;
+  left: 50%;
+  transform: translateX(-50%);
+  gap: 1rem;
+  margin-top: 15px;
+}
+
+.modalBtn.close {
+  border: none;
+}

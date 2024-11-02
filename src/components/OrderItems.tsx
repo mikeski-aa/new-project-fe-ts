@@ -36,11 +36,7 @@ function OrderItems({
   return (
     <div className={modal ? "newOrderItems show" : "newOrderItems hide"}>
       <div className="orderNewItemContainer">
-        <div className="modalBtnContainer">
-          <button className="modalBtn" onClick={handleCloseClick}>
-            Close
-          </button>
-        </div>
+        <div className="modalBtnContainer"></div>
         <div className="orderItemText">Order items</div>
         {copyProducts.map((product, index) => (
           <IndividualOrderItem
@@ -51,9 +47,14 @@ function OrderItems({
           />
         ))}
         {loading ? <h1>LOADING...</h1> : null}
-        <button className="modalBtn" onClick={handleOrderClick}>
-          Order items
-        </button>
+        <div className="buttonContainerNewOrderModal">
+          <button className="modalBtn" onClick={handleOrderClick}>
+            Order items
+          </button>
+          <button className="modalBtn close" onClick={handleCloseClick}>
+            Close
+          </button>
+        </div>
       </div>
     </div>
   );

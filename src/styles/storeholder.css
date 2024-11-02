@@ -4,7 +4,7 @@
   align-items: center;
   box-shadow: 2px 2px 4px black;
   max-width: fit-content;
-  border: 2px solid grey;
+  border: 3px solid rgb(78, 3, 216);
   padding: 12px;
   border-radius: 10px;
   gap: 5px;
@@ -24,6 +24,7 @@
 .storePicture {
   width: auto;
   height: 200px;
+  border-radius: 5px;
 }
 
 .storeButtons {

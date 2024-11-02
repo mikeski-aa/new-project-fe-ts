@@ -22,7 +22,6 @@ function ReportCalendarReportElement({ reportItem }: { reportItem: IReport }) {
       >{`${day}`}</button>
       <div className={modal ? "report show" : "report hide"}>
         <div className="reportModalInner">
-          <button onClick={handleCloseClick}>close</button>
           <h4>{`Sales report for ${convertDate(reportItem.date)}`}</h4>
           <div className="modalSoldHeading">
             <div className="soldProdItem">SKU</div>
@@ -39,6 +38,9 @@ function ReportCalendarReportElement({ reportItem }: { reportItem: IReport }) {
             </div>
           ))}
           <div className="modalSoldTotal">{`Total sold: $${reportItem.totalSaleValue}`}</div>
+          <button onClick={handleCloseClick} className="closeBtnReport">
+            Close
+          </button>
         </div>
       </div>
       {/* <div className="reportItem">{`${day}`}</div>
