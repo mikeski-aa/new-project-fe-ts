@@ -24,7 +24,9 @@ function Layout() {
     navigate("/");
   };
 
-  const handleBudgetClick = () => {};
+  const handleFinanceClick = () => {
+    navigate("/finance");
+  };
 
   const handleSettingsClick = () => {};
 
@@ -43,7 +45,7 @@ function Layout() {
         <button className="navBtn" onClick={() => handleHomeClick()}>
           Home
         </button>
-        <button className="navBtn" onClick={() => handleBudgetClick()}>
+        <button className="navBtn" onClick={() => handleFinanceClick()}>
           Finance
         </button>
         <button className="navBtn" onClick={() => handleSettingsClick()}>

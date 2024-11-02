@@ -42,7 +42,7 @@ function Home() {
       <h1 className="pageHeading">Your Stores</h1>
       <button className="createNewStoreBtn" onClick={handleNewStoreModal}>
         <PlusCircle className="icontest" style={{ fill: "rgb(190, 38, 38)" }} />
-        Add new store
+        <div className="btnTextAdd"> Add new store</div>
       </button>
       <div className="homeStoreContainer">
         {userContext.stores

@@ -12,6 +12,7 @@ import {
 } from "./interfaces/userContextInterfaces";
 import Store from "./pages/Store";
 import { getStores } from "./services/storeCalls";
+import Finance from "./pages/Finance";
 
 // for some reason we have to declare the default values of the context in Typescript?
 // i dont quite understand why
@@ -78,6 +79,10 @@ function App() {
         {
           index: true,
           element: <Home></Home>,
+        },
+        {
+          path: "/finance",
+          element: <Finance></Finance>,
         },
         {
           path: "/store/:id",
