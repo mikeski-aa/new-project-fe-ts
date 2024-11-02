@@ -9,6 +9,7 @@
   width: 100%;
   height: 100%;
   background-color: rgba(128, 128, 128, 0.842);
+  backdrop-filter: blur(5px);
 }
 
 .eodMainContainer {
@@ -21,24 +22,34 @@
   transform: translateX(-50%) translateY(-50%);
   overflow-y: scroll;
   max-height: 80vh;
+  border-radius: 5px;
+  box-shadow: 2px 2px 4px black;
 }
 
 .itemSearchContainer {
   display: flex;
   flex-direction: column;
+  margin-bottom: 15px;
+  margin-top: 10px;
 }
 
-.searchItemContainer {
+.reportHeading {
+  font-size: 1.2rem;
+}
+
+.searchItemContainer,
+.individualSoldItem {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.individualSoldItem {
+  gap: 1rem;
 }
 
 .searchItemBox {
   width: 108px;
-}
-
-.individualSoldItem {
-  display: flex;
 }
 
 .soldItemInput {
@@ -65,7 +76,15 @@ input[type="number"] {
   margin-top: 25px;
 }
 
-.eodModalBtn {
+.individualSoldBtn,
+.btnQuan {
+  height: 35px;
+}
+
+.eodModalBtn,
+.searchItemBtn,
+.individualSoldBtn,
+.btnQuan {
   width: fit-content;
   display: flex;
   align-items: center;
@@ -80,12 +99,19 @@ input[type="number"] {
   transition-duration: 0.4s;
   padding: 10px;
 }
-.eodModalBtn:hover {
+.eodModalBtn:hover,
+.searchItemBtn:hover,
+.individualSoldBtn:hover,
+.btnQuan:hover {
   border-color: rgb(78, 3, 216);
   background-color: rgb(78, 3, 216);
   box-shadow: 2px 2px 4px rgb(0, 0, 0);
   color: white;
   cursor: pointer;
+}
+
+.soldInputBox {
+  display: flex;
 }
 
 .eodModalBtn.close {
@@ -103,4 +129,10 @@ input[type="number"] {
 .itemSearchInput:focus {
   outline: 3px solid rgb(78, 3, 216);
   border-color: rgba(0, 0, 0, 0);
+}
+
+.soldItemBox {
+  font-size: 1.2rem;
+  width: 120px;
+  overflow: hidden;
 }
