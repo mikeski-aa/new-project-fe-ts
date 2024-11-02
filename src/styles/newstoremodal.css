@@ -9,6 +9,8 @@
   width: 100%;
   height: 100%;
   background-color: rgba(128, 128, 128, 0.842);
+  z-index: 10;
+  backdrop-filter: blur(5px);
 }
 
 .addNewStoreContainer {
@@ -19,6 +21,8 @@
   background-color: white;
   padding: 25px;
   transform: translateX(-50%) translateY(-50%);
+  border-radius: 5px;
+  box-shadow: 2px 2px 4px black;
 }
 
 .modalInput {
