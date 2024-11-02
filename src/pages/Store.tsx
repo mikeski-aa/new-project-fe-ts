@@ -14,8 +14,6 @@ import {
   IMonth,
   IYearArrayHolder,
 } from "../utils/reportConversions";
-import ReportCalendar from "../components/ReportCalendarElement";
-import ReportCalendars from "../components/ReportCalendarHolderComp";
 import ReportCalendarHolderComp from "../components/ReportCalendarHolderComp";
 import OrderItems from "../components/OrderItems";
 

@@ -53,6 +53,7 @@ function EndOfDayReport({
 
   useEffect(() => {
     setCurrentProducts(products);
+    console.log("use effect running");
   }, [products]);
 
   const handleCloseClick = () => {
@@ -67,15 +68,17 @@ function EndOfDayReport({
   //   and
   //   const target:HTMLInputElement = e.target;
   const handleInputChange = (e: SyntheticEvent): void => {
+    console.log("input detected");
     const target = e.target as HTMLInputElement;
     setSearchInput(target.value);
 
-    const shallowProducts = [...currentProducts];
+    console.log(products);
+    const shallowProducts = [...products];
     if (target.value != "") {
       const filteredArray = shallowProducts.filter((item) =>
         item.sku.includes(target.value.toUpperCase())
       );
-
+      console.log(filteredArray);
       setSearchList(filteredArray);
     } else {
       setSearchList([]);
@@ -141,9 +144,6 @@ function EndOfDayReport({
   return (
     <div className={modal ? "eodModal show" : "eodModal hide"}>
       <div className="eodMainContainer">
-        <button className="eodModalBtn" onClick={handleCloseClick}>
-          Close
-        </button>
         {dailyReport ? (
           <>
             {revertLoading ? (
@@ -209,9 +209,14 @@ function EndOfDayReport({
                 />
               ))}
             </div>
-            <button className="eodModalBtn" onClick={handleSaveClick}>
-              Save
-            </button>
+            <div className="saleReportButtonContainer">
+              <button className="eodModalBtn" onClick={handleSaveClick}>
+                Save
+              </button>
+              <button className="eodModalBtn close" onClick={handleCloseClick}>
+                Close
+              </button>
+            </div>
           </>
         )}
       </div>
