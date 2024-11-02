@@ -22,7 +22,7 @@ export interface IOrder {
 function Finance() {
   const userContext = useContext(UserContext);
   const [activeStore, setActiveStore] = useState<string>("");
-  const [activeOrders, setActiveOrders] = useState<IStore>();
+  const [activeOrders, setActiveOrders] = useState<IOrder[]>();
 
   useEffect(() => {
     console.log(userContext.stores);
@@ -33,8 +33,8 @@ function Finance() {
 
   const handleStoreClick = async (id: number, name: string) => {
     setActiveStore(name);
-    const xd = await getOrdersForStore(id);
-    console.log(xd);
+    const orders = await getOrdersForStore(id);
+    setActiveOrders(orders);
   };
 
   return (
@@ -58,7 +58,13 @@ function Finance() {
               ))
             : null}
         </div>
-        <div className="reportHolder"></div>
+        <div className="reportHolder">
+          {activeOrders
+            ? activeOrders.map((order, index) => (
+                <div key={index} className="whatever">{`${order.date}`}</div>
+              ))
+            : null}
+        </div>
       </div>
     </div>
   );
