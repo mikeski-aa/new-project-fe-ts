@@ -10,7 +10,7 @@ function IndividualOrderItem({
   copyProducts: IProduct[];
   setCopyProducts: Dispatch<SetStateAction<IProduct[]>>;
 }) {
-  const [orderQuant, setOrderQuant] = useState<number>(0);
+  const [orderQuant, setOrderQuant] = useState<number>();
 
   const handleOrderQuantChange = (e: SyntheticEvent) => {
     const target = e.target as HTMLInputElement;

@@ -18,8 +18,11 @@ function OrderItems({
 
   useEffect(() => {
     const shallowCopy = [...currentStore.products];
-    shallowCopy.map((product) => (product.quantity = 0));
-    setCopyProducts(shallowCopy);
+    const deepCopy = shallowCopy.map((product) => ({
+      ...product,
+      quantity: 0,
+    }));
+    setCopyProducts(deepCopy);
   }, [currentStore.products]);
 
   const handleCloseClick = () => {
