@@ -73,8 +73,12 @@
 }
 
 .newItemInput:focus {
-  outline: 2px solid green;
+  outline: 3px solid rgb(78, 3, 216);
   border-color: rgba(0, 0, 0, 0);
+}
+
+.modalBtn.remove.thing {
+  border: none;
 }
 
 .modalBtn,
@@ -84,28 +88,22 @@
   align-items: center;
   gap: 0.25rem;
   justify-content: center;
-  border: 2px solid rgba(255, 255, 255, 0);
+  border: 3px solid rgb(78, 3, 216);
+  color: rgb(78, 3, 216);
+  border-radius: 5px;
   background: none;
   font-weight: 600;
   font-size: 1rem;
   transition-duration: 0.4s;
-  border-bottom: 2px solid green;
+  padding: 10px;
 }
-
-.modalBtn.remove.thing {
-  border-bottom: 2px solid rgb(255, 7, 7);
-}
-
+.newItemAddBtn:hover,
 .modalBtn.remove.thing:hover {
+  border-color: rgb(78, 3, 216);
+  background-color: rgb(78, 3, 216);
+  box-shadow: 2px 2px 4px rgb(0, 0, 0);
+  color: white;
   cursor: pointer;
-  border-radius: 3px;
-  border: 2px solid rgb(255, 0, 0);
-}
-
-.newItemAddBtn:hover {
-  cursor: pointer;
-  border-radius: 3px;
-  border: 2px solid green;
 }
 
 .newItemBoxes {
@@ -130,27 +128,23 @@
   align-items: center;
   gap: 0.25rem;
   justify-content: center;
-  border: 2px solid rgba(255, 255, 255, 0);
+  border: 3px solid rgb(78, 3, 216);
+  color: rgb(78, 3, 216);
+  border-radius: 5px;
   background: none;
   font-weight: 600;
   font-size: 1rem;
   transition-duration: 0.4s;
+  padding: 10px;
+}
+.newItemModalBtn:hover {
+  border-color: rgb(78, 3, 216);
+  background-color: rgb(78, 3, 216);
+  box-shadow: 2px 2px 4px rgb(0, 0, 0);
+  color: white;
+  cursor: pointer;
 }
 
 .newItemModalBtn.close {
-  border-bottom: 2px solid red;
-}
-
-.newItemModalBtn.save {
-  border-bottom: 2px solid green;
-}
-
-.newItemModalBtn.close:hover {
-  cursor: pointer;
-  border-color: rgb(255, 4, 4);
-}
-
-.newItemModalBtn.save:hover {
-  cursor: pointer;
-  border-color: green;
+  border: none;
 }
