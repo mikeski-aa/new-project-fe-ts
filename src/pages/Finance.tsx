@@ -3,6 +3,7 @@ import { UserContext } from "../App";
 import { useContext, useEffect, useState } from "react";
 import { getOrdersForStore } from "../services/orderCalls";
 import { IStore } from "../interfaces/userContextInterfaces";
+import OrderItemComponent from "../components/OrderItemComponent";
 
 export interface IOrderItem {
   id: number;
@@ -61,7 +62,11 @@ function Finance() {
         <div className="reportHolder">
           {activeOrders
             ? activeOrders.map((order, index) => (
-                <div key={index} className="whatever">{`${order.date}`}</div>
+                <OrderItemComponent
+                  key={index}
+                  date={order.date}
+                  total={order.totalvalue}
+                />
               ))
             : null}
         </div>
