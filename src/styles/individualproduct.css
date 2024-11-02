@@ -4,7 +4,11 @@
 
   justify-content: space-between;
   align-items: center;
-  border: 2px solid black;
+  border-radius: 5px;
+}
+
+.productContainer:hover {
+  background-color: rgba(173, 171, 171, 0.788);
 }
 
 .skuProd,

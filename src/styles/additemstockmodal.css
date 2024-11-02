@@ -51,6 +51,14 @@
   display: flex;
 }
 
+.headingDivItem {
+  text-align: center;
+}
+
+hr {
+  border-color: purple;
+}
+
 .itemProperty,
 .headingDivItem {
   width: 108px;
