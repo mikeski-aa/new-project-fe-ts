@@ -192,7 +192,7 @@ function AddItemStockModal({
               />
             ))}
           </div>
-          <hr></hr>
+
           <div className="newItemInputContainer">
             <div className="inputContainer">
               <input

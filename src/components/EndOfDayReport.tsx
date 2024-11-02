@@ -186,7 +186,7 @@ function EndOfDayReport({
               ))}
             </div>
             <div className="itemSearchContainer">
-              <label>Search item by SKU</label>
+              <label className="labelForSkuInput">Search item by SKU</label>
               <input
                 className="itemSearchInput"
                 type="string"

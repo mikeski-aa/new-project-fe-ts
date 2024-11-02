@@ -95,6 +95,13 @@
   cursor: pointer;
 }
 
+.addItemsBtn.active {
+  border-color: rgb(78, 3, 216);
+  background-color: rgb(78, 3, 216);
+  box-shadow: 2px 2px 4px rgb(0, 0, 0);
+  color: white;
+}
+
 .buttonContainerStore {
   display: flex;
   gap: 1rem;

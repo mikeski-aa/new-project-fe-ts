@@ -115,10 +115,16 @@ function Store() {
       </div>
       <div className="buttonContainerStore">
         {" "}
-        <button className="addItemsBtn" onClick={handleShowItems}>
+        <button
+          className={showItems ? `addItemsBtn active` : `addItemsBtn`}
+          onClick={handleShowItems}
+        >
           Show store items
         </button>
-        <button className="addItemsBtn" onClick={handleOpenReportHistory}>
+        <button
+          className={showReports ? `addItemsBtn active` : `addItemsBtn`}
+          onClick={handleOpenReportHistory}
+        >
           View previous reports
         </button>
         <button className="addItemsBtn" onClick={handleOpenNewItemModal}>
@@ -133,15 +139,22 @@ function Store() {
       </div>
 
       <div className={showItems ? "storeItems show" : "storeItems hide"}>
-        <div className="storeHeadings">
-          <div className="headingDivItemStore">SKU</div>
-          <div className="headingDivItemStore">Name</div>
-          <div className="headingDivItemStore">Category</div>
-          <div className="headingDivItemStore">Price</div>
-          <div className="headingDivItemStore">Purchase price</div>
-          <div className="headingDivItemStore">Quantity</div>
-          <div className="headingDivItemStore"></div>
-        </div>
+        {currentStore.products.length == 0 ? (
+          <div className="emptyMessage">
+            No items added to stock for this store
+          </div>
+        ) : (
+          <div className="storeHeadings">
+            <div className="headingDivItemStore">SKU</div>
+            <div className="headingDivItemStore">Name</div>
+            <div className="headingDivItemStore">Category</div>
+            <div className="headingDivItemStore">Price</div>
+            <div className="headingDivItemStore">Purchase price</div>
+            <div className="headingDivItemStore">Quantity</div>
+            <div className="headingDivItemStore"></div>
+          </div>
+        )}
+
         <div className="individualProductStoreContainer">
           {currentStore?.products
             ? currentStore.products.map((product, index) => (
@@ -156,6 +169,9 @@ function Store() {
         </div>
       </div>
       <div className={showReports ? "storeReports show" : "storeReports hide"}>
+        {reportYearArray.length == 0 ? (
+          <div className="emptyMessage">No reports found for this store</div>
+        ) : null}
         <div className="monthContainer">
           <ReportCalendarHolderComp yearArray={reportYearArray} />
         </div>

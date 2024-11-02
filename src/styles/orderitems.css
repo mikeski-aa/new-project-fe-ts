@@ -23,6 +23,8 @@
   transform: translateX(-50%) translateY(-50%);
   border-radius: 5px;
   box-shadow: 2px 2px 4px black;
+  overflow-y: scroll;
+  max-height: 70vh;
 }
 
 .newOrderItemCont {
