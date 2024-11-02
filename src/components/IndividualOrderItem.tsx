@@ -33,6 +33,7 @@ function IndividualOrderItem({
       <div className="itemProperty">{item.purchasePrice}</div>
       <input
         type="number"
+        className="inputOrderItemQuant"
         min={0}
         value={orderQuant}
         onChange={(e) => handleOrderQuantChange(e)}

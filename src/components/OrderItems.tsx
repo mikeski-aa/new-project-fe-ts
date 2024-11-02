@@ -39,16 +39,18 @@ function OrderItems({
   return (
     <div className={modal ? "newOrderItems show" : "newOrderItems hide"}>
       <div className="orderNewItemContainer">
-        <div className="modalBtnContainer"></div>
         <div className="orderItemText">Order items</div>
-        {copyProducts.map((product, index) => (
-          <IndividualOrderItem
-            item={product}
-            key={index}
-            copyProducts={copyProducts}
-            setCopyProducts={setCopyProducts}
-          />
-        ))}
+        <div className="orderItemsMappedHolder">
+          {copyProducts.map((product, index) => (
+            <IndividualOrderItem
+              item={product}
+              key={index}
+              copyProducts={copyProducts}
+              setCopyProducts={setCopyProducts}
+            />
+          ))}
+        </div>
+
         {loading ? <h1>LOADING...</h1> : null}
         <div className="buttonContainerNewOrderModal">
           <button className="modalBtn" onClick={handleOrderClick}>
