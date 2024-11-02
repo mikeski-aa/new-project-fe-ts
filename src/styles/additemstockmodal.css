@@ -10,6 +10,7 @@
   height: 100%;
   background-color: rgba(128, 128, 128, 0.842);
   backdrop-filter: blur(5px);
+  z-index: 10;
 }
 
 .newItemContainer {
@@ -148,4 +149,9 @@
 
 .newItemModalBtn.close {
   border: none;
+}
+
+.headingItems {
+  font-size: 1.5rem;
+  font-weight: 600;
 }
