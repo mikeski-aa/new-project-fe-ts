@@ -30,7 +30,7 @@
 }
 
 .modalInput:focus {
-  outline: 2px solid green;
+  outline: 3px solid rgb(78, 3, 216);
   border-color: rgba(0, 0, 0, 0);
 }
 
