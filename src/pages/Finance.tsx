@@ -60,15 +60,20 @@ function Finance() {
             : null}
         </div>
         <div className="reportHolder">
-          {activeOrders
-            ? activeOrders.map((order, index) => (
+          {activeOrders ? (
+            activeOrders.length ? (
+              activeOrders.map((order, index) => (
                 <OrderItemComponent
                   key={index}
                   date={order.date}
                   total={order.totalvalue}
+                  orderItems={order.itemsordered}
                 />
               ))
-            : null}
+            ) : (
+              <div>No items to show</div>
+            )
+          ) : null}
         </div>
       </div>
     </div>
