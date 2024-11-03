@@ -94,7 +94,8 @@ input[type="number"] {
 .eodModalBtn,
 .searchItemBtn,
 .individualSoldBtn,
-.btnQuan {
+.btnQuan,
+.revertReport {
   width: fit-content;
   display: flex;
   align-items: center;
@@ -112,12 +113,17 @@ input[type="number"] {
 .eodModalBtn:hover,
 .searchItemBtn:hover,
 .individualSoldBtn:hover,
-.btnQuan:hover {
+.btnQuan:hover,
+.revertReport:hover {
   border-color: rgb(78, 3, 216);
   background-color: rgb(78, 3, 216);
   box-shadow: 2px 2px 4px rgb(0, 0, 0);
   color: white;
   cursor: pointer;
+}
+
+.revertReport.cancel {
+  border: none;
 }
 
 .soldInputBox {
@@ -153,4 +159,8 @@ input[type="number"] {
 
 .soldItemInput {
   text-align: center;
+}
+
+.warning {
+  width: 65vw;
 }

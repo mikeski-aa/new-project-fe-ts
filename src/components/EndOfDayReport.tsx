@@ -151,7 +151,7 @@ function EndOfDayReport({
             ) : (
               <>
                 {" "}
-                <h4>
+                <h4 className="warning">
                   DAILY REPORT ALREADY SUBMITTED for {dateToday}! If the
                   existing report has a mistake or was submitted accidentally,
                   you will need to revert it. This cannot be undone, you will
@@ -161,8 +161,14 @@ function EndOfDayReport({
                   post report submission will cause restore to change current
                   quanitity.
                 </h4>
-                <button onClick={handleRevertClick}>
+                <button onClick={handleRevertClick} className="revertReport">
                   I have read the warning and would like to revert
+                </button>
+                <button
+                  onClick={handleCloseClick}
+                  className="revertReport cancel"
+                >
+                  Cancel
                 </button>
               </>
             )}
