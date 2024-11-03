@@ -13,12 +13,7 @@ function OrderItemComponent({
 }) {
   const [showMore, setShowMore] = useState<boolean>(false);
   const handleMoreClick = () => {
-    if (!showMore) {
-      setShowMore(true);
-      console.log(orderItems);
-    } else {
-      setShowMore(false);
-    }
+    setShowMore(!showMore);
   };
 
   return (
@@ -34,6 +29,10 @@ function OrderItemComponent({
       <div
         className={showMore ? `orderItemsHolder show` : `orderItemsHolder hide`}
       >
+        <div className="repItemHeadingHolder">
+          <div className="itemDetailsInHolder">SKU</div>
+          <div className="itemDetailsInHolder">Quantity ordered</div>
+        </div>
         {orderItems.map((item, index) => (
           <div key={index} className="orderedItemHolderForOrder">
             <div className="itemDetailsInHolder">{item.sku}</div>

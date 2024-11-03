@@ -54,15 +54,15 @@
 .reportItemHolder {
   display: flex;
   flex-direction: column;
-  transition: 0.4s;
+  transition: max-height 0.4s ease-in-out;
+  max-height: 1000px;
+  overflow-y: hidden;
 }
 
 .orderItemsHolder.hide,
 .reportItemHolder.hide {
-  opacity: 0;
-  scale: 0;
-  max-width: 0;
   max-height: 0;
+  overflow: hidden;
 }
 
 .orderItemContainerOutside,
@@ -75,6 +75,7 @@
 .reportItem {
   display: flex;
   gap: 1rem;
+  background-color: green;
 }
 
 .orderMoreInfo,
@@ -96,4 +97,19 @@
 .reportHolderVert {
   display: flex;
   flex-direction: column;
+}
+
+.orderHolderVert.hide,
+.reportHolderVert.hide {
+  display: none;
+}
+
+.headingHolderRep,
+.repItemHeadingHolder {
+  display: flex;
+  font-weight: 600;
+}
+
+.itemDetailsInHolder {
+  width: 125px;
 }

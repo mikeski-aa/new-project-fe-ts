@@ -6,11 +6,7 @@ function ReportItemComponent({ report }: { report: IReport }) {
   const [showMore, setShowMore] = useState<boolean>(false);
 
   const handleMoreClick = () => {
-    if (!showMore) {
-      setShowMore(true);
-    } else {
-      setShowMore(false);
-    }
+    setShowMore(!showMore);
   };
 
   return (
@@ -25,6 +21,11 @@ function ReportItemComponent({ report }: { report: IReport }) {
       <div
         className={showMore ? `reportItemHolder show` : `reportItemHolder hide`}
       >
+        <div className="repItemHeadingHolder">
+          <div className="itemDetailsInHolder">SKU</div>
+          <div className="itemDetailsInHolder">Item price</div>
+          <div className="itemDetailsInHolder">Quantity sold</div>
+        </div>
         {report.soldProducts.map((item, index) => (
           <div key={index} className="orderedItemHolderForOrder">
             <div className="itemDetailsInHolder">{item.sku}</div>

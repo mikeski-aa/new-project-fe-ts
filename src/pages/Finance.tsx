@@ -34,7 +34,12 @@ function Finance() {
       console.log(userContext.stores);
       if (userContext && userContext.stores.length != 0) {
         setActiveStore(userContext.stores[0].name);
+
+        const orders = await getOrdersForStore(userContext.stores[0].id);
+        setActiveOrders(orders);
+
         const data = await getRepData(userContext.stores[0].id);
+        console.log(data);
         if (data.multipleItems) {
           setActiveReports(data.multipleItems);
         }
@@ -99,7 +104,7 @@ function Finance() {
         </div>
         <div className="reportHolder">
           {activeOrders ? (
-            activeOrders.length ? (
+            activeOrders.length || activeReports.length ? (
               <div className="orderReportHolder">
                 <div className="totalValueForOrders">
                   Total value of orders ${getTotalValue()}
@@ -107,9 +112,23 @@ function Finance() {
                 <div className="totalValueForOrders">
                   Total income from reports ${getTotalRepValue()}
                 </div>
+                <div className="totalValueForOrder">
+                  Current net of orders v.s sales: $
+                  {getTotalRepValue() - getTotalValue()}
+                </div>
                 <div className="sideBySide">
-                  <div className="orderHolderVert">
+                  <div
+                    className={
+                      activeOrders.length === 0
+                        ? "orderHolderVert hide"
+                        : "orderHolderVert"
+                    }
+                  >
                     <h4>Past orders</h4>
+                    <div className="headingHolderRep">
+                      <div className="reportItemText">Date</div>
+                      <div className="reportItemText">Total value</div>
+                    </div>
                     {activeOrders.map((order, index) => (
                       <OrderItemComponent
                         key={index}
@@ -119,8 +138,18 @@ function Finance() {
                       />
                     ))}
                   </div>
-                  <div className="reportHolderVert">
+                  <div
+                    className={
+                      activeReports.length === 0
+                        ? "reportHolderVert hide"
+                        : "reportHolderVert"
+                    }
+                  >
                     <h4>Past reports</h4>
+                    <div className="headingHolderRep">
+                      <div className="reportItemText">Date</div>
+                      <div className="reportItemText">Total value</div>
+                    </div>
                     {activeReports.map((item, index) => (
                       <ReportItemComponent report={item} key={index} />
                     ))}
@@ -128,7 +157,7 @@ function Finance() {
                 </div>
               </div>
             ) : (
-              <div>No items to show</div>
+              <div>This store has no stock orders or sale reports </div>
             )
           ) : null}
         </div>
