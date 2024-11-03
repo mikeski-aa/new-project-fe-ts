@@ -37,7 +37,8 @@
   color: white;
 }
 
-.orderItemContainer {
+.orderItemContainer,
+.reportItemInsideDiv {
   display: flex;
   gap: 1rem;
 }
@@ -65,17 +66,19 @@
 }
 
 .orderItemContainerOutside,
-.reportItem {
+.reportItemOutside {
   display: flex;
   flex-direction: column;
 }
 
-.orderedItemHolderForOrder {
+.orderedItemHolderForOrder,
+.reportItem {
   display: flex;
   gap: 1rem;
 }
 
-.orderMoreInfo {
+.orderMoreInfo,
+.reportItemText {
   width: 150px;
 }
 

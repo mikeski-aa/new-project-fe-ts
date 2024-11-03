@@ -5,6 +5,7 @@ import { getOrdersForStore } from "../services/orderCalls";
 import { IReport, IStore } from "../interfaces/userContextInterfaces";
 import OrderItemComponent from "../components/OrderItemComponent";
 import { getRepData } from "../services/reportCalls";
+import ReportItemComponent from "../components/ReportItemComponent";
 
 export interface IOrderItem {
   id: number;
@@ -121,7 +122,7 @@ function Finance() {
                   <div className="reportHolderVert">
                     <h4>Past reports</h4>
                     {activeReports.map((item, index) => (
-                      <div key={index}>{item.id}</div>
+                      <ReportItemComponent report={item} key={index} />
                     ))}
                   </div>
                 </div>

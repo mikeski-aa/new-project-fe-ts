@@ -14,12 +14,14 @@ function ReportItemComponent({ report }: { report: IReport }) {
   };
 
   return (
-    <div className="reportItem">
-      <div className="reportItemText">{dateConvert(report.date)}</div>
-      <div className="reportItemText">{report.totalSaleValue}</div>
-      <button className="reportMoreBtn" onClick={handleMoreClick}>
-        More
-      </button>
+    <div className="reportItemOutside">
+      <div className="reportItemInsideDiv">
+        <div className="reportItemText">{dateConvert(report.date)}</div>
+        <div className="reportItemText">{report.totalSaleValue}</div>
+        <button className="reportMoreBtn" onClick={handleMoreClick}>
+          More
+        </button>
+      </div>
       <div
         className={showMore ? `reportItemHolder show` : `reportItemHolder hide`}
       >
