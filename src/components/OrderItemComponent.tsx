@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { IOrderItem } from "../pages/Finance";
 import { dateConvert } from "../utils/dateConversion";
-
+import Chevron from "../assets/chevron.svg?react";
 function OrderItemComponent({
   date,
   total,
@@ -21,8 +21,8 @@ function OrderItemComponent({
       <div className="orderItemContainer">
         <div className="orderMoreInfo">{dateConvert(date)}</div>
         <div className="orderMoreInfo">{`$${total}`}</div>
-        <button className="orderButtonThing" onClick={handleMoreClick}>
-          More
+        <button className="reportMoreBtn" onClick={handleMoreClick}>
+          <Chevron className={showMore ? "chevron down" : "chevron up"} />
         </button>
       </div>
 

@@ -40,7 +40,9 @@
 .orderItemContainer,
 .reportItemInsideDiv {
   display: flex;
+  align-items: center;
   gap: 1rem;
+  justify-content: space-between;
 }
 
 .reportHolder {
@@ -52,9 +54,12 @@
 
 .orderItemsHolder,
 .reportItemHolder {
+  margin-top: 10px;
+  margin-bottom: 10px;
   display: flex;
   flex-direction: column;
   transition: max-height 0.4s ease-in-out;
+  transition-duration: 0.4s;
   max-height: 1000px;
   overflow-y: hidden;
 }
@@ -63,6 +68,9 @@
 .reportItemHolder.hide {
   max-height: 0;
   overflow: hidden;
+  /* border-color: rgba(255, 255, 255, 0); */
+  margin: 0;
+  padding: 0;
 }
 
 .orderItemContainerOutside,
@@ -75,7 +83,6 @@
 .reportItem {
   display: flex;
   gap: 1rem;
-  background-color: green;
 }
 
 .orderMoreInfo,
@@ -112,4 +119,40 @@
 
 .itemDetailsInHolder {
   width: 125px;
+}
+
+.reportMoreBtn {
+  background: none;
+  border: none;
+  border: 3px solid rgb(78, 3, 216);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.chevron {
+  width: 25px;
+  height: 25px;
+
+  transition-duration: 0.4s;
+}
+
+.chevron.up {
+}
+
+.chevron.down {
+  transform: rotateZ(-180deg);
+}
+
+.chevron:hover {
+  cursor: pointer;
+}
+
+.orderItemsHolder,
+.reportItemHolder {
+  padding: 5px;
+  border: 3px solid rgb(78, 3, 216);
+  border-radius: 5px;
 }

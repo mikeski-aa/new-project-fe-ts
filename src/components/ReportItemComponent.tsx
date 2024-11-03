@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { IReport, ISoldProduct } from "../interfaces/userContextInterfaces";
 import { dateConvert } from "../utils/dateConversion";
+import Chevron from "../assets/chevron.svg?react";
 
 function ReportItemComponent({ report }: { report: IReport }) {
   const [showMore, setShowMore] = useState<boolean>(false);
@@ -15,7 +16,7 @@ function ReportItemComponent({ report }: { report: IReport }) {
         <div className="reportItemText">{dateConvert(report.date)}</div>
         <div className="reportItemText">{report.totalSaleValue}</div>
         <button className="reportMoreBtn" onClick={handleMoreClick}>
-          More
+          <Chevron className={showMore ? "chevron down" : "chevron up"} />
         </button>
       </div>
       <div
