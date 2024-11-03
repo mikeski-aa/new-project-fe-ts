@@ -75,3 +75,19 @@
 .orderMoreInfo {
   width: 150px;
 }
+
+.orderReportHolder {
+  display: flex;
+  flex-direction: column;
+}
+
+.sideBySide {
+  display: flex;
+  gap: 1rem;
+}
+
+.orderHolderVert,
+.reportHolderVert {
+  display: flex;
+  flex-direction: column;
+}

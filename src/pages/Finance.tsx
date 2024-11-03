@@ -97,23 +97,35 @@ function Finance() {
             : null}
         </div>
         <div className="reportHolder">
-          <h4>Past orders</h4>
-          <div className="totalValueForOrders">
-            Total value of orders ${getTotalValue()}
-          </div>
-          <div className="totalValueForOrders">
-            Total income from reports ${getTotalRepValue()}
-          </div>
           {activeOrders ? (
             activeOrders.length ? (
-              activeOrders.map((order, index) => (
-                <OrderItemComponent
-                  key={index}
-                  date={order.date}
-                  total={order.totalvalue}
-                  orderItems={order.itemsordered}
-                />
-              ))
+              <div className="orderReportHolder">
+                <div className="totalValueForOrders">
+                  Total value of orders ${getTotalValue()}
+                </div>
+                <div className="totalValueForOrders">
+                  Total income from reports ${getTotalRepValue()}
+                </div>
+                <div className="sideBySide">
+                  <div className="orderHolderVert">
+                    <h4>Past orders</h4>
+                    {activeOrders.map((order, index) => (
+                      <OrderItemComponent
+                        key={index}
+                        date={order.date}
+                        total={order.totalvalue}
+                        orderItems={order.itemsordered}
+                      />
+                    ))}
+                  </div>
+                  <div className="reportHolderVert">
+                    <h4>Past reports</h4>
+                    {activeReports.map((item, index) => (
+                      <div key={index}>{item.id}</div>
+                    ))}
+                  </div>
+                </div>
+              </div>
             ) : (
               <div>No items to show</div>
             )
