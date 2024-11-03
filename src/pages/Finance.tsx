@@ -2,8 +2,9 @@ import "../styles/finance.css";
 import { UserContext } from "../App";
 import { useContext, useEffect, useState } from "react";
 import { getOrdersForStore } from "../services/orderCalls";
-import { IStore } from "../interfaces/userContextInterfaces";
+import { IReport, IStore } from "../interfaces/userContextInterfaces";
 import OrderItemComponent from "../components/OrderItemComponent";
+import { getRepData } from "../services/reportCalls";
 
 export interface IOrderItem {
   id: number;
@@ -24,19 +25,34 @@ function Finance() {
   const userContext = useContext(UserContext);
   const [activeStore, setActiveStore] = useState<string>("");
   const [activeOrders, setActiveOrders] = useState<IOrder[]>();
+  const [activeReports, setActiveReports] = useState<IReport[]>([]);
 
   // i need to fetch the report data too
   useEffect(() => {
-    console.log(userContext.stores);
-    if (userContext && userContext.stores.length != 0) {
-      setActiveStore(userContext.stores[0].name);
-    }
+    const populateFinance = async () => {
+      console.log(userContext.stores);
+      if (userContext && userContext.stores.length != 0) {
+        setActiveStore(userContext.stores[0].name);
+        const data = await getRepData(userContext.stores[0].id);
+        if (data.multipleItems) {
+          setActiveReports(data.multipleItems);
+        }
+
+        console.log(data);
+      }
+    };
+    populateFinance();
   }, [userContext.stores]);
 
   const handleStoreClick = async (id: number, name: string) => {
     setActiveStore(name);
     const orders = await getOrdersForStore(id);
     setActiveOrders(orders);
+    const data = await getRepData(id);
+    if (data.multipleItems) {
+      setActiveReports(data.multipleItems);
+    }
+    console.log(data);
   };
 
   const getTotalValue = () => {
@@ -46,7 +62,16 @@ function Finance() {
         total += activeOrders[x].totalvalue;
       }
     }
+    return total;
+  };
 
+  const getTotalRepValue = () => {
+    let total = 0;
+    if (activeReports) {
+      for (let x = 0; x < activeReports.length; x++) {
+        total += activeReports[x].totalSaleValue;
+      }
+    }
     return total;
   };
 
@@ -77,7 +102,7 @@ function Finance() {
             Total value of orders ${getTotalValue()}
           </div>
           <div className="totalValueForOrders">
-            Total income from reports ${getTotalValue()}
+            Total income from reports ${getTotalRepValue()}
           </div>
           {activeOrders ? (
             activeOrders.length ? (

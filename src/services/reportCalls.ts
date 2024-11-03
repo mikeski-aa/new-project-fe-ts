@@ -5,6 +5,7 @@ export interface IReportResponse {
   errorPresent: boolean;
   error?: string;
   reportItem?: IReport;
+  multipleItems?: IReport[];
 }
 
 async function createReport(
@@ -117,9 +118,9 @@ async function getRepData(storeid: number): Promise<IReportResponse> {
       };
     }
 
-    const reportItem: IReport = await response.json();
+    const multipleItems: IReport[] = await response.json();
 
-    return { reportItem, errorPresent: false };
+    return { multipleItems, errorPresent: false };
   } catch (error) {
     console.log(error);
     return { errorPresent: true, error: `Server or network error` };
