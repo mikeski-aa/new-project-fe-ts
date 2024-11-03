@@ -41,16 +41,16 @@ function Layout() {
 
   return (
     <>
-      <div className="Nav">
+      <div className="nav">
         <button className="navBtn" onClick={() => handleHomeClick()}>
-          Home
+          Stores
         </button>
         <button className="navBtn" onClick={() => handleFinanceClick()}>
           Finance
         </button>
-        <button className="navBtn" onClick={() => handleSettingsClick()}>
+        {/* <button className="navBtn" onClick={() => handleSettingsClick()}>
           Settings
-        </button>
+        </button> */}
         <button className="navBtn" onClick={() => handleLogoutClick()}>
           Logout for user: {userContext.user?.username}
         </button>

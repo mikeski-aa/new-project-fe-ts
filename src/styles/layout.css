@@ -1,0 +1,30 @@
+.navBtn {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  justify-content: center;
+  border: 3px solid rgb(78, 3, 216);
+  color: rgb(78, 3, 216);
+  border-radius: 5px;
+  background: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition-duration: 0.4s;
+  padding: 10px;
+}
+.navBtn:hover {
+  border-color: rgb(78, 3, 216);
+  background-color: rgb(78, 3, 216);
+  box-shadow: 2px 2px 4px rgb(0, 0, 0);
+  color: white;
+  cursor: pointer;
+}
+
+.nav {
+  display: flex;
+  width: fit-content;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}

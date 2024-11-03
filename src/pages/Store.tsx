@@ -151,7 +151,7 @@ function Store() {
             <div className="headingDivItemStore">Price</div>
             <div className="headingDivItemStore">Purchase price</div>
             <div className="headingDivItemStore">Quantity</div>
-            <div className="headingDivItemStore"></div>
+            <div className="headingDivItemStoreLast"></div>
           </div>
         )}
 

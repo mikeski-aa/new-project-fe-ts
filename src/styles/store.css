@@ -55,6 +55,12 @@
   font-size: 1.1rem;
 }
 
+.headingDivItemStoreLast {
+  width: 166px;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
 .mappedMonthContainer {
   display: flex;
   gap: 1rem;

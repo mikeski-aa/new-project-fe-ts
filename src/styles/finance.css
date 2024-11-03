@@ -156,3 +156,7 @@
   border: 3px solid rgb(78, 3, 216);
   border-radius: 5px;
 }
+
+h1 {
+  color: #333333;
+}
