@@ -30,4 +30,13 @@ function convertDate(optDate?: Date): string {
   return newDate;
 }
 
-export { convertDate };
+function dateConvert(date: Date): string {
+  const newDate = new Date(date);
+  const day = newDate.getDate();
+  const month = newDate.toLocaleString("default", { month: "long" });
+  const year = newDate.getFullYear();
+
+  return `${day} ${month} ${year}`;
+}
+
+export { convertDate, dateConvert };

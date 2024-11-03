@@ -49,20 +49,23 @@
   margin-top: 20px;
 }
 
-.orderItemsHolder {
+.orderItemsHolder,
+.reportItemHolder {
   display: flex;
   flex-direction: column;
   transition: 0.4s;
 }
 
-.orderItemsHolder.hide {
+.orderItemsHolder.hide,
+.reportItemHolder.hide {
   opacity: 0;
   scale: 0;
   max-width: 0;
   max-height: 0;
 }
 
-.orderItemContainerOutside {
+.orderItemContainerOutside,
+.reportItem {
   display: flex;
   flex-direction: column;
 }
