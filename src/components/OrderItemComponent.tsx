@@ -13,27 +13,44 @@ function dateConver(date: Date): string {
 function OrderItemComponent({
   date,
   total,
-  orderitems,
+  orderItems,
 }: {
   date: Date;
   total: number;
-  orderitems: IOrderItem[];
+  orderItems: IOrderItem[];
 }) {
   const [showMore, setShowMore] = useState<boolean>(false);
   const handleMoreClick = () => {
     if (!showMore) {
       setShowMore(true);
+      console.log(orderItems);
     } else {
       setShowMore(false);
     }
   };
+
   return (
-    <div className="orderItemContainer">
-      <div className="orderMoreInfo">{dateConver(date)}</div>
-      <div className="orderMoreInfo">{`$${total}`}</div>
-      <button className="orderButtonThing" onClick={handleMoreClick}>
-        More
-      </button>
+    <div className="orderItemContainerOutside">
+      <div className="orderItemContainer">
+        <div className="orderMoreInfo">{dateConver(date)}</div>
+        <div className="orderMoreInfo">{`$${total}`}</div>
+        <button className="orderButtonThing" onClick={handleMoreClick}>
+          More
+        </button>
+      </div>
+      <div
+        className={showMore ? `orderItemsHolder show` : `orderItemsHolder hide`}
+      >
+        <div
+          className={
+            showMore ? `orderItemsHolder show` : `orderItemsHolder hide`
+          }
+        >
+          {orderItems.map((item) => (
+            <div>{item.sku}</div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

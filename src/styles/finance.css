@@ -48,3 +48,20 @@
   align-items: center;
   margin-top: 20px;
 }
+
+.orderItemsHolder {
+  display: flex;
+  flex-direction: column;
+}
+
+.orderItemsHolder.hide {
+  opacity: 0;
+  scale: 0;
+  width: 0;
+  height: 0;
+}
+
+.orderItemContainerOutside {
+  display: flex;
+  flex-direction: column;
+}
