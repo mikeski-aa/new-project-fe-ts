@@ -25,6 +25,7 @@ function Finance() {
   const [activeStore, setActiveStore] = useState<string>("");
   const [activeOrders, setActiveOrders] = useState<IOrder[]>();
 
+  // i need to fetch the report data too
   useEffect(() => {
     console.log(userContext.stores);
     if (userContext && userContext.stores.length != 0) {
@@ -36,6 +37,17 @@ function Finance() {
     setActiveStore(name);
     const orders = await getOrdersForStore(id);
     setActiveOrders(orders);
+  };
+
+  const getTotalValue = () => {
+    let total = 0;
+    if (activeOrders) {
+      for (let x = 0; x < activeOrders.length; x++) {
+        total += activeOrders[x].totalvalue;
+      }
+    }
+
+    return total;
   };
 
   return (
@@ -60,6 +72,13 @@ function Finance() {
             : null}
         </div>
         <div className="reportHolder">
+          <h4>Past orders</h4>
+          <div className="totalValueForOrders">
+            Total value of orders ${getTotalValue()}
+          </div>
+          <div className="totalValueForOrders">
+            Total income from reports ${getTotalValue()}
+          </div>
           {activeOrders ? (
             activeOrders.length ? (
               activeOrders.map((order, index) => (

@@ -46,8 +46,11 @@ function OrderItemComponent({
             showMore ? `orderItemsHolder show` : `orderItemsHolder hide`
           }
         >
-          {orderItems.map((item) => (
-            <div>{item.sku}</div>
+          {orderItems.map((item, index) => (
+            <div key={index} className="orderedItemHolderForOrder">
+              <div className="itemDetailsInHolder">{item.sku}</div>
+              <div className="itemDetailsInHolder">{item.quantityordered}</div>
+            </div>
           ))}
         </div>
       </div>

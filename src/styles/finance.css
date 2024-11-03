@@ -52,16 +52,26 @@
 .orderItemsHolder {
   display: flex;
   flex-direction: column;
+  transition: 0.4s;
 }
 
 .orderItemsHolder.hide {
   opacity: 0;
   scale: 0;
-  width: 0;
-  height: 0;
+  max-width: 0;
+  max-height: 0;
 }
 
 .orderItemContainerOutside {
   display: flex;
   flex-direction: column;
+}
+
+.orderedItemHolderForOrder {
+  display: flex;
+  gap: 1rem;
+}
+
+.orderMoreInfo {
+  width: 150px;
 }
