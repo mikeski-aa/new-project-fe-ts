@@ -101,4 +101,29 @@ async function rollbackData(report: IReport): Promise<IReportResponse> {
   }
 }
 
-export { createReport, deleteReport, rollbackData };
+async function getRepData(storeid: number): Promise<IReportResponse> {
+  const url = LOCAL_URL + `report?storeid=${storeid}`;
+
+  try {
+    const response = await fetch(url, {
+      method: "GET",
+      headers: getHeaderInfo(),
+    });
+    if (!response.ok) {
+      console.log(response.status);
+      return {
+        errorPresent: true,
+        error: `API response error ${response.status}`,
+      };
+    }
+
+    const reportItem: IReport = await response.json();
+
+    return { reportItem, errorPresent: false };
+  } catch (error) {
+    console.log(error);
+    return { errorPresent: true, error: `Server or network error` };
+  }
+}
+
+export { createReport, deleteReport, rollbackData, getRepData };
