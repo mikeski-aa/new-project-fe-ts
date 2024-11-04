@@ -14,7 +14,9 @@ function ReportItemComponent({ report }: { report: IReport }) {
     <div className="reportItemOutside">
       <div className="reportItemInsideDiv">
         <div className="reportItemText">{dateConvert(report.date)}</div>
-        <div className="reportItemText">{report.totalSaleValue}</div>
+        <div className="reportItemText">
+          {Math.round(report.totalSaleValue * 100) / 100}
+        </div>
         <button className="reportMoreBtn" onClick={handleMoreClick}>
           <Chevron className={showMore ? "chevron down" : "chevron up"} />
         </button>

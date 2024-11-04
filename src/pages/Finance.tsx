@@ -107,14 +107,17 @@ function Finance() {
             activeOrders.length || activeReports.length ? (
               <div className="orderReportHolder">
                 <div className="totalValueForOrders">
-                  Total value of orders ${getTotalValue()}
+                  Total value of orders $
+                  {Math.round(getTotalValue() * 100) / 100}
                 </div>
                 <div className="totalValueForOrders">
-                  Total income from reports ${getTotalRepValue()}
+                  Total income from reports $
+                  {Math.round(getTotalRepValue() * 100) / 100}
                 </div>
                 <div className="totalValueForOrder">
                   Current net of orders v.s sales: $
-                  {getTotalRepValue() - getTotalValue()}
+                  {Math.round((getTotalRepValue() - getTotalValue()) * 100) /
+                    100}
                 </div>
                 <div className="sideBySide">
                   <div
@@ -124,7 +127,7 @@ function Finance() {
                         : "orderHolderVert"
                     }
                   >
-                    <h4>Past orders</h4>
+                    <h4>Past stock orders</h4>
                     <div className="headingHolderRep">
                       <div className="reportItemText">Date</div>
                       <div className="reportItemText">Total value</div>
@@ -145,7 +148,7 @@ function Finance() {
                         : "reportHolderVert"
                     }
                   >
-                    <h4>Past reports</h4>
+                    <h4>Past sale reports</h4>
                     <div className="headingHolderRep">
                       <div className="reportItemText">Date</div>
                       <div className="reportItemText">Total value</div>

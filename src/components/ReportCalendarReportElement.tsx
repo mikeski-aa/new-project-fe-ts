@@ -37,7 +37,9 @@ function ReportCalendarReportElement({ reportItem }: { reportItem: IReport }) {
               <div className="soldProdItem">{item.price}</div>
             </div>
           ))}
-          <div className="modalSoldTotal">{`Total sold: $${reportItem.totalSaleValue}`}</div>
+          <div className="modalSoldTotal">{`Total sold: $${
+            Math.round(reportItem.totalSaleValue * 100) / 100
+          }`}</div>
           <button onClick={handleCloseClick} className="closeBtnReport">
             Close
           </button>

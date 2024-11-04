@@ -20,7 +20,9 @@ function OrderItemComponent({
     <div className="orderItemContainerOutside">
       <div className="orderItemContainer">
         <div className="orderMoreInfo">{dateConvert(date)}</div>
-        <div className="orderMoreInfo">{`$${total}`}</div>
+        <div className="orderMoreInfo">{`$${
+          Math.round(total * 100) / 100
+        }`}</div>
         <button className="reportMoreBtn" onClick={handleMoreClick}>
           <Chevron className={showMore ? "chevron down" : "chevron up"} />
         </button>
