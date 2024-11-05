@@ -170,3 +170,12 @@
     width: 90vw;
   }
 }
+
+.loadingStoreStatus.hide {
+  display: none;
+}
+
+.loadingStoreStatus {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
