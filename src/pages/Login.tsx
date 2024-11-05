@@ -1,6 +1,11 @@
 import "../styles/loginregister.css";
 import { SyntheticEvent, useContext, useState } from "react";
-import { createUser, loginUser, guestLogin } from "../services/userCalls";
+import {
+  createUser,
+  loginUser,
+  guestLogin,
+  testGuestLogin,
+} from "../services/userCalls";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../App";
 import { validateRegisterInput } from "../utils/validateInput";
@@ -127,19 +132,38 @@ function Login() {
 
   // handle guest login click
   // needs to call service to create guest instance
-  const handleGuestClick = async () => {
-    const response = await guestLogin();
+  // const handleGuestClick = async () => {
+  //   const response = await guestLogin();
 
-    if (response.errorPresent) {
+  //   if (response.errorPresent) {
+  //     // throw error - as logging in has failed
+  //   }
+
+  //   setLoginError(false);
+  //   console.log("handling guest click");
+  //   console.log(response);
+
+  //   if (response.user) {
+  //     userContext.setUser(response.user);
+  //     userContext.setIsLogged(true);
+  //     navigate("/");
+  //   }
+  // };
+
+  const handleTestClick = async () => {
+    const testresponse = await testGuestLogin();
+    console.log(testresponse);
+
+    if (testresponse.errorPresent) {
       // throw error - as logging in has failed
     }
 
     setLoginError(false);
     console.log("handling guest click");
-    console.log(response);
+    console.log(testresponse);
 
-    if (response.user) {
-      userContext.setUser(response.user);
+    if (testresponse.user) {
+      userContext.setUser(testresponse.user);
       userContext.setIsLogged(true);
       navigate("/");
     }
@@ -178,8 +202,8 @@ function Login() {
             >
               Login
             </button>
-            <button className="welcomeButton" onClick={handleGuestClick}>
-              Guest Login
+            <button className="welcomeButton" onClick={handleTestClick}>
+              Guest login
             </button>
             <button className="welcomeButton" onClick={handleGoRegister}>
               I want to create a new account

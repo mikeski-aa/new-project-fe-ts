@@ -165,4 +165,33 @@ async function guestLogin() {
   }
 }
 
-export { createUser, loginUser, loginCheck, guestLogin };
+async function testGuestLogin() {
+  const url = LOCAL_URL + "login/guest/test";
+
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: getHeaderInfo(),
+    });
+
+    if (!response.ok) {
+      return {
+        errorPresent: true,
+        error: "Error creating guest instance",
+      } as UserResponse;
+    }
+
+    const json: Omit<UserResponse, "errorPresent"> = await response.json();
+
+    // type guard
+    if (json.token) {
+      localStorage.setItem("token", json.token);
+    }
+
+    return { ...json, errorPresent: false };
+  } catch (error) {
+    return { errorPresent: true, error: "Network or server error" };
+  }
+}
+
+export { createUser, loginUser, loginCheck, guestLogin, testGuestLogin };
