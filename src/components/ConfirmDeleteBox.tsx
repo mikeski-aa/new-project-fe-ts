@@ -43,23 +43,29 @@ function ConfirmDeleteBox({
   return (
     <div className={modal ? "deletemodal show" : "deletemodal hide"}>
       <div className="deleteConfirmContainer">
-        <div className="deleteText">Would you like to delete:</div>
-        <div className="deleteText second">{store ? store.name : null}</div>
-        {loading ? <h1>LOADING</h1> : null}
-        <div className="deleteBtnContainer">
-          <button
-            className="delModBtn confirm"
-            onClick={() => handleConfirmClick()}
-          >
-            Confirm Delete
-          </button>
-          <button
-            className="delModBtn cancel"
-            onClick={() => handleCancelClick()}
-          >
-            Cancel
-          </button>
-        </div>
+        {loading ? (
+          <h1>Deleting store...</h1>
+        ) : (
+          <>
+            <div className="deleteText">Would you like to delete:</div>
+            <div className="deleteText second">{store ? store.name : null}</div>
+
+            <div className="deleteBtnContainer">
+              <button
+                className="delModBtn confirm"
+                onClick={() => handleConfirmClick()}
+              >
+                Confirm Delete
+              </button>
+              <button
+                className="delModBtn cancel"
+                onClick={() => handleCancelClick()}
+              >
+                Cancel
+              </button>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

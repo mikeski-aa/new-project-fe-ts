@@ -128,3 +128,18 @@
 .closeBtnReport {
   border: none;
 }
+
+@media (max-width: 640px) {
+  .soldProdItem,
+  .soldProdItem {
+    max-width: 100px;
+  }
+
+  .modalSoldHeading {
+    max-width: 90vw;
+  }
+
+  .modalSoldProductsContainer {
+    max-width: 90vw;
+  }
+}

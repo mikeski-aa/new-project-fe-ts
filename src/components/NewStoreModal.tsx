@@ -56,42 +56,49 @@ function NewStoreModal({
       className={newStoreModal ? "newStoreModal show" : "newStoreModal hide"}
     >
       <div className="addNewStoreContainer">
-        <div className="modalBtnContainer"></div>
-        <div className="modalInputContainer">
-          <div className="inputCont">
-            <label className="inputLabelEdit">Store name</label>
-            <input
-              placeholder="Store name"
-              className="modalInput"
-              value={name}
-              onChange={(e) => handleNameInput(e)}
-            ></input>
-          </div>
-          <div className="inputCont">
-            <label className="inputLabelEdit">Store location</label>
-            <input
-              placeholder="Store Location"
-              className="modalInput"
-              value={location}
-              onChange={(e) => handleLocationInput(e)}
-            ></input>
-          </div>
-        </div>
-        {loading ? <h1>LOADING...</h1> : null}
-        <div className="deleteBtnContainer">
-          <button
-            className="modalBtn newstore"
-            onClick={() => handleAddClick()}
-          >
-            Create new store
-          </button>
-          <button
-            className="modalBtn newstore cancel"
-            onClick={handleCloseClick}
-          >
-            Cancel
-          </button>
-        </div>
+        {loading ? (
+          <h1 className="headingStoreLoading">
+            Please wait, creating new store...
+          </h1>
+        ) : (
+          <>
+            <div className="modalInputContainer">
+              <div className="inputCont">
+                <label className="inputLabelEdit">Store name</label>
+                <input
+                  placeholder="Store name"
+                  className="modalInput"
+                  value={name}
+                  onChange={(e) => handleNameInput(e)}
+                ></input>
+              </div>
+              <div className="inputCont">
+                <label className="inputLabelEdit">Store location</label>
+                <input
+                  placeholder="Store Location"
+                  className="modalInput"
+                  value={location}
+                  onChange={(e) => handleLocationInput(e)}
+                ></input>
+              </div>
+            </div>
+
+            <div className="deleteBtnContainer">
+              <button
+                className="modalBtn newstore"
+                onClick={() => handleAddClick()}
+              >
+                Create new store
+              </button>
+              <button
+                className="modalBtn newstore cancel"
+                onClick={handleCloseClick}
+              >
+                Cancel
+              </button>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
