@@ -36,13 +36,15 @@ function Store() {
   );
   const { id } = useParams<{ id: string }>();
   const [orderItemsModal, setOrderItemsModal] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const getSpecificStore = async () => {
       if (id) {
+        setLoading(true);
         const storeResponse = await getStore(id);
         console.log(storeResponse);
-
+        setLoading(false);
         if (!storeResponse.errorPresent && storeResponse.store) {
           setCurrentStore(storeResponse.store);
           dailyReportCheck(storeResponse.store, setDailyReport);
@@ -135,6 +137,13 @@ function Store() {
         </button>
       </div>
 
+      <div
+        className={
+          loading ? "loadingStoreStatus show" : "loadingStoreStatus hide"
+        }
+      >
+        Loading store information...
+      </div>
       <div className={showItems ? "storeItems show" : "storeItems hide"}>
         {currentStore.products.length == 0 ? (
           <div className="emptyMessage">
