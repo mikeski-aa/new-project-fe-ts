@@ -1,4 +1,3 @@
-import { IError, IStoreResponse } from "../services/storeCalls";
 import { IStore } from "../interfaces/userContextInterfaces";
 import { Dispatch, SetStateAction } from "react";
 
@@ -6,32 +5,6 @@ import { Dispatch, SetStateAction } from "react";
 // this type guard will take the response argument, which can be IStoerResponse or IError.
 // if the response is of type IStoreResponse it will return the !response.error
 // this can be used in an If statement to evaluate how to proceed depending on resulting data.
-function isStoreResponse(
-  response: IStoreResponse | IError
-): response is IStoreResponse {
-  return !response.error;
-}
-
-function extractStore(
-  storeResponse: IStoreResponse | IError,
-  setCurrentStore: Dispatch<SetStateAction<IStore>>
-) {
-  if (isStoreResponse(storeResponse)) {
-    const store: IStore = {
-      id: storeResponse.id,
-      userId: storeResponse.userId,
-      name: storeResponse.name,
-      products: storeResponse.products,
-      location: storeResponse.location,
-      picture: storeResponse.picture,
-      reports: storeResponse.reports,
-    };
-    setCurrentStore(store);
-    return store;
-  } else {
-    console.log(storeResponse.resTest);
-  }
-}
 
 // guard function
 function isStore(someItem: IStore | undefined): someItem is IStore {
@@ -63,4 +36,4 @@ function dailyReportCheck(
   }
 }
 
-export { extractStore, dailyReportCheck };
+export { dailyReportCheck };
