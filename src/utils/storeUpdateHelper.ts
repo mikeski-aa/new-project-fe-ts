@@ -6,16 +6,11 @@ import { Dispatch, SetStateAction } from "react";
 // if the response is of type IStoreResponse it will return the !response.error
 // this can be used in an If statement to evaluate how to proceed depending on resulting data.
 
-// guard function
-function isStore(someItem: IStore | undefined): someItem is IStore {
-  return true;
-}
-
 function dailyReportCheck(
   store: IStore | undefined,
   setDailyReport: Dispatch<SetStateAction<boolean>>
 ) {
-  if (isStore(store)) {
+  if (store) {
     const today = new Date();
     const makedate = (xd: Date) => {
       const now = new Date(xd);
