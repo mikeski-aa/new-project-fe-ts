@@ -11,7 +11,6 @@ import { filterProducts } from "../utils/eodStateUtils";
 import {
   assignYearToMonth,
   getMonthsFromReports,
-  IMonth,
   IYearArrayHolder,
 } from "../utils/reportConversions";
 import ReportCalendarHolderComp from "../components/ReportCalendarHolderComp";
@@ -32,7 +31,6 @@ function Store() {
   const [dailyReport, setDailyReport] = useState<boolean>(false);
   const [showItems, setShowItems] = useState<boolean>(true);
   const [showReports, setShowReports] = useState<boolean>(false);
-  const [reportMonthArray, setReportMonthArray] = useState<IMonth[]>([]);
   const [reportYearArray, setReportYearArray] = useState<IYearArrayHolder[]>(
     []
   );
@@ -63,7 +61,6 @@ function Store() {
   };
 
   const handleOpenReportHistory = () => {
-    setReportMonthArray(getMonthsFromReports(currentStore.reports));
     setReportYearArray(
       assignYearToMonth(getMonthsFromReports(currentStore.reports))
     );

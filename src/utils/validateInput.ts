@@ -1,9 +1,5 @@
 import React from "react";
 
-function validateLoginInput(username: string, password: string): boolean {
-  return true;
-}
-
 // makes sure the input being entered is valid
 function validateRegisterInput(
   username: string,
@@ -38,4 +34,4 @@ function validateRegisterInput(
   return errorPresent;
 }
 
-export { validateLoginInput, validateRegisterInput };
+export { validateRegisterInput };

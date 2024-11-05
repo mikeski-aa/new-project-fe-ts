@@ -7,23 +7,20 @@ function ReportCalendarHolderComp({
 }: {
   yearArray: IYearArrayHolder[];
 }) {
-  const [activeYear, setActiveYear] = useState<number>();
   const [activeDisplay, setActiveDisplay] = useState<IMonth[]>([]);
 
   useEffect(() => {
     if (yearArray[0]) {
-      setActiveYear(yearArray[0].year);
       setActiveDisplay(yearArray[0].months);
     }
   }, [yearArray]);
 
   const handleYearClick = (year: number) => {
     const foundYear = yearArray.find((item) => item.year === year);
-    setActiveYear(year);
+
     if (foundYear) {
       setActiveDisplay(foundYear.months);
     }
-    console.log(activeYear);
   };
 
   return (
