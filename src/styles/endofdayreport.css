@@ -164,3 +164,13 @@ input[type="number"] {
 .warning {
   width: 65vw;
 }
+
+@media (max-width: 640px) {
+  .searchItemBox {
+    max-width: 60px;
+  }
+
+  .soldItemBox {
+    max-width: 60px;
+  }
+}
