@@ -20,7 +20,6 @@ function IndividualOrderItem({
       product.sku === item.sku ? (product.quantity = +target.value) : null;
     });
 
-    console.log(copyState);
     setCopyProducts(copyState);
   };
 

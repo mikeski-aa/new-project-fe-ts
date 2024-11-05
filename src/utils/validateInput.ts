@@ -13,7 +13,6 @@ function validateRegisterInput(
   let errorPresent: boolean = false;
 
   if (password != confirmPassword) {
-    console.log(password + "and confirm password is: " + confirmPassword);
     errorPresent = true;
     errorArray.push("Passwords need to match!");
   }

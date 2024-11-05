@@ -31,7 +31,6 @@ function Finance() {
   // i need to fetch the report data too
   useEffect(() => {
     const populateFinance = async () => {
-      console.log(userContext.stores);
       if (userContext && userContext.stores.length != 0) {
         setActiveStore(userContext.stores[0].name);
 
@@ -39,12 +38,10 @@ function Finance() {
         setActiveOrders(orders);
 
         const data = await getRepData(userContext.stores[0].id);
-        console.log(data);
+
         if (data.multipleItems) {
           setActiveReports(data.multipleItems);
         }
-
-        console.log(data);
       }
     };
     populateFinance();
@@ -58,7 +55,6 @@ function Finance() {
     if (data.multipleItems) {
       setActiveReports(data.multipleItems);
     }
-    console.log(data);
   };
 
   const getTotalValue = () => {

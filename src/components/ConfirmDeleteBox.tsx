@@ -27,8 +27,6 @@ function ConfirmDeleteBox({
       store.id as number
     );
 
-    console.log(response);
-
     if (userContext.user) {
       const newStores = await getStores(userContext.user.id);
 

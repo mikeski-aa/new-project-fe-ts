@@ -38,7 +38,6 @@ async function addProducts(
     const count: number = await response.json();
     return { count, errorPresent: false };
   } catch (error) {
-    console.log(error);
     return { errorPresent: true, error: "Network or server error" };
   }
 }
@@ -62,7 +61,6 @@ async function deleteProduct(itemid: number): Promise<INewProdResponse> {
 
     return { item, errorPresent: false };
   } catch (error) {
-    console.log(error);
     return { errorPresent: true, error: "Network or server error" };
   }
 }

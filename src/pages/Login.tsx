@@ -43,19 +43,16 @@ function Login() {
   const handleRegUname = (e: SyntheticEvent) => {
     const inputElement = e.target as HTMLInputElement;
     setRegUsername(inputElement.value);
-    console.log(inputElement.value);
   };
 
   const handleRegPw = (e: SyntheticEvent) => {
     const inputElement = e.target as HTMLInputElement;
     setRegPassword(inputElement.value);
-    console.log(inputElement.value);
   };
 
   const handleRegPwCon = (e: SyntheticEvent) => {
     const inputElement = e.target as HTMLInputElement;
     setRegConfirmPassword(inputElement.value);
-    console.log(inputElement.value);
   };
 
   // input handlers for login
@@ -105,7 +102,6 @@ function Login() {
       // redirect to login
       setPage("login");
     }
-    console.log(response);
   };
 
   // handle login click
@@ -116,12 +112,12 @@ function Login() {
       // if error is present, we don't proceed with register and inform user of error
       setLoginError(true);
       setLoginLoading(false);
-      return console.log("inform error");
+      return;
     } else {
       setLoginError(false);
-      console.log("i should navigate away");
+
       // redirect to login
-      console.log(response);
+
       if (response.user) {
         userContext.setUser(response.user);
         userContext.setIsLogged(true);
@@ -129,7 +125,6 @@ function Login() {
         navigate("/");
       }
     }
-    console.log(response);
   };
 
   // handle guest login click
@@ -142,8 +137,8 @@ function Login() {
   //   }
 
   //   setLoginError(false);
-  //   console.log("handling guest click");
-  //   console.log(response);
+  //
+  //
 
   //   if (response.user) {
   //     userContext.setUser(response.user);
@@ -155,15 +150,12 @@ function Login() {
   const handleTestClick = async () => {
     setLoginLoading(true);
     const testresponse = await testGuestLogin();
-    console.log(testresponse);
 
     if (testresponse.errorPresent) {
       // throw error - as logging in has failed
     }
 
     setLoginError(false);
-    console.log("handling guest click");
-    console.log(testresponse);
 
     if (testresponse.user) {
       userContext.setUser(testresponse.user);

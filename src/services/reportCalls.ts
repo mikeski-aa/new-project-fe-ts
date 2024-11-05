@@ -20,7 +20,6 @@ async function createReport(
     soldItems: soldItems,
   };
 
-  console.log(newBody);
   try {
     const response = await fetch(url, {
       method: "POST",
@@ -29,7 +28,6 @@ async function createReport(
     });
 
     if (!response.ok) {
-      console.log(response.status);
       return {
         errorPresent: true,
         error: `API response erro ${response.status}`,
@@ -40,7 +38,6 @@ async function createReport(
 
     return { reportItem, errorPresent: false };
   } catch (error) {
-    console.log(error);
     return { errorPresent: true, error: `Server or network error` };
   }
 }
@@ -57,7 +54,6 @@ async function deleteReport(reportid: number): Promise<IReportResponse> {
       body: JSON.stringify(newBody),
     });
     if (!response.ok) {
-      console.log(response.status);
       return {
         errorPresent: true,
         error: `API response erro ${response.status}`,
@@ -68,7 +64,6 @@ async function deleteReport(reportid: number): Promise<IReportResponse> {
 
     return { reportItem, errorPresent: false };
   } catch (error) {
-    console.log(error);
     return { errorPresent: true, error: `Server or network error` };
   }
 }
@@ -86,7 +81,6 @@ async function rollbackData(report: IReport): Promise<IReportResponse> {
       body: JSON.stringify(newBody),
     });
     if (!response.ok) {
-      console.log(response.status);
       return {
         errorPresent: true,
         error: `API response error ${response.status}`,
@@ -97,7 +91,6 @@ async function rollbackData(report: IReport): Promise<IReportResponse> {
 
     return { reportItem, errorPresent: false };
   } catch (error) {
-    console.log(error);
     return { errorPresent: true, error: `Server or network error` };
   }
 }
@@ -111,7 +104,6 @@ async function getRepData(storeid: number): Promise<IReportResponse> {
       headers: getHeaderInfo(),
     });
     if (!response.ok) {
-      console.log(response.status);
       return {
         errorPresent: true,
         error: `API response error ${response.status}`,
@@ -122,7 +114,6 @@ async function getRepData(storeid: number): Promise<IReportResponse> {
 
     return { multipleItems, errorPresent: false };
   } catch (error) {
-    console.log(error);
     return { errorPresent: true, error: `Server or network error` };
   }
 }

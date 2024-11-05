@@ -6,16 +6,13 @@ function useCheckLogin() {
   const userContext = useContext(UserContext);
 
   useEffect(() => {
-    console.log("i ran ");
     const checkForLogin = async () => {
-      console.log(userContext.isLogged);
       const checkResult = await loginCheck();
       userContext.setLoading(false);
-      console.log(checkResult);
 
       if (checkResult.errorPresent) {
         userContext.setIsLogged(false);
-        return console.log("yep no token found, error present");
+        return;
       }
 
       userContext.setIsLogged(true);

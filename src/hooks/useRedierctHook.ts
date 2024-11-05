@@ -7,8 +7,6 @@ function useRedirectHook(isLogged: boolean, loading: boolean) {
   useEffect(() => {
     if (!loading) {
       if (!isLogged) {
-        console.log(isLogged);
-        console.log("user not logged in! REDIRECTING TO LOGIN");
         navigate("/login");
       }
     }

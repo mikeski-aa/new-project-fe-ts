@@ -43,7 +43,7 @@ function Store() {
       if (id) {
         setLoading(true);
         const storeResponse = await getStore(id);
-        console.log(storeResponse);
+
         setLoading(false);
         if (!storeResponse.errorPresent && storeResponse.store) {
           setCurrentStore(storeResponse.store);

@@ -22,9 +22,6 @@ async function getStores(userId: number | null): Promise<INewRwResponse> {
   const url = LOCAL_URL + `stores?userid=${userId}`;
 
   try {
-    console.log("GOING INTO GET STORES CALL");
-    console.log("token?");
-    console.log(localStorage.getItem("token"));
     const response = await fetch(url, {
       method: "GET",
       headers: getHeaderInfo(),
@@ -95,7 +92,6 @@ async function postStore(
     }
 
     const json: IStore = await response.json();
-    console.log(json);
 
     return { ...json, errorPresent: false };
   } catch (error) {
@@ -128,7 +124,7 @@ async function deleteStore(
     }
 
     const json: IStore = await response.json();
-    console.log(json);
+
     return { ...json, errorPresent: false };
   } catch (error) {
     return { errorPresent: true, error: "Network or server error" };
@@ -168,7 +164,6 @@ async function updateStore(
 
     return { ...json, errorPresent: false };
   } catch (error) {
-    console.log(error);
     return { errorPresent: true, error: "Network or server error" };
   }
 }

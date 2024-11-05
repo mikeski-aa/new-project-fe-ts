@@ -53,7 +53,6 @@ function EndOfDayReport({
 
   useEffect(() => {
     setCurrentProducts(products);
-    console.log("use effect running");
   }, [products]);
 
   const handleCloseClick = () => {
@@ -68,17 +67,15 @@ function EndOfDayReport({
   //   and
   //   const target:HTMLInputElement = e.target;
   const handleInputChange = (e: SyntheticEvent): void => {
-    console.log("input detected");
     const target = e.target as HTMLInputElement;
     setSearchInput(target.value);
 
-    console.log(products);
     const shallowProducts = [...products];
     if (target.value != "") {
       const filteredArray = shallowProducts.filter((item) =>
         item.sku.includes(target.value.toUpperCase())
       );
-      console.log(filteredArray);
+
       setSearchList(filteredArray);
     } else {
       setSearchList([]);

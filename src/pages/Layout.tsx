@@ -9,7 +9,7 @@ function Layout() {
   const userContext = useContext(UserContext);
 
   // useCheckLogin();
-  // console.log(userContext);
+  //
   useRedirectHook(userContext.isLogged, userContext.loading);
 
   const handleLogoutClick = () => {

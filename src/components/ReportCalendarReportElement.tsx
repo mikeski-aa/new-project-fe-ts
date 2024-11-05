@@ -9,7 +9,6 @@ function ReportCalendarReportElement({ reportItem }: { reportItem: IReport }) {
 
   const handleDayClick = () => {
     setModal(true);
-    console.log(reportItem);
   };
   const handleCloseClick = () => {
     setModal(false);

@@ -38,7 +38,6 @@ function EditShopModal({
 
   // handle button clicks
   const handleSaveClick = async () => {
-    console.log("hello i am here");
     setLoading(true);
     if (userContext.user) {
       const response = await updateStore(
@@ -47,10 +46,8 @@ function EditShopModal({
         name,
         location
       );
-      console.log(response);
     }
 
-    console.log("hello i am here");
     // get data from DB to refresh the main page here
 
     if (userContext.user) {

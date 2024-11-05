@@ -62,7 +62,6 @@ function AddItemStockModal({
   // also no empty inputs allowed on name, type price or quantity.
 
   const handleAddItem = (): void => {
-    console.log("hello");
     const validatedInputs =
       validateInputName(name) ||
       validateInputSku(sku) ||
@@ -81,7 +80,7 @@ function AddItemStockModal({
         quantity: quantity,
         storeId: currentStore.id,
       };
-      console.log(newItem);
+
       setNewItems([...newItems, newItem]);
       resetItem();
       return;
@@ -153,7 +152,6 @@ function AddItemStockModal({
       return false;
     }
 
-    console.log(newItems);
     setLoading(true);
     const response = await addProducts(currentStore.id, newItems);
     setNewItems([]);
@@ -163,7 +161,6 @@ function AddItemStockModal({
       setCurrentStore(storeUpdate.store);
       setLoading(false);
       setModal(false);
-      console.log(response);
     }
   };
 

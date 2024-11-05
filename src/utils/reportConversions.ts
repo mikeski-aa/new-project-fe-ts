@@ -19,8 +19,6 @@ function getMonthsFromReports(reports: IReport[]): IMonth[] {
     const reportMonth = reportDate.toLocaleString("default", { month: "long" });
     const reportYear = reportDate.getFullYear();
 
-    console.log(reportYear);
-
     const findMonth = monthArray.find(
       (month) => month.name === reportMonth && month.year === reportYear
     );
@@ -35,10 +33,6 @@ function getMonthsFromReports(reports: IReport[]): IMonth[] {
       });
     }
   });
-
-  console.log(monthArray);
-
-  console.log(assignYearToMonth(monthArray));
 
   return monthArray;
 }

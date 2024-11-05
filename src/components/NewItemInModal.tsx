@@ -15,7 +15,6 @@ function NewItemInModal({
     const filteredState = tempState.filter(
       (newItem) => newItem.sku !== item.sku
     );
-    console.log(filteredState);
 
     setState(filteredState);
   };

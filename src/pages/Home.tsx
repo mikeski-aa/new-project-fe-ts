@@ -20,7 +20,6 @@ function Home() {
         setLoading(true);
         const response = await getStores(userContext?.user?.id);
         setLoading(false);
-        console.log(response.stores);
 
         if (!response.errorPresent && response.stores) {
           userContext.setStores(response.stores);

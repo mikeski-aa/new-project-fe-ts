@@ -11,7 +11,6 @@ function validateStoreSkus(
   // checks for duplicate SKU in store items!
   const productsCopy = [...currentStore.products];
   const filtered = productsCopy.filter((product) => product.sku === sku);
-  console.log(filtered.length);
 
   if (filtered.length > 0) {
     setSkuDuplicate(true);
@@ -30,7 +29,6 @@ function validateNewSkus(
 ): boolean {
   const newItemsCopy = [...newItems];
   const filteredItems = newItemsCopy.filter((product) => product.sku === sku);
-  console.log(filteredItems.length);
 
   if (filteredItems.length > 0) {
     setSkuDuplicate(true);

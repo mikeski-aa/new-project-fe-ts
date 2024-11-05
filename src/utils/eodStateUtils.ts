@@ -13,7 +13,7 @@ function updateSoldItems(
   shallowCopyItemsSold.map((copyItem) =>
     copyItem.sku === item.sku ? (copyItem.quantitySold = newValue) : copyItem
   );
-  console.log(shallowCopyItemsSold);
+
   setItemsSold(shallowCopyItemsSold);
 }
 

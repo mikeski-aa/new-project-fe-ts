@@ -44,10 +44,7 @@ async function createUser(
       body: JSON.stringify(newBody),
     });
 
-    console.log(response);
-
     if (!response.ok) {
-      console.log("error");
       return {
         errorPresent: true,
         error: "Input validation error",
@@ -55,7 +52,7 @@ async function createUser(
     }
 
     const json: Omit<UserResponse, "errorPresent"> = await response.json();
-    console.log({ ...json, errorPresent: false });
+
     return { ...json, errorPresent: false };
   } catch (error) {
     return { errorPresent: true, error: "Network or server error" };
@@ -77,16 +74,12 @@ async function loginUser(
 
   const url = LOCAL_URL + "login";
 
-  console.log(newBody);
-
   try {
     const response = await fetch(url, {
       method: "POST",
       headers: getHeaderInfo(),
       body: JSON.stringify(newBody),
     });
-
-    console.log(response.status);
 
     if (!response.ok) {
       return {
@@ -126,11 +119,9 @@ async function loginCheck() {
     }
 
     const user: IUser = await response.json();
-    console.log("//////////////////////////");
-    console.log(user);
+
     return { user, errorPresent: false };
   } catch (error) {
-    console.log(error);
     return { errorPresent: true, error: "Network or server error" };
   }
 }

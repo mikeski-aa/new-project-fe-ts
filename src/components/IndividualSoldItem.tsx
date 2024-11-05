@@ -26,7 +26,6 @@ function IndividualSoldItem({
       return null;
     }
 
-    console.log(item);
     setQuanSold(newValue);
 
     // need to update items sold with new quantity too
@@ -36,7 +35,7 @@ function IndividualSoldItem({
     // shallowCopyItemsSold.map((copyItem) =>
     //   copyItem.sku === item.sku ? (copyItem.quantitySold = newValue) : copyItem
     // );
-    // console.log(shallowCopyItemsSold);
+    //
     // setItemsSold(shallowCopyItemsSold);
   };
 
@@ -85,7 +84,6 @@ function IndividualSoldItem({
 
     setSearchList([removeQuanSold, ...searchList]);
     setCurrentProducts([removeQuanSold, ...searchList]);
-    console.log(searchList);
   };
 
   return (

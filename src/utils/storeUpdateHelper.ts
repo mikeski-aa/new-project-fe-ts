@@ -21,8 +21,6 @@ function dailyReportCheck(
         makedate(item.date).setHours(0, 0, 0, 0) == today.setHours(0, 0, 0, 0)
     );
 
-    console.log(filtered);
-
     if (filtered.length === 0) {
       setDailyReport(false);
     } else {
