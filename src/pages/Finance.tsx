@@ -2,7 +2,7 @@ import "../styles/finance.css";
 import { UserContext } from "../App";
 import { useContext, useEffect, useState } from "react";
 import { getOrdersForStore } from "../services/orderCalls";
-import { IReport, IStore } from "../interfaces/userContextInterfaces";
+import { IReport } from "../interfaces/userContextInterfaces";
 import OrderItemComponent from "../components/OrderItemComponent";
 import { getRepData } from "../services/reportCalls";
 import ReportItemComponent from "../components/ReportItemComponent";
