@@ -86,6 +86,11 @@ function Finance() {
       <div className="something">
         <h1>Finance</h1>
         <div className="buttonHolder">
+          {userContext.stores ? (
+            userContext.stores.length < 1 ? (
+              <div>No reports to display</div>
+            ) : null
+          ) : null}
           {userContext
             ? userContext?.stores.map((store, index) => (
                 <button
