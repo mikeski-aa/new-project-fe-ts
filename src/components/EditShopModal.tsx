@@ -70,41 +70,50 @@ function EditShopModal({
   return (
     <div className={modal ? "editmodal show" : "editmodal hide"}>
       <div className="editContainer">
-        <div className="deleteText">Edit store info</div>
-        <div className="editModalInputContainer">
-          <div className="inputCont">
-            <label className="inputLabelEdit">Store name</label>
-            <input
-              className="editModalInput"
-              value={name}
-              onChange={(e) => handleNameInput(e)}
-              maxLength={30}
-              minLength={1}
-            ></input>
-          </div>
-          <div className="inputCont">
-            <label className="inputLabelEdit">Store location</label>
-            <input
-              className="editModalInput"
-              value={location}
-              onChange={(e) => handleLocationInput(e)}
-              maxLength={30}
-              minLength={1}
-            ></input>
-          </div>
-        </div>
-        {loading ? <h1>LOADING</h1> : null}
-        <div className="deleteBtnContainer">
-          <button className="editModBtn save" onClick={() => handleSaveClick()}>
-            Save
-          </button>
-          <button
-            className="editModBtn cancel"
-            onClick={() => handleCancelClick()}
-          >
-            Cancel
-          </button>
-        </div>
+        {loading ? (
+          <h1 className="loadingEdit">Saving store edit</h1>
+        ) : (
+          <>
+            <div className="deleteText">Edit store info</div>
+            <div className="editModalInputContainer">
+              <div className="inputCont">
+                <label className="inputLabelEdit">Store name</label>
+                <input
+                  className="editModalInput"
+                  value={name}
+                  onChange={(e) => handleNameInput(e)}
+                  maxLength={30}
+                  minLength={1}
+                ></input>
+              </div>
+              <div className="inputCont">
+                <label className="inputLabelEdit">Store location</label>
+                <input
+                  className="editModalInput"
+                  value={location}
+                  onChange={(e) => handleLocationInput(e)}
+                  maxLength={30}
+                  minLength={1}
+                ></input>
+              </div>
+            </div>
+
+            <div className="deleteBtnContainer">
+              <button
+                className="editModBtn save"
+                onClick={() => handleSaveClick()}
+              >
+                Save
+              </button>
+              <button
+                className="editModBtn cancel"
+                onClick={() => handleCancelClick()}
+              >
+                Cancel
+              </button>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

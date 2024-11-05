@@ -20,6 +20,7 @@ function Login() {
   const [loginError, setLoginError] = useState<boolean>(false);
   const [regError, setRegError] = useState<boolean>(false);
   const [regErrorArray, setRegErrorArray] = useState<string[]>([]);
+  const [loginLoading, setLoginLoading] = useState<boolean>(false);
 
   const navigate = useNavigate();
   const userContext = useContext(UserContext);
@@ -111,10 +112,12 @@ function Login() {
 
   // handle login click
   const handleLoginClick = async (): Promise<void> => {
+    setLoginLoading(true);
     const response = await loginUser(logUsername, logPassword);
     if (response.errorPresent === true) {
       // if error is present, we don't proceed with register and inform user of error
       setLoginError(true);
+      setLoginLoading(false);
       return console.log("inform error");
     } else {
       setLoginError(false);
@@ -124,6 +127,7 @@ function Login() {
       if (response.user) {
         userContext.setUser(response.user);
         userContext.setIsLogged(true);
+        setLoginLoading(false);
         navigate("/");
       }
     }
@@ -151,6 +155,7 @@ function Login() {
   // };
 
   const handleTestClick = async () => {
+    setLoginLoading(true);
     const testresponse = await testGuestLogin();
     console.log(testresponse);
 
@@ -165,12 +170,18 @@ function Login() {
     if (testresponse.user) {
       userContext.setUser(testresponse.user);
       userContext.setIsLogged(true);
+      setLoginLoading(false);
       navigate("/");
     }
   };
 
   return (
     <div className="loginContainer">
+      <div
+        className={loginLoading ? "loggingInModal show" : "loggingInModal hide"}
+      >
+        <div className="modalInnerContainerLogin">Logging in...</div>
+      </div>
       <div className="testcont">
         <h1 className="sbuddyheading">StoreBuddy</h1>
         <div className="subHeading">
