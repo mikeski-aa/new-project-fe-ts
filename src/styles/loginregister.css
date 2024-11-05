@@ -122,12 +122,15 @@
 }
 
 @media (max-width: 640px) {
-  .testcont {
-    top: 0%;
-  }
   .loginMainDiv,
   .registerMainDiv {
     max-width: 80vw;
+  }
+}
+
+@media (max-height: 910px) {
+  .testcont {
+    top: 0%;
   }
 }
 
