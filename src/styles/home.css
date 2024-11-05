@@ -49,3 +49,12 @@
   width: 25px;
   height: 25px;
 }
+
+.loadingContentHome.hide {
+  display: none;
+}
+
+.loadingContentHome {
+  font-size: 1.4rem;
+  font-weight: 600;
+}

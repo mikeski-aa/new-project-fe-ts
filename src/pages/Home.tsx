@@ -10,13 +10,16 @@ import PlusCircle from "../assets/pluscircle.svg?react";
 function Home() {
   const userContext = useContext(UserContext);
   const [newStoreModal, setNewStoreModal] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   // we probably want to fetch the stores, number of items and maybe stock value - but that's it
   // fetching entire product line here is too much
   useEffect(() => {
     const fetchStores = async () => {
       if (userContext.user) {
+        setLoading(true);
         const response = await getStores(userContext?.user?.id);
+        setLoading(false);
         console.log(response.stores);
 
         if (!response.errorPresent && response.stores) {
@@ -44,13 +47,28 @@ function Home() {
         <PlusCircle className="icontest" style={{ fill: "rgb(190, 38, 38)" }} />
         <div className="btnTextAdd"> Add new store</div>
       </button>
-      <div className="homeStoreContainer">
-        {userContext.stores
-          ? userContext.stores.map((item: IStore, index: number) => (
-              <StoreHolder key={index} store={item} />
-            ))
-          : null}
-      </div>
+      {loading ? (
+        <div
+          className={
+            loading ? "loadingContentHome show" : "loadingContentHome hide"
+          }
+        >
+          Loading store information...
+        </div>
+      ) : (
+        <div className="homeStoreContainer">
+          {userContext.stores ? (
+            userContext.stores.length < 1 ? (
+              <div>You current don't have any stores to show!</div>
+            ) : null
+          ) : null}
+          {userContext.stores
+            ? userContext.stores.map((item: IStore, index: number) => (
+                <StoreHolder key={index} store={item} />
+              ))
+            : null}
+        </div>
+      )}
     </div>
   );
 }
