@@ -23,6 +23,7 @@ function ReportCalendarHolderComp({
     if (foundYear) {
       setActiveDisplay(foundYear.months);
     }
+    console.log(activeYear);
   };
 
   return (

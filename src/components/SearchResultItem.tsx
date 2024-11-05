@@ -1,5 +1,4 @@
 import { Dispatch, SetStateAction } from "react";
-import { INewItem } from "../interfaces/storeInterfaces";
 import { IProduct, ISoldProduct } from "../interfaces/userContextInterfaces";
 
 function SearchResultItem({
@@ -8,7 +7,6 @@ function SearchResultItem({
   setItemsSold,
   currentItems,
   setCurrentItems,
-  currentProducts,
   setCurrentProducts,
 }: {
   item: IProduct;

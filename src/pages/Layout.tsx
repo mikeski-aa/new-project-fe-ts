@@ -28,8 +28,6 @@ function Layout() {
     navigate("/finance");
   };
 
-  const handleSettingsClick = () => {};
-
   if (userContext.loading) {
     return (
       <>

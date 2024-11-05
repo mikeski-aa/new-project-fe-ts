@@ -45,10 +45,6 @@ function ReportCalendarReportElement({ reportItem }: { reportItem: IReport }) {
           </button>
         </div>
       </div>
-      {/* <div className="reportItem">{`${day}`}</div>
-      <div className="reportItem">{`Products sold: ${reportItem.soldProducts}`}</div>
-      <div className="reportItem">{`Total sales: $${reportItem.totalSaleValue}`}</div> */}
-      {/* <button>Open report</button> */}
     </div>
   );
 }

@@ -1,10 +1,4 @@
-import {
-  Dispatch,
-  SetStateAction,
-  SyntheticEvent,
-  useEffect,
-  useState,
-} from "react";
+import { Dispatch, SetStateAction, SyntheticEvent, useState } from "react";
 import { IProduct, ISoldProduct } from "../interfaces/userContextInterfaces";
 import { updateSoldItems } from "../utils/eodStateUtils";
 

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { IReport, ISoldProduct } from "../interfaces/userContextInterfaces";
+import { IReport } from "../interfaces/userContextInterfaces";
 import { dateConvert } from "../utils/dateConversion";
 import Chevron from "../assets/chevron.svg?react";
 
