@@ -111,7 +111,7 @@ function Store() {
           dailyReport ? "dailyReport yPresent" : "dailyReport nPresent"
         }
       >
-        {dailyReport ? "daily report uploaded" : "daily report not uploaded"}
+        {dailyReport ? "Daily report uploaded" : "Daily report not uploaded"}
       </div>
       <div className="buttonContainerStore">
         {" "}

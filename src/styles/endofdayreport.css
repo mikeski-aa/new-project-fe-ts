@@ -171,6 +171,35 @@ input[type="number"] {
   }
 
   .soldItemBox {
-    max-width: 60px;
+    max-width: 100px;
+  }
+
+  .eodMainContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .searchResultContainer {
+    width: 90vw;
+  }
+
+  .warning {
+    width: 90vw;
+    text-align: center;
+  }
+
+  .revertingHeading {
+    text-align: center;
+  }
+
+  .individualSoldItem {
+    gap: 0;
+  }
+
+  .individualSoldBtn,
+  .btnQuan {
+    padding: 5px;
+    font-size: 0.8rem;
   }
 }

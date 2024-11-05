@@ -170,154 +170,162 @@ function AddItemStockModal({
   return (
     <div className={modal ? "newItemModal show" : "newItemModal hide"}>
       <div className="newItemContainer">
-        {loading ? <h1>LOADING...</h1> : null}
-        <div className="newItemBoxes">
-          <div className="addedItemContainer">
-            <div className="headingItems">Added items</div>
-            <div className="headingDivs">
-              <div className="headingDivItem">SKU</div>
-              <div className="headingDivItem">Name</div>
-              <div className="headingDivItem">Category</div>
-              <div className="headingDivItem">Price</div>
-              <div className="headingDivItem">Purchase price</div>
-              <div className="headingDivItem">Quantity</div>
+        {loading ? (
+          <h1>Please wait... Adding items to store...</h1>
+        ) : (
+          <div className="newItemBoxes">
+            <div className="addedItemContainer">
+              <div className="headingItems">Added items</div>
+              <div className="headingDivs">
+                <div className="headingDivItem">SKU</div>
+                <div className="headingDivItem">Name</div>
+                <div className="headingDivItem">Category</div>
+                <div className="headingDivItem">Price</div>
+                <div className="headingDivItem">Purchase price</div>
+                <div className="headingDivItem">Quantity</div>
+              </div>
+              <hr></hr>
+              {newItems.map((item, index) => (
+                <NewItemInModal
+                  key={index}
+                  item={item}
+                  state={newItems}
+                  setState={setNewItems}
+                />
+              ))}
             </div>
-            <hr></hr>
-            {newItems.map((item, index) => (
-              <NewItemInModal
-                key={index}
-                item={item}
-                state={newItems}
-                setState={setNewItems}
-              />
-            ))}
-          </div>
 
-          <div className="newItemInputContainer">
-            <div className="inputContainer">
-              <input
-                className="newItemInput"
-                placeholder="SKU"
-                value={sku}
-                type="string"
-                onChange={(e) => handleInput(e, "sku")}
-                maxLength={7}
-                minLength={6}
-              ></input>
-              <div
-                className={
-                  skuError ? "inputErrorNewItem show" : "inputErrorNewItem hide"
-                }
-              >{`SKU must be at least 6 characters`}</div>
+            <div className="newItemInputContainer">
+              <div className="inputContainer">
+                <input
+                  className="newItemInput"
+                  placeholder="SKU"
+                  value={sku}
+                  type="string"
+                  onChange={(e) => handleInput(e, "sku")}
+                  maxLength={7}
+                  minLength={6}
+                ></input>
+                <div
+                  className={
+                    skuError
+                      ? "inputErrorNewItem show"
+                      : "inputErrorNewItem hide"
+                  }
+                >{`SKU must be at least 6 characters`}</div>
+              </div>
+              <div className="inputContainer">
+                <input
+                  className="newItemInput"
+                  placeholder="Item name"
+                  value={name}
+                  type="string"
+                  maxLength={30}
+                  minLength={1}
+                  onChange={(e) => handleInput(e, "name")}
+                ></input>
+                <div
+                  className={
+                    nameError
+                      ? "inputErrorNewItem show"
+                      : "inputErrorNewItem hide"
+                  }
+                >{`Name required`}</div>
+              </div>
+              <div className="inputContainer">
+                <input
+                  className="newItemInput"
+                  placeholder="Item type"
+                  value={category}
+                  type="string"
+                  onChange={(e) => handleInput(e, "type")}
+                  maxLength={30}
+                  minLength={1}
+                ></input>
+                <div
+                  className={
+                    typeError
+                      ? "inputErrorNewItem show"
+                      : "inputErrorNewItem hide"
+                  }
+                >{`Type required`}</div>
+              </div>
+              <div className="inputContainer">
+                <input
+                  className="newItemInput"
+                  placeholder="Item price"
+                  value={price}
+                  type="number"
+                  onChange={(e) => handleInput(e, "price")}
+                  maxLength={30}
+                  minLength={1}
+                ></input>
+                <div
+                  className={
+                    priceError
+                      ? "inputErrorNewItem show"
+                      : "inputErrorNewItem hide"
+                  }
+                >{`Price required`}</div>
+              </div>
+              <div className="inputContainer">
+                <input
+                  className="newItemInput"
+                  placeholder="Purchase price"
+                  value={purchasePrice}
+                  type="number"
+                  onChange={(e) => handleInput(e, "purchasePrice")}
+                  maxLength={30}
+                  minLength={1}
+                ></input>
+                <div
+                  className={
+                    purchasePriceError
+                      ? "inputErrorNewItem show"
+                      : "inputErrorNewItem hide"
+                  }
+                >{`Purchase price required`}</div>
+              </div>
+              <div className="inputContainer">
+                <input
+                  className="newItemInput"
+                  placeholder="Stock quantity"
+                  type="number"
+                  value={quantity}
+                  onChange={(e) => handleInput(e, "quantity")}
+                  maxLength={30}
+                  minLength={1}
+                ></input>
+              </div>
+              <button className="newItemAddBtn" onClick={handleAddItem}>
+                Add
+              </button>
             </div>
-            <div className="inputContainer">
-              <input
-                className="newItemInput"
-                placeholder="Item name"
-                value={name}
-                type="string"
-                maxLength={30}
-                minLength={1}
-                onChange={(e) => handleInput(e, "name")}
-              ></input>
-              <div
-                className={
-                  nameError
-                    ? "inputErrorNewItem show"
-                    : "inputErrorNewItem hide"
-                }
-              >{`Name required`}</div>
-            </div>
-            <div className="inputContainer">
-              <input
-                className="newItemInput"
-                placeholder="Item type"
-                value={category}
-                type="string"
-                onChange={(e) => handleInput(e, "type")}
-                maxLength={30}
-                minLength={1}
-              ></input>
-              <div
-                className={
-                  typeError
-                    ? "inputErrorNewItem show"
-                    : "inputErrorNewItem hide"
-                }
-              >{`Type required`}</div>
-            </div>
-            <div className="inputContainer">
-              <input
-                className="newItemInput"
-                placeholder="Item price"
-                value={price}
-                type="number"
-                onChange={(e) => handleInput(e, "price")}
-                maxLength={30}
-                minLength={1}
-              ></input>
-              <div
-                className={
-                  priceError
-                    ? "inputErrorNewItem show"
-                    : "inputErrorNewItem hide"
-                }
-              >{`Price required`}</div>
-            </div>
-            <div className="inputContainer">
-              <input
-                className="newItemInput"
-                placeholder="Purchase price"
-                value={purchasePrice}
-                type="number"
-                onChange={(e) => handleInput(e, "purchasePrice")}
-                maxLength={30}
-                minLength={1}
-              ></input>
-              <div
-                className={
-                  purchasePriceError
-                    ? "inputErrorNewItem show"
-                    : "inputErrorNewItem hide"
-                }
-              >{`Purchase price required`}</div>
-            </div>
-            <div className="inputContainer">
-              <input
-                className="newItemInput"
-                placeholder="Stock quantity"
-                type="number"
-                value={quantity}
-                onChange={(e) => handleInput(e, "quantity")}
-                maxLength={30}
-                minLength={1}
-              ></input>
-            </div>
-            <button className="newItemAddBtn" onClick={handleAddItem}>
-              Add
-            </button>
-          </div>
-          <div
-            className={
-              skuDuplicate || skuDuplicateCurrent
-                ? "duplicateError show"
-                : "duplicateError hide"
-            }
-          >
-            This SKU already exists in this store!
-          </div>
-          <div className="newItemBtnHolder">
-            <button className="newItemModalBtn save" onClick={handleSaveAction}>
-              Save
-            </button>
-            <button
-              className="newItemModalBtn close "
-              onClick={handleModalClose}
+            <div
+              className={
+                skuDuplicate || skuDuplicateCurrent
+                  ? "duplicateError show"
+                  : "duplicateError hide"
+              }
             >
-              Close
-            </button>
+              This SKU already exists in this store!
+            </div>
+            <div className="newItemBtnHolder">
+              <button
+                className="newItemModalBtn save"
+                onClick={handleSaveAction}
+              >
+                Save
+              </button>
+              <button
+                className="newItemModalBtn close "
+                onClick={handleModalClose}
+              >
+                Close
+              </button>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

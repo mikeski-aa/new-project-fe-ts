@@ -147,7 +147,9 @@ function EndOfDayReport({
         {dailyReport ? (
           <>
             {revertLoading ? (
-              <h1>REVERTING PREVIOUS SALE REPORT</h1>
+              <h1 className="revertingHeading">
+                REVERTING PREVIOUS SALE REPORT
+              </h1>
             ) : (
               <>
                 {" "}
@@ -176,53 +178,61 @@ function EndOfDayReport({
         ) : (
           <>
             <div className="reportHeading">{`Add sale items for ${dateToday}`}</div>
-            {loading ? <h1>LOADING</h1> : null}
-
-            <div className="soldContainer">
-              {itemsSold.map((item, index) => (
-                <IndividualSoldItem
-                  key={index}
-                  item={item}
-                  searchList={searchList}
-                  setSearchList={setSearchList}
-                  itemsSold={itemsSold}
-                  setItemsSold={setItemsSold}
-                  setCurrentProducts={setCurrentProducts}
-                />
-              ))}
-            </div>
-            <div className="itemSearchContainer">
-              <label className="labelForSkuInput">Search item by SKU</label>
-              <input
-                className="itemSearchInput"
-                type="string"
-                placeholder="Item SKU"
-                value={searchInput}
-                onChange={(e) => handleInputChange(e)}
-              ></input>
-            </div>
-            <div className="searchResultContainer">
-              {searchList.map((item, index) => (
-                <SearchResultItem
-                  item={item}
-                  key={index}
-                  itemsSold={itemsSold}
-                  setItemsSold={setItemsSold}
-                  currentItems={searchList}
-                  setCurrentItems={setSearchList}
-                  currentProducts={currentProducts}
-                  setCurrentProducts={setCurrentProducts}
-                />
-              ))}
-            </div>
-            <div className="saleReportButtonContainer">
-              <button className="eodModalBtn" onClick={handleSaveClick}>
-                Save
-              </button>
-              <button className="eodModalBtn close" onClick={handleCloseClick}>
-                Close
-              </button>
-            </div>
+            {loading ? (
+              <h1>Please wait, creating new EOD report</h1>
+            ) : (
+              <>
+                {" "}
+                <div className="soldContainer">
+                  {itemsSold.map((item, index) => (
+                    <IndividualSoldItem
+                      key={index}
+                      item={item}
+                      searchList={searchList}
+                      setSearchList={setSearchList}
+                      itemsSold={itemsSold}
+                      setItemsSold={setItemsSold}
+                      setCurrentProducts={setCurrentProducts}
+                    />
+                  ))}
+                </div>
+                <div className="itemSearchContainer">
+                  <label className="labelForSkuInput">Search item by SKU</label>
+                  <input
+                    className="itemSearchInput"
+                    type="string"
+                    placeholder="Item SKU"
+                    value={searchInput}
+                    onChange={(e) => handleInputChange(e)}
+                  ></input>
+                </div>
+                <div className="searchResultContainer">
+                  {searchList.map((item, index) => (
+                    <SearchResultItem
+                      item={item}
+                      key={index}
+                      itemsSold={itemsSold}
+                      setItemsSold={setItemsSold}
+                      currentItems={searchList}
+                      setCurrentItems={setSearchList}
+                      currentProducts={currentProducts}
+                      setCurrentProducts={setCurrentProducts}
+                    />
+                  ))}
+                </div>
+                <div className="saleReportButtonContainer">
+                  <button className="eodModalBtn" onClick={handleSaveClick}>
+                    Save
+                  </button>
+                  <button
+                    className="eodModalBtn close"
+                    onClick={handleCloseClick}
+                  >
+                    Close
+                  </button>
+                </div>
+              </>
+            )}
           </>
         )}
       </div>

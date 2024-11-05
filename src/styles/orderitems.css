@@ -73,3 +73,19 @@
   font-size: 1.5rem;
   font-weight: 600;
 }
+
+@media (max-width: 640px) {
+  .itemProperty {
+    max-width: 60px;
+    overflow: hidden;
+  }
+
+  .inputOrderItemQuant {
+    padding: 0;
+    font-size: 0.8rem;
+  }
+
+  .orderNewItemContainer {
+    max-width: 90vw;
+  }
+}

@@ -160,3 +160,24 @@
 h1 {
   color: #333333;
 }
+
+@media (max-width: 640px) {
+  .sideBySide {
+    flex-direction: column;
+  }
+
+  .orderMoreInfo,
+  .reportItemText {
+    max-width: 100px;
+    overflow: scroll;
+  }
+
+  .itemDetailsInHolder {
+    max-width: 80px;
+    overflow: scroll;
+  }
+
+  .reportItemHolder.show {
+    padding: 0;
+  }
+}
