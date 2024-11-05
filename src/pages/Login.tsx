@@ -171,6 +171,9 @@ function Login() {
 
   return (
     <div className="loginContainer">
+      <div className="testcont">
+        <h1>StoreBuddy - manage your stock</h1>
+      </div>
       <div
         className={
           page === "login" ? "loginMainDiv active" : "loginMainDiv inactive"
