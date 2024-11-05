@@ -21,6 +21,7 @@ function Login() {
   const [regError, setRegError] = useState<boolean>(false);
   const [regErrorArray, setRegErrorArray] = useState<string[]>([]);
   const [loginLoading, setLoginLoading] = useState<boolean>(false);
+  const [regLoading, setRegLoading] = useState<boolean>(false);
 
   const navigate = useNavigate();
   const userContext = useContext(UserContext);
@@ -86,7 +87,7 @@ function Login() {
     ) {
       return;
     }
-
+    setRegLoading(true);
     const response = await createUser(
       regUsername,
       regPassword,
@@ -98,12 +99,14 @@ function Login() {
     if (response.errorPresent === true) {
       // if error is present, we don't proceed with register and inform user of error
       setRegError(true);
+      setRegLoading(false);
       setRegErrorArray(["Username already taken"]);
       return;
     } else {
       setRegUsername("");
       setRegPassword("");
       setRegConfirmPassword("");
+      setRegLoading(false);
       // redirect to login
       setPage("login");
     }
@@ -181,6 +184,13 @@ function Login() {
         className={loginLoading ? "loggingInModal show" : "loggingInModal hide"}
       >
         <div className="modalInnerContainerLogin">Logging in...</div>
+      </div>
+      <div
+        className={regLoading ? "loggingInModal show" : "loggingInModal hide"}
+      >
+        <div className="modalInnerContainerLogin">
+          Registering new account...
+        </div>
       </div>
       <div className="testcont">
         <h1 className="sbuddyheading">StoreBuddy</h1>
