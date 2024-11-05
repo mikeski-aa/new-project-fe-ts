@@ -37,17 +37,14 @@ function App() {
   const [stores, setStores] = useState<IStore[]>([]);
 
   useEffect(() => {
-    //
+    console.log("Logging current user");
     const checkForLogin = async () => {
       const checkResult = await loginCheck();
-
+      console.log(checkResult);
       setLoading(false);
-      //
-      //
-
       if (checkResult.errorPresent) {
         setIsLogged(false);
-        return;
+        return console.log("yep no token found, error present");
       }
 
       if (checkResult.user) {
@@ -57,10 +54,7 @@ function App() {
         const response = await getStores(checkResult.user.id);
         if (!response.errorPresent && response.stores) {
           setStores(response.stores);
-          //
-
           setUser(checkResult.user);
-
           return;
         }
       }

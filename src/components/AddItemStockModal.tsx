@@ -153,7 +153,7 @@ function AddItemStockModal({
     }
 
     setLoading(true);
-    const response = await addProducts(currentStore.id, newItems);
+    await addProducts(currentStore.id, newItems);
     setNewItems([]);
     resetItem();
     const storeUpdate = await getStore(currentStore.id);

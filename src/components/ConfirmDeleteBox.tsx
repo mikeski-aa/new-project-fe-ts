@@ -22,10 +22,7 @@ function ConfirmDeleteBox({
 
   const handleConfirmClick = async () => {
     setLoading(true);
-    const response = await deleteStore(
-      userContext?.user?.id as number,
-      store.id as number
-    );
+    await deleteStore(userContext?.user?.id as number, store.id as number);
 
     if (userContext.user) {
       const newStores = await getStores(userContext.user.id);

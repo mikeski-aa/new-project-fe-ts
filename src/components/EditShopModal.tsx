@@ -40,7 +40,7 @@ function EditShopModal({
   const handleSaveClick = async () => {
     setLoading(true);
     if (userContext.user) {
-      const response = await updateStore(
+      await updateStore(
         userContext.user.id as number,
         store.id,
         name,

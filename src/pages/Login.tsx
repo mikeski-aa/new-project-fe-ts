@@ -127,26 +127,6 @@ function Login() {
     }
   };
 
-  // handle guest login click
-  // needs to call service to create guest instance
-  // const handleGuestClick = async () => {
-  //   const response = await guestLogin();
-
-  //   if (response.errorPresent) {
-  //     // throw error - as logging in has failed
-  //   }
-
-  //   setLoginError(false);
-  //
-  //
-
-  //   if (response.user) {
-  //     userContext.setUser(response.user);
-  //     userContext.setIsLogged(true);
-  //     navigate("/");
-  //   }
-  // };
-
   const handleTestClick = async () => {
     setLoginLoading(true);
     const testresponse = await testGuestLogin();

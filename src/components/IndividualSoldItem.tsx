@@ -30,13 +30,6 @@ function IndividualSoldItem({
 
     // need to update items sold with new quantity too
     updateSoldItems(itemsSold, item, newValue, setItemsSold);
-    // const shallowCopyItemsSold = [...itemsSold];
-
-    // shallowCopyItemsSold.map((copyItem) =>
-    //   copyItem.sku === item.sku ? (copyItem.quantitySold = newValue) : copyItem
-    // );
-    //
-    // setItemsSold(shallowCopyItemsSold);
   };
 
   const handleIncrementClick = (): void | null => {
