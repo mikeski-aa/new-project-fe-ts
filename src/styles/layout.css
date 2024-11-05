@@ -24,7 +24,24 @@
 .nav {
   display: flex;
   width: fit-content;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
+  justify-content: space-between;
+  width: 100%;
+}
+
+.navheading {
+  margin: 0;
+  padding: 0;
+
+  color: rgb(78, 3, 216);
+}
+
+.navBtnCont {
+  display: flex;
+}
+
+@media (max-width: 500px) {
+  .nav {
+    flex-direction: column;
+    align-items: center;
+  }
 }

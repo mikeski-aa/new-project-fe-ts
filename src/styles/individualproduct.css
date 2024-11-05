@@ -79,3 +79,20 @@
 .remItem {
   border: none;
 }
+
+@media (max-width: 640px) {
+  .skuProd,
+  .nameProd,
+  .categoryProd,
+  .priceProd,
+  .stockProd,
+  .purchasePriceProd {
+    max-width: 100px;
+    overflow: scroll;
+  }
+
+  .remItem {
+    padding: 0;
+    font-size: 0.8rem;
+  }
+}

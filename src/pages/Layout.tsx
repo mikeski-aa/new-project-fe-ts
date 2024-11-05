@@ -42,18 +42,21 @@ function Layout() {
   return (
     <>
       <div className="nav">
-        <button className="navBtn" onClick={() => handleHomeClick()}>
-          Stores
-        </button>
-        <button className="navBtn" onClick={() => handleFinanceClick()}>
-          Finance
-        </button>
-        {/* <button className="navBtn" onClick={() => handleSettingsClick()}>
+        <h1 className="navheading">StoreBuddy</h1>
+        <div className="navBtnCont">
+          <button className="navBtn" onClick={() => handleHomeClick()}>
+            Stores
+          </button>
+          <button className="navBtn" onClick={() => handleFinanceClick()}>
+            Finance
+          </button>
+          {/* <button className="navBtn" onClick={() => handleSettingsClick()}>
           Settings
         </button> */}
-        <button className="navBtn" onClick={() => handleLogoutClick()}>
-          Logout for user: {userContext.user?.username}
-        </button>
+          <button className="navBtn" onClick={() => handleLogoutClick()}>
+            Logout
+          </button>
+        </div>
       </div>
       <Outlet></Outlet>
     </>

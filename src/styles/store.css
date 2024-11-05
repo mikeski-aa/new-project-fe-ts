@@ -146,3 +146,15 @@
   color: white;
   cursor: pointer;
 }
+
+@media (max-width: 640px) {
+  .addItemsBtn {
+    padding: 0;
+    font-size: 0.8rem;
+  }
+
+  .headingDivItemStore {
+    max-width: 100px;
+    overflow: scroll;
+  }
+}

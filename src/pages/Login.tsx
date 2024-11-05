@@ -172,7 +172,10 @@ function Login() {
   return (
     <div className="loginContainer">
       <div className="testcont">
-        <h1>StoreBuddy - manage your stock</h1>
+        <h1 className="sbuddyheading">StoreBuddy</h1>
+        <div className="subHeading">
+          Manage your store, stock and sale reports
+        </div>
       </div>
       <div
         className={

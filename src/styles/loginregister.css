@@ -104,3 +104,19 @@
 .errorItem.hidden {
   display: none;
 }
+
+.testcont {
+  position: absolute;
+  top: 25%;
+  text-align: center;
+}
+
+.sbuddyheading {
+  margin: 0;
+  padding: 0;
+  color: rgb(78, 3, 216);
+}
+
+.subHeading {
+  font-size: 1.5rem;
+}
